@@ -364,8 +364,15 @@
             <div class="text-sm">• System Architecture That Scales</div>
             <div class="text-sm">• Technical Leadership That Delivers</div>
           </div>
-          <div class="text-green-400 font-medium text-sm">
-            Let's Build Together →
+          <div class="flex items-center justify-between">
+            <div class="text-green-400 font-medium text-sm">
+              Let's Build Together →
+            </div>
+            <button
+              class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
+              Book a Call
+            </button>
           </div>
         </div>
       </section>
@@ -441,6 +448,73 @@
       <!-- Section Divider -->
       <div class="section-divider mb-16"></div>
 
+      <!-- Consultation Section -->
+      <section class="mb-20">
+        <div class="max-w-4xl mx-auto">
+          <div
+            class="bg-gradient-to-r from-blue-900/20 to-green-900/20 border border-blue-500/30 rounded-2xl p-8 md:p-12"
+          >
+            <div class="text-center mb-8">
+              <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Discuss Your Next Project?
+              </h2>
+              <p class="text-lg text-text-muted mb-6">
+                Let's have a 30-minute conversation about your technical
+                challenges, architectural decisions, or how I can help your team
+                scale.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3"
+                >
+                  <span class="text-white text-xl">⚡</span>
+                </div>
+                <h3 class="font-semibold mb-2">Quick Consultation</h3>
+                <p class="text-sm text-text-muted">
+                  30-min focused discussion on your specific needs
+                </p>
+              </div>
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-3"
+                >
+                  <span class="text-white text-xl">🎯</span>
+                </div>
+                <h3 class="font-semibold mb-2">Technical Review</h3>
+                <p class="text-sm text-text-muted">
+                  Architecture assessment and optimization recommendations
+                </p>
+              </div>
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-3"
+                >
+                  <span class="text-white text-xl">🚀</span>
+                </div>
+                <h3 class="font-semibold mb-2">Project Planning</h3>
+                <p class="text-sm text-text-muted">
+                  Strategic roadmap for your development initiatives
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button
+                class="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105"
+              >
+                Schedule Your Free Consultation
+              </button>
+              <p class="text-xs text-text-muted mt-3">
+                No sales pitch. Just honest technical advice.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Call to Action Section -->
       <section class="text-center">
         <h2 class="text-3xl font-bold mb-4">
@@ -457,6 +531,11 @@
             class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
           >
             Let's Build Together
+          </button>
+          <button
+            class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+          >
+            Book a Consultation
           </button>
           <button
             class="border border-dark-border hover:border-blue-400 text-white px-8 py-3 rounded-lg font-medium transition-colors"
@@ -509,4 +588,19 @@
       });
     </script>
   </body>
+
+  <!-- Floating Booking Button -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button
+      class="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 group"
+    >
+      <div class="flex items-center space-x-2">
+        <span class="text-lg">💬</span>
+        <span
+          class="hidden group-hover:block text-sm font-medium whitespace-nowrap"
+          >Book a Call</span
+        >
+      </div>
+    </button>
+  </div>
 </html>
