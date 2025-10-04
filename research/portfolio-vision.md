@@ -29,6 +29,16 @@
 - Feels like technical documentation, not a website
 - Clean typography with focus on content
 
+### Revolutionary Technical Arsenal Design
+
+- **Format**: RFC-XXX specifications (RFC-001 through RFC-004)
+- **Structure**: Version numbers, last updated dates, status indicators
+- **Categorization**: Logical grouping of related technologies
+- **Experience Levels**: Color-coded (Green: 3+ years, Yellow: 1-2 years)
+- **Typography**: Monospace fonts for technical authenticity
+- **Status Indicators**: PRODUCTION, ACTIVE status with colored dots
+- **Result**: Positions user as technical specification expert
+
 ### Digital Garden Concept
 
 - Blogs called "**Digital Garden / Second Brain**"
@@ -160,14 +170,47 @@
 - Contact forms
 - Resume download
 
+## Design Evolution & Key Decisions
+
+### Phase 1: Initial RFC-Style Foundation
+
+- **Decision**: Adopt RFC-style documentation approach
+- **Rationale**: Aligns with technical background, stands out from traditional portfolios
+- **Implementation**: Left borders, monospace fonts, structured layout, clear hierarchy
+
+### Phase 2: Content Strategy & Professional Positioning
+
+- **Decision**: Position as "Systems Architect & Technical Leader" instead of "Full-Cycle Software Engineer"
+- **Rationale**: More senior positioning, reflects actual expertise level
+- **Decision**: Use realistic metrics (15+ projects vs 50+, 3 teams led vs inflated numbers)
+- **Rationale**: Builds credibility with honest, achievable metrics
+
+### Phase 3: Layout Optimization
+
+- **Decision**: Convert explore section to 2x2 grid cards with bullet points
+- **Rationale**: Better visual hierarchy, more scannable, professional appearance
+- **Decision**: Remove hover layout shifts and left border effects
+- **Rationale**: Cleaner interactions, no content jumping
+- **Decision**: Add monospace font to main description (font-mono)
+- **Rationale**: Technical authenticity while maintaining readability
+
+### Phase 4: Revolutionary Technical Arsenal Design
+
+- **Decision**: Transform Technical Arsenal into RFC-style specifications
+- **Rationale**: Unique approach that showcases technical documentation skills
+- **Implementation**: RFC-001 through RFC-004 format with version numbers, status indicators
+- **Result**: Positions user as someone who thinks in technical specifications and standards
+
 ## Key Decisions Made
 
 1. **Title Evolution**: "Full-Cycle Software Engineer" → "Systems Architect & Technical Leader"
-2. **Layout Choice**: Grid → List format for thoughts page
+2. **Layout Choice**: Grid → List format for thoughts page → Back to grid for explore section
 3. **Navigation Style**: Traditional header → RFC-style breadcrumbs
-4. **Booking Integration**: Multiple touchpoints throughout site
+4. **Technical Arsenal**: Traditional cards → RFC-style specifications (Revolutionary change)
 5. **Content Focus**: Technical insights over personal stories
 6. **Design Philosophy**: Documentation-style over website-style
+7. **Metrics Strategy**: Realistic, achievable numbers over inflated claims
+8. **Typography**: Monospace fonts for technical content authenticity
 
 ## User Preferences
 
