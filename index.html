@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Niraj - Full-Cycle Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              "dark-bg": "#0a0a0a",
+              "dark-secondary": "#111111",
+              "dark-border": "#333333",
+              "text-muted": "#a0a0a0",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      }
+      .section-divider {
+        background: linear-gradient(90deg, transparent, #333333, transparent);
+        height: 1px;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-bg text-white min-h-screen">
+    <!-- Hero Section -->
+    <main class="max-w-6xl mx-auto px-6 py-16">
+      <!-- Hero Content -->
+      <section class="text-center mb-20">
+        <div class="mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">
+            Full-Cycle Software Engineer
+          </h1>
+          <p class="text-xl md:text-2xl text-text-muted mb-6 max-w-3xl mx-auto">
+            Building systems that scale, solutions that matter
+          </p>
+          <div class="text-lg text-text-muted">
+            <span class="gradient-text font-semibold">Niraj</span>
+            <span class="mx-2">•</span>
+            <span>Crafting digital experiences from concept to deployment</span>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mb-12"
+        >
+          <div class="text-center">
+            <div class="text-2xl font-bold gradient-text">5+</div>
+            <div class="text-sm text-text-muted">Years Experience</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold gradient-text">100K+</div>
+            <div class="text-sm text-text-muted">Users Impacted</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold gradient-text">50+</div>
+            <div class="text-sm text-text-muted">Projects Shipped</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Grid -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- Digital Garden -->
+        <div
+          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
+        >
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold mb-2">Digital Garden</h2>
+            <p class="text-sm text-text-muted mb-4">Second Brain</p>
+          </div>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            A living repository of technical insights, architectural decisions,
+            and continuous learning.
+          </p>
+          <div class="space-y-2 mb-6">
+            <div class="text-sm text-text-muted">Recent Thoughts:</div>
+            <div class="text-sm">• System Design Patterns That Scale</div>
+            <div class="text-sm">• Database Optimization Strategies</div>
+            <div class="text-sm">• Microservices Architecture Decisions</div>
+          </div>
+          <div class="text-blue-400 font-medium text-sm">
+            Explore the Garden →
+          </div>
+        </div>
+
+        <!-- Work Portfolio -->
+        <div
+          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
+        >
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold mb-2">Work Portfolio</h2>
+            <p class="text-sm text-text-muted mb-4">Case Studies</p>
+          </div>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            Real problems. Real solutions. Real impact.
+          </p>
+          <div class="space-y-2 mb-6">
+            <div class="text-sm text-text-muted">Featured Projects:</div>
+            <div class="text-sm">• E-commerce Platform (Full-Stack)</div>
+            <div class="text-sm">• API Gateway Architecture</div>
+            <div class="text-sm">• Database Migration Strategy</div>
+          </div>
+          <div class="text-blue-400 font-medium text-sm">
+            View Case Studies →
+          </div>
+        </div>
+
+        <!-- Journey & Story -->
+        <div
+          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
+        >
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold mb-2">My Journey</h2>
+            <p class="text-sm text-text-muted mb-4">My Path</p>
+          </div>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            From debugging my first "Hello World" to architecting enterprise
+            systems - the path of continuous growth.
+          </p>
+          <div class="space-y-2 mb-6">
+            <div class="text-sm text-text-muted">Key Milestones:</div>
+            <div class="text-sm">• 5+ Years Building Scalable Systems</div>
+            <div class="text-sm">• Led Technical Teams of 8+ Engineers</div>
+            <div class="text-sm">• Shipped Products Used by 100K+ Users</div>
+          </div>
+          <div class="text-blue-400 font-medium text-sm">Read My Story →</div>
+        </div>
+
+        <!-- Build with Me -->
+        <div
+          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
+        >
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold mb-2">Build with Me</h2>
+            <p class="text-sm text-text-muted mb-4">Let's Talk</p>
+          </div>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            Ready to solve complex problems together? Let's discuss how I can
+            contribute to your team.
+          </p>
+          <div class="space-y-2 mb-6">
+            <div class="text-sm text-text-muted">What I Bring:</div>
+            <div class="text-sm">• End-to-End Development Expertise</div>
+            <div class="text-sm">• System Architecture & Design</div>
+            <div class="text-sm">• Team Leadership & Mentoring</div>
+          </div>
+          <div class="text-green-400 font-medium text-sm">
+            Schedule a Call →
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <div class="section-divider mb-16"></div>
+
+      <!-- Call to Action Section -->
+      <section class="text-center">
+        <h2 class="text-3xl font-bold mb-4">
+          Ready to Build Something Amazing?
+        </h2>
+        <p class="text-text-muted mb-8 max-w-2xl mx-auto">
+          I don't just write code - I architect solutions. From database schemas
+          to deployment pipelines, I own the entire stack.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+          >
+            Schedule a Call
+          </button>
+          <button
+            class="border border-dark-border hover:border-blue-400 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+          >
+            View Resume
+          </button>
+          <button
+            class="border border-dark-border hover:border-green-400 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+          >
+            Contact Me
+          </button>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-20 pt-8 border-t border-dark-border">
+        <div class="text-center text-text-muted text-sm">
+          <p>© 2024 Niraj. Built with precision, designed for impact.</p>
+          <div class="mt-2 space-x-4">
+            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors">Twitter</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- JavaScript for interactions -->
+    <script>
+      // Add smooth scrolling and basic interactions
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add click handlers for navigation cards
+        const cards = document.querySelectorAll(".card-hover");
+        cards.forEach((card) => {
+          card.addEventListener("click", function () {
+            // Add your navigation logic here
+            console.log("Card clicked:", this.querySelector("h2").textContent);
+          });
+        });
+
+        // Add button click handlers
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const text = this.textContent.trim();
+            console.log("Button clicked:", text);
+            // Add your action logic here
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
