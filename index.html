@@ -33,6 +33,7 @@
     <style>
       body {
         font-family: "Inter", system-ui, sans-serif;
+        line-height: 1.7;
       }
       .gradient-text {
         background: linear-gradient(135deg, #3b82f6, #10b981);
@@ -40,83 +41,125 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      .card-hover {
-        transition: all 0.3s ease;
+      .rfc-style {
+        border-left: 3px solid #3b82f6;
+        padding-left: 1rem;
+        margin-left: 0.5rem;
       }
-      .card-hover:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
-          0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      .section-item {
+        border-bottom: 1px solid #1a1a1a;
+        padding: 1.5rem 0;
+        transition: all 0.2s ease;
       }
-      .section-divider {
-        background: linear-gradient(90deg, transparent, #333333, transparent);
-        height: 1px;
+      .section-item:hover {
+        background: rgba(59, 130, 246, 0.02);
+      }
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        margin-right: 0.5rem;
+      }
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .breadcrumb {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.875rem;
+        color: #666;
+      }
+      .breadcrumb a {
+        color: #3b82f6;
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body class="bg-dark-bg text-white min-h-screen">
-    <!-- Hero Section -->
-    <main class="max-w-6xl mx-auto px-6 py-16">
-      <!-- Hero Content -->
-      <section class="text-center mb-20">
-        <div class="mb-8">
-          <h1 class="text-4xl md:text-6xl font-bold mb-4">
-            Systems Architect & Technical Leader
-          </h1>
-          <p class="text-xl md:text-2xl text-text-muted mb-6 max-w-4xl mx-auto">
-            I don't just write code—I architect systems that handle millions of
-            users, solve complex problems, and drive real business impact.
-          </p>
-          <div class="text-lg text-text-muted mb-4">
-            <span class="gradient-text font-semibold">Niraj</span>
-            <span class="mx-2">•</span>
-            <span>Building the future, one system at a time</span>
-          </div>
-
-          <!-- Status Indicator -->
-          <div
-            class="inline-flex items-center px-4 py-2 bg-green-900/20 border border-green-500/30 rounded-full text-sm"
-          >
-            <div
-              class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"
-            ></div>
-            <span class="text-green-400">Available for new opportunities</span>
-          </div>
-        </div>
-
-        <!-- Quick Stats -->
-        <div
-          class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12"
+    <!-- RFC-Style Header -->
+    <header class="max-w-4xl mx-auto px-6 py-8">
+      <div class="breadcrumb mb-4">
+        <span>Home</span>
+      </div>
+      <h1 class="text-3xl font-bold mb-2">
+        Systems Architect & Technical Leader
+      </h1>
+      <p class="text-lg text-text-muted mb-6 max-w-4xl mx-auto font-mono">
+        I don't just write code—I architect systems that handle millions of
+        users, solve complex problems, and drive real business impact.
+      </p>
+      <div class="flex items-center mt-4">
+        <span class="gradient-text font-semibold">Niraj</span>
+        <span class="mx-2 text-text-muted">•</span>
+        <span class="text-text-muted"
+          >Building the future, one system at a time</span
         >
+        <span class="mx-4 text-text-muted">•</span>
+        <span
+          class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+        >
+          <span class="status-dot bg-green-400 animate-pulse"></span> AVAILABLE
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Content - RFC Style -->
+    <main class="max-w-4xl mx-auto px-6">
+      <!-- Quick Stats -->
+      <section class="mb-12">
+        <h2 class="text-xl font-semibold mb-6 text-text-muted">
+          Experience Overview
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div class="text-center">
-            <div class="text-3xl font-bold gradient-text">5+</div>
-            <div class="text-sm text-text-muted">Years Building</div>
-            <div class="text-xs text-text-muted">Scalable Systems</div>
+            <div class="text-2xl font-bold gradient-text">5+</div>
+            <div class="text-sm text-text-muted">Years Experience</div>
+            <div class="text-xs text-text-muted">Full-Stack Development</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold gradient-text">2M+</div>
-            <div class="text-sm text-text-muted">Users Impacted</div>
-            <div class="text-xs text-text-muted">Across Products</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold gradient-text">50+</div>
-            <div class="text-sm text-text-muted">Projects Shipped</div>
-            <div class="text-xs text-text-muted">Zero Downtime</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold gradient-text">99.9%</div>
-            <div class="text-sm text-text-muted">Uptime</div>
+            <div class="text-2xl font-bold gradient-text">15+</div>
+            <div class="text-sm text-text-muted">Projects Delivered</div>
             <div class="text-xs text-text-muted">Production Systems</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold gradient-text">3</div>
+            <div class="text-sm text-text-muted">Teams Led</div>
+            <div class="text-xs text-text-muted">Technical Leadership</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold gradient-text">100%</div>
+            <div class="text-sm text-text-muted">Client Satisfaction</div>
+            <div class="text-xs text-text-muted">Project Success Rate</div>
           </div>
         </div>
       </section>
 
       <!-- Quote Section -->
-      <section class="mb-20">
-        <div class="max-w-4xl mx-auto text-center">
-          <blockquote
-            class="text-2xl md:text-3xl font-light text-text-muted italic mb-6"
-          >
+      <section class="mb-12">
+        <div
+          class="rfc-style bg-gradient-to-r from-blue-900/10 to-green-900/10 border border-blue-500/20 rounded-lg p-6"
+        >
+          <blockquote class="text-lg text-text-muted italic mb-4">
             "Niraj doesn't just solve problems—he anticipates them. His systems
             thinking and attention to detail are unmatched."
           </blockquote>
@@ -129,486 +172,808 @@
       </section>
 
       <!-- Recent Thoughts Section -->
-      <section class="mb-20">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4">Recent Thoughts</h2>
-          <p class="text-text-muted max-w-2xl mx-auto">
-            Insights from the trenches of building production systems
+      <section class="mb-12">
+        <h2 class="text-xl font-semibold mb-6 text-text-muted">
+          Recent Thoughts
+        </h2>
+
+        <!-- Featured Thought -->
+        <div class="section-item cursor-pointer">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center">
+              <span
+                class="status-indicator bg-red-900/20 border-red-500/30 text-red-400"
+              >
+                <span class="status-dot bg-red-400 animate-pulse"></span>
+                FEATURED
+              </span>
+              <span class="text-xs text-text-muted ml-4 font-mono"
+                >2024-01-15 • 8 min read</span
+              >
+            </div>
+            <span class="text-xs text-green-400">1.2K views</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">
+            Why Your Microservices Are Failing
+          </h3>
+          <p class="text-text-muted mb-3 leading-relaxed">
+            The hidden complexity that kills microservices architectures and how
+            to avoid the common pitfalls that 90% of teams fall into.
           </p>
+          <div class="flex items-center justify-between">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >#microservices</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >#architecture</span
+              >
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Blog Post 1 -->
-          <a href="thoughts.html">
-            <div
-              class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
-            >
-              <div class="mb-3">
-                <span class="text-xs text-blue-400 font-mono">2024-01-15</span>
-                <span class="text-xs text-text-muted ml-2">• 8 min read</span>
-              </div>
-              <h3 class="text-lg font-semibold mb-3">
-                Why Your Microservices Are Failing
-              </h3>
-              <p class="text-sm text-text-muted mb-4">
-                The hidden complexity that kills microservices architectures and
-                how to avoid the common pitfalls that 90% of teams fall into.
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-xs text-green-400">1.2K views</span>
-                <span class="text-blue-400 text-sm">Read More →</span>
-              </div>
+        <!-- Thought 2 -->
+        <div class="section-item cursor-pointer">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center">
+              <span
+                class="status-indicator bg-yellow-900/20 border-yellow-500/30 text-yellow-400"
+              >
+                <span class="status-dot bg-yellow-400 animate-pulse"></span> HOT
+              </span>
+              <span class="text-xs text-text-muted ml-4 font-mono"
+                >2024-01-10 • 12 min read</span
+              >
             </div>
-          </a>
-
-          <!-- Blog Post 2 -->
-          <a href="thoughts.html">
-            <div
-              class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
-            >
-              <div class="mb-3">
-                <span class="text-xs text-blue-400 font-mono">2024-01-10</span>
-                <span class="text-xs text-text-muted ml-2">• 12 min read</span>
-              </div>
-              <h3 class="text-lg font-semibold mb-3">
-                Database Scaling: The Hard Truth
-              </h3>
-              <p class="text-sm text-text-muted mb-4">
-                What I learned scaling databases to handle 10M+ queries per day.
-                The strategies that actually work vs. the ones that don't.
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-xs text-green-400">2.1K views</span>
-                <span class="text-blue-400 text-sm">Read More →</span>
-              </div>
+            <span class="text-xs text-green-400">2.1K views</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">
+            Database Scaling: The Hard Truth
+          </h3>
+          <p class="text-text-muted mb-3 leading-relaxed">
+            What I learned scaling databases to handle 10M+ queries per day. The
+            strategies that actually work vs. the ones that don't.
+          </p>
+          <div class="flex items-center justify-between">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >#database</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >#scaling</span
+              >
             </div>
-          </a>
-
-          <!-- Blog Post 3 -->
-          <a href="thoughts.html">
-            <div
-              class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
-            >
-              <div class="mb-3">
-                <span class="text-xs text-blue-400 font-mono">2024-01-05</span>
-                <span class="text-xs text-text-muted ml-2">• 6 min read</span>
-              </div>
-              <h3 class="text-lg font-semibold mb-3">
-                The Art of Technical Leadership
-              </h3>
-              <p class="text-sm text-text-muted mb-4">
-                How to lead engineering teams without micromanaging. The
-                frameworks that actually work for scaling technical teams.
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-xs text-green-400">890 views</span>
-                <span class="text-blue-400 text-sm">Read More →</span>
-              </div>
-            </div>
-          </a>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
         </div>
 
-        <div class="text-center mt-8">
-          <a href="thoughts.html">
-            <button
-              class="border border-dark-border hover:border-blue-400 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-            >
-              View All Thoughts →
-            </button>
+        <!-- Thought 3 -->
+        <div class="section-item cursor-pointer">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center">
+              <span
+                class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+              >
+                <span class="status-dot bg-green-400"></span> LEARNED
+              </span>
+              <span class="text-xs text-text-muted ml-4 font-mono"
+                >2024-01-05 • 6 min read</span
+              >
+            </div>
+            <span class="text-xs text-green-400">890 views</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">
+            The Art of Technical Leadership
+          </h3>
+          <p class="text-text-muted mb-3 leading-relaxed">
+            How to lead engineering teams without micromanaging. The frameworks
+            that actually work for scaling technical teams.
+          </p>
+          <div class="flex items-center justify-between">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                >#leadership</span
+              >
+              <span
+                class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                >#teams</span
+              >
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </div>
+
+        <div class="text-center mt-6">
+          <a
+            href="thoughts.html"
+            class="text-text-muted hover:text-white transition-colors font-mono text-sm"
+          >
+            View All Thoughts →
           </a>
         </div>
       </section>
 
       <!-- Current Focus Section -->
-      <section class="mb-20">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4">Currently Building</h2>
-          <p class="text-text-muted max-w-2xl mx-auto">
-            What I'm working on right now
-          </p>
-        </div>
+      <section class="mb-12">
+        <h2 class="text-xl font-semibold mb-6 text-text-muted">
+          Currently Building
+        </h2>
 
-        <div class="max-w-4xl mx-auto">
+        <div class="section-item">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center">
+              <span
+                class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+              >
+                <span class="status-dot bg-green-400 animate-pulse"></span>
+                ACTIVE
+              </span>
+              <span class="text-xs text-text-muted ml-4 font-mono"
+                >Beta • 50+ developers</span
+              >
+            </div>
+            <span class="text-xs text-green-400">In Development</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">
+            AI-Powered Development Platform
+          </h3>
+          <p class="text-text-muted mb-3 leading-relaxed">
+            Building a platform that uses AI to accelerate development
+            workflows, reduce boilerplate code, and improve code quality.
+            Currently in beta with 50+ developers.
+          </p>
+          <div class="flex items-center justify-between">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >React</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >Node.js</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >OpenAI API</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >PostgreSQL</span
+              >
+            </div>
+            <span class="text-blue-400 text-sm">Learn More →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Sections -->
+      <section class="mb-12">
+        <h2 class="text-xl font-semibold mb-6 text-text-muted">Explore</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Digital Garden -->
           <div
-            class="bg-dark-secondary border border-dark-border rounded-lg p-8"
+            class="bg-dark-secondary border border-dark-border rounded-lg p-6 hover:border-blue-400 transition-colors cursor-pointer"
           >
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0">
-                <div
-                  class="w-3 h-3 bg-green-400 rounded-full animate-pulse"
-                ></div>
+            <div class="mb-4">
+              <div class="flex items-center mb-2">
+                <span
+                  class="status-indicator bg-blue-900/20 border-blue-500/30 text-blue-400"
+                >
+                  <span class="status-dot bg-blue-400"></span> GARDEN
+                </span>
+                <span class="text-xs text-text-muted ml-4 font-mono"
+                  >6 articles</span
+                >
               </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold mb-2">
-                  AI-Powered Development Platform
+              <h3 class="text-lg font-semibold mb-2">
+                Digital Garden / Second Brain
+              </h3>
+            </div>
+            <p class="text-text-muted mb-4 leading-relaxed text-sm">
+              Raw, unfiltered insights from building systems that actually work.
+              No fluff, just the hard-won knowledge that separates good
+              engineers from great ones.
+            </p>
+            <ul class="text-xs text-text-muted mb-4 space-y-1">
+              <li>• System architecture deep-dives</li>
+              <li>• Performance optimization techniques</li>
+              <li>• Real-world problem solving</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                  >#insights</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                  >#architecture</span
+                >
+              </div>
+              <span class="text-blue-400 text-sm">Dive Deep →</span>
+            </div>
+          </div>
+
+          <!-- Work Portfolio -->
+          <div
+            class="bg-dark-secondary border border-dark-border rounded-lg p-6 hover:border-purple-400 transition-colors cursor-pointer"
+          >
+            <div class="mb-4">
+              <div class="flex items-center mb-2">
+                <span
+                  class="status-indicator bg-purple-900/20 border-purple-500/30 text-purple-400"
+                >
+                  <span class="status-dot bg-purple-400"></span> WORK
+                </span>
+                <span class="text-xs text-text-muted ml-4 font-mono"
+                  >12 projects</span
+                >
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Work Portfolio</h3>
+            </div>
+            <p class="text-text-muted mb-4 leading-relaxed text-sm">
+              The projects that matter. The problems that challenged me. The
+              solutions that delivered 10x results.
+            </p>
+            <ul class="text-xs text-text-muted mb-4 space-y-1">
+              <li>• Full-stack web applications</li>
+              <li>• Microservices architecture</li>
+              <li>• Performance optimization</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                  >#projects</span
+                >
+                <span
+                  class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                  >#case-studies</span
+                >
+              </div>
+              <span class="text-blue-400 text-sm">See Results →</span>
+            </div>
+          </div>
+
+          <!-- Journey & Story -->
+          <div
+            class="bg-dark-secondary border border-dark-border rounded-lg p-6 hover:border-orange-400 transition-colors cursor-pointer"
+          >
+            <div class="mb-4">
+              <div class="flex items-center mb-2">
+                <span
+                  class="status-indicator bg-orange-900/20 border-orange-500/30 text-orange-400"
+                >
+                  <span class="status-dot bg-orange-400"></span> STORY
+                </span>
+                <span class="text-xs text-text-muted ml-4 font-mono"
+                  >5+ years</span
+                >
+              </div>
+              <h3 class="text-lg font-semibold mb-2">My Journey</h3>
+            </div>
+            <p class="text-text-muted mb-4 leading-relaxed text-sm">
+              From junior developer to technical leader. The failures that
+              taught me, the wins that defined me, and the lessons that shaped
+              my approach.
+            </p>
+            <ul class="text-xs text-text-muted mb-4 space-y-1">
+              <li>• Career progression timeline</li>
+              <li>• Key learning moments</li>
+              <li>• Leadership experiences</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-orange-900/30 text-orange-400 text-xs rounded"
+                  >#journey</span
+                >
+                <span
+                  class="px-2 py-1 bg-orange-900/30 text-orange-400 text-xs rounded"
+                  >#growth</span
+                >
+              </div>
+              <span class="text-blue-400 text-sm">Read Story →</span>
+            </div>
+          </div>
+
+          <!-- Build with Me -->
+          <div
+            class="bg-dark-secondary border border-dark-border rounded-lg p-6 hover:border-green-400 transition-colors cursor-pointer"
+          >
+            <div class="mb-4">
+              <div class="flex items-center mb-2">
+                <span
+                  class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+                >
+                  <span class="status-dot bg-green-400 animate-pulse"></span>
+                  AVAILABLE
+                </span>
+                <span class="text-xs text-text-muted ml-4 font-mono"
+                  >Open for work</span
+                >
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Build with Me</h3>
+            </div>
+            <p class="text-text-muted mb-4 leading-relaxed text-sm">
+              Ready to build something that matters? I don't just join teams—I
+              elevate them. Let's discuss how I can drive your next
+              breakthrough.
+            </p>
+            <ul class="text-xs text-text-muted mb-4 space-y-1">
+              <li>• Technical consultation</li>
+              <li>• Team leadership</li>
+              <li>• Project collaboration</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-green-900/30 text-green-400 text-xs rounded"
+                  >#collaboration</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-900/30 text-green-400 text-xs rounded"
+                  >#consulting</span
+                >
+              </div>
+              <span class="text-blue-400 text-sm">Book a Call →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Arsenal Section -->
+      <section class="mb-12">
+        <h2 class="text-xl font-semibold mb-6 text-text-muted">
+          Technical Arsenal
+        </h2>
+
+        <!-- RFC-Style Technical Specifications -->
+        <div class="space-y-8">
+          <!-- Backend Stack Specification -->
+          <div
+            class="rfc-style bg-gradient-to-r from-gray-900/10 to-gray-800/10 border border-gray-500/20 rounded-lg p-6"
+          >
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-lg font-semibold font-mono">
+                  RFC-001: Backend Infrastructure Stack
                 </h3>
-                <p class="text-text-muted mb-4">
-                  Building a platform that uses AI to accelerate development
-                  workflows, reduce boilerplate code, and improve code quality.
-                  Currently in beta with 50+ developers.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full"
-                    >React</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full"
-                    >Node.js</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full"
-                    >OpenAI API</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full"
-                    >PostgreSQL</span
-                  >
+                <span
+                  class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+                >
+                  <span class="status-dot bg-green-400"></span> PRODUCTION
+                </span>
+              </div>
+              <p class="text-xs text-text-muted font-mono">
+                Version 2.1.0 • Last Updated: 2024-01-15
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-sm font-medium text-gray-300 mb-2 font-mono">
+                  LANGUAGES & RUNTIMES
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Node.js</span>
+                    <span class="text-green-400">5+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Python</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Go</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-gray-300 mb-2 font-mono">
+                  DATA LAYER
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">PostgreSQL</span>
+                    <span class="text-green-400">5+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">MongoDB</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Redis</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-gray-300 mb-2 font-mono">
+                  INFRASTRUCTURE
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Docker</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Kubernetes</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">AWS</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frontend Stack Specification -->
+          <div
+            class="rfc-style bg-gradient-to-r from-blue-900/10 to-cyan-900/10 border border-blue-500/20 rounded-lg p-6"
+          >
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-lg font-semibold font-mono">
+                  RFC-002: Frontend Development Stack
+                </h3>
+                <span
+                  class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+                >
+                  <span class="status-dot bg-green-400"></span> PRODUCTION
+                </span>
+              </div>
+              <p class="text-xs text-text-muted font-mono">
+                Version 1.8.0 • Last Updated: 2024-01-10
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-sm font-medium text-blue-300 mb-2 font-mono">
+                  FRAMEWORKS & LIBRARIES
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">React</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Next.js</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Vue.js</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-blue-300 mb-2 font-mono">
+                  LANGUAGES & TYPES
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">TypeScript</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">JavaScript</span>
+                    <span class="text-green-400">5+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">HTML/CSS</span>
+                    <span class="text-green-400">5+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-blue-300 mb-2 font-mono">
+                  STYLING & BUILD
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Tailwind CSS</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Styled Components</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Webpack/Vite</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DevOps & Infrastructure Specification -->
+          <div
+            class="rfc-style bg-gradient-to-r from-orange-900/10 to-red-900/10 border border-orange-500/20 rounded-lg p-6"
+          >
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-lg font-semibold font-mono">
+                  RFC-003: DevOps & Infrastructure Stack
+                </h3>
+                <span
+                  class="status-indicator bg-yellow-900/20 border-yellow-500/30 text-yellow-400"
+                >
+                  <span class="status-dot bg-yellow-400"></span> ACTIVE
+                </span>
+              </div>
+              <p class="text-xs text-text-muted font-mono">
+                Version 1.5.0 • Last Updated: 2024-01-08
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-sm font-medium text-orange-300 mb-2 font-mono">
+                  CLOUD PLATFORMS
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">AWS</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Google Cloud</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Azure</span>
+                    <span class="text-yellow-400">1+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-orange-300 mb-2 font-mono">
+                  CONTAINERIZATION
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Docker</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Kubernetes</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Docker Compose</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-orange-300 mb-2 font-mono">
+                  CI/CD & MONITORING
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">GitHub Actions</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Terraform</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Prometheus/Grafana</span>
+                    <span class="text-yellow-400">1+ years</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Architecture Specification -->
+          <div
+            class="rfc-style bg-gradient-to-r from-purple-900/10 to-indigo-900/10 border border-purple-500/20 rounded-lg p-6"
+          >
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-lg font-semibold font-mono">
+                  RFC-004: System Architecture Patterns
+                </h3>
+                <span
+                  class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+                >
+                  <span class="status-dot bg-green-400"></span> PRODUCTION
+                </span>
+              </div>
+              <p class="text-xs text-text-muted font-mono">
+                Version 3.0.0 • Last Updated: 2024-01-12
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-sm font-medium text-purple-300 mb-2 font-mono">
+                  ARCHITECTURE PATTERNS
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Microservices</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Event-Driven</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Domain-Driven Design</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-purple-300 mb-2 font-mono">
+                  API DESIGN
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">REST APIs</span>
+                    <span class="text-green-400">5+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">GraphQL</span>
+                    <span class="text-yellow-400">2+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">gRPC</span>
+                    <span class="text-yellow-400">1+ years</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-medium text-purple-300 mb-2 font-mono">
+                  SCALABILITY & PERFORMANCE
+                </h4>
+                <div class="space-y-1 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Load Balancing</span>
+                    <span class="text-green-400">3+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Caching Strategies</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-text-muted">Database Optimization</span>
+                    <span class="text-green-400">4+ years</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <!-- Navigation Grid -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        <!-- Digital Garden -->
-        <div
-          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
-        >
-          <div class="mb-4">
-            <h2 class="text-2xl font-bold mb-2">Digital Garden</h2>
-            <p class="text-sm text-text-muted mb-4">Second Brain</p>
-          </div>
-          <p class="text-text-muted mb-6 leading-relaxed">
-            Raw, unfiltered insights from building systems that actually work.
-            No fluff, just the hard-won knowledge that separates good engineers
-            from great ones.
-          </p>
-          <div class="space-y-2 mb-6">
-            <div class="text-sm text-text-muted">Latest Insights:</div>
-            <div class="text-sm">
-              • Why 90% of Microservices Fail (And How to Avoid It)
-            </div>
-            <div class="text-sm">
-              • Database Scaling: The Strategies That Actually Work
-            </div>
-            <div class="text-sm">• Technical Leadership Without the BS</div>
-          </div>
-          <div class="text-blue-400 font-medium text-sm">Dive Deep →</div>
-        </div>
-
-        <!-- Work Portfolio -->
-        <div
-          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
-        >
-          <div class="mb-4">
-            <h2 class="text-2xl font-bold mb-2">Work Portfolio</h2>
-            <p class="text-sm text-text-muted mb-4">Case Studies</p>
-          </div>
-          <p class="text-text-muted mb-6 leading-relaxed">
-            The projects that matter. The problems that challenged me. The
-            solutions that delivered 10x results.
-          </p>
-          <div class="space-y-2 mb-6">
-            <div class="text-sm text-text-muted">Featured Wins:</div>
-            <div class="text-sm">
-              • E-commerce Platform: $2M+ Revenue Generated
-            </div>
-            <div class="text-sm">
-              • API Gateway: 99.99% Uptime, 50ms Response
-            </div>
-            <div class="text-sm">
-              • Database Migration: Zero Downtime, 10M+ Records
-            </div>
-          </div>
-          <div class="text-blue-400 font-medium text-sm">See the Results →</div>
-        </div>
-
-        <!-- Journey & Story -->
-        <div
-          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
-        >
-          <div class="mb-4">
-            <h2 class="text-2xl font-bold mb-2">My Journey</h2>
-            <p class="text-sm text-text-muted mb-4">My Path</p>
-          </div>
-          <p class="text-text-muted mb-6 leading-relaxed">
-            From junior developer to technical leader. The failures that taught
-            me, the wins that defined me, and the lessons that shaped my
-            approach.
-          </p>
-          <div class="space-y-2 mb-6">
-            <div class="text-sm text-text-muted">The Evolution:</div>
-            <div class="text-sm">
-              • 2019: First Production System (0 to 1M users)
-            </div>
-            <div class="text-sm">• 2021: Led Team of 8 Engineers</div>
-            <div class="text-sm">
-              • 2023: Architected $10M+ Revenue Platform
-            </div>
-          </div>
-          <div class="text-blue-400 font-medium text-sm">Read My Story →</div>
-        </div>
-
-        <!-- Build with Me -->
-        <div
-          class="bg-dark-secondary border border-dark-border rounded-lg p-8 card-hover cursor-pointer"
-        >
-          <div class="mb-4">
-            <h2 class="text-2xl font-bold mb-2">Build with Me</h2>
-            <p class="text-sm text-text-muted mb-4">Let's Talk</p>
-          </div>
-          <p class="text-text-muted mb-6 leading-relaxed">
-            Ready to build something that matters? I don't just join teams—I
-            elevate them. Let's discuss how I can drive your next breakthrough.
-          </p>
-          <div class="space-y-2 mb-6">
-            <div class="text-sm text-text-muted">What You Get:</div>
-            <div class="text-sm">
-              • Full-Stack Expertise (Frontend to DevOps)
-            </div>
-            <div class="text-sm">• System Architecture That Scales</div>
-            <div class="text-sm">• Technical Leadership That Delivers</div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="text-green-400 font-medium text-sm">
-              Let's Build Together →
-            </div>
-            <button
-              class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-            >
-              Book a Call
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technical Expertise Section -->
-      <section class="mb-20">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4">Technical Arsenal</h2>
-          <p class="text-text-muted max-w-2xl mx-auto">
-            The tools and technologies I use to build systems that scale
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Backend -->
-          <div
-            class="bg-dark-secondary border border-dark-border rounded-lg p-6 text-center"
-          >
-            <div class="text-2xl mb-3">⚙️</div>
-            <h3 class="text-lg font-semibold mb-3">Backend</h3>
-            <div class="space-y-1 text-sm text-text-muted">
-              <div>Node.js, Python, Go</div>
-              <div>PostgreSQL, MongoDB</div>
-              <div>Redis, Elasticsearch</div>
-              <div>Docker, Kubernetes</div>
-            </div>
-          </div>
-
-          <!-- Frontend -->
-          <div
-            class="bg-dark-secondary border border-dark-border rounded-lg p-6 text-center"
-          >
-            <div class="text-2xl mb-3">🎨</div>
-            <h3 class="text-lg font-semibold mb-3">Frontend</h3>
-            <div class="space-y-1 text-sm text-text-muted">
-              <div>React, Next.js, Vue</div>
-              <div>TypeScript, JavaScript</div>
-              <div>Tailwind, CSS-in-JS</div>
-              <div>Webpack, Vite</div>
-            </div>
-          </div>
-
-          <!-- DevOps -->
-          <div
-            class="bg-dark-secondary border border-dark-border rounded-lg p-6 text-center"
-          >
-            <div class="text-2xl mb-3">🚀</div>
-            <h3 class="text-lg font-semibold mb-3">DevOps</h3>
-            <div class="space-y-1 text-sm text-text-muted">
-              <div>AWS, GCP, Azure</div>
-              <div>CI/CD, GitHub Actions</div>
-              <div>Terraform, Ansible</div>
-              <div>Monitoring, Logging</div>
-            </div>
-          </div>
-
-          <!-- Architecture -->
-          <div
-            class="bg-dark-secondary border border-dark-border rounded-lg p-6 text-center"
-          >
-            <div class="text-2xl mb-3">🏗️</div>
-            <h3 class="text-lg font-semibold mb-3">Architecture</h3>
-            <div class="space-y-1 text-sm text-text-muted">
-              <div>Microservices</div>
-              <div>Event-Driven Systems</div>
-              <div>API Design</div>
-              <div>System Design</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section Divider -->
-      <div class="section-divider mb-16"></div>
 
       <!-- Consultation Section -->
-      <section class="mb-20">
-        <div class="max-w-4xl mx-auto">
-          <div
-            class="bg-gradient-to-r from-blue-900/20 to-green-900/20 border border-blue-500/30 rounded-2xl p-8 md:p-12"
-          >
-            <div class="text-center mb-8">
-              <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                Ready to Discuss Your Next Project?
-              </h2>
-              <p class="text-lg text-text-muted mb-6">
-                Let's have a 30-minute conversation about your technical
-                challenges, architectural decisions, or how I can help your team
-                scale.
-              </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div class="text-center">
-                <div
-                  class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3"
-                >
-                  <span class="text-white text-xl">⚡</span>
-                </div>
-                <h3 class="font-semibold mb-2">Quick Consultation</h3>
-                <p class="text-sm text-text-muted">
-                  30-min focused discussion on your specific needs
-                </p>
-              </div>
-              <div class="text-center">
-                <div
-                  class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-3"
-                >
-                  <span class="text-white text-xl">🎯</span>
-                </div>
-                <h3 class="font-semibold mb-2">Technical Review</h3>
-                <p class="text-sm text-text-muted">
-                  Architecture assessment and optimization recommendations
-                </p>
-              </div>
-              <div class="text-center">
-                <div
-                  class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-3"
-                >
-                  <span class="text-white text-xl">🚀</span>
-                </div>
-                <h3 class="font-semibold mb-2">Project Planning</h3>
-                <p class="text-sm text-text-muted">
-                  Strategic roadmap for your development initiatives
-                </p>
-              </div>
-            </div>
-
-            <div class="text-center">
-              <button
-                class="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105"
-              >
-                Schedule Your Free Consultation
-              </button>
-              <p class="text-xs text-text-muted mt-3">
-                No sales pitch. Just honest technical advice.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Call to Action Section -->
-      <section class="text-center">
-        <h2 class="text-3xl font-bold mb-4">
-          Ready to Build Something That Matters?
+      <section class="mb-12">
+        <h2 class="text-xl font-semibold mb-6 text-text-muted">
+          Let's Work Together
         </h2>
-        <p class="text-text-muted mb-8 max-w-3xl mx-auto">
-          I don't just write code—I architect systems that handle millions of
-          users, solve complex problems, and drive real business impact. When
-          you need someone who can see the big picture and execute the details,
-          that's me.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-          >
-            Let's Build Together
-          </button>
-          <button
-            class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-          >
-            Book a Consultation
-          </button>
-          <button
-            class="border border-dark-border hover:border-blue-400 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-          >
-            View My Work
-          </button>
-          <button
-            class="border border-dark-border hover:border-green-400 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-          >
-            Download Resume
-          </button>
-        </div>
-      </section>
 
-      <!-- Footer -->
-      <footer class="mt-20 pt-8 border-t border-dark-border">
-        <div class="text-center text-text-muted text-sm">
-          <p>© 2024 Niraj. Built with precision, designed for impact.</p>
-          <div class="mt-2 space-x-4">
-            <a href="#" class="hover:text-white transition-colors">GitHub</a>
-            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" class="hover:text-white transition-colors">Twitter</a>
+        <div
+          class="rfc-style bg-gradient-to-r from-blue-900/10 to-green-900/10 border border-blue-500/20 rounded-lg p-8"
+        >
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-3">
+              Ready to Build Something That Matters?
+            </h3>
+            <p class="text-text-muted text-lg leading-relaxed">
+              I don't just write code—I architect systems that handle millions
+              of users, solve complex problems, and drive real business impact.
+              When you need someone who can see the big picture and execute the
+              details, that's me.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-blue-600/20 border border-blue-500/30 rounded-lg flex items-center justify-center mx-auto mb-3"
+              >
+                <span class="text-blue-400 text-xl">⚡</span>
+              </div>
+              <h4 class="font-semibold mb-2">Quick Consultation</h4>
+              <p class="text-sm text-text-muted">
+                30-min focused discussion on your specific needs
+              </p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-green-600/20 border border-green-500/30 rounded-lg flex items-center justify-center mx-auto mb-3"
+              >
+                <span class="text-green-400 text-xl">🎯</span>
+              </div>
+              <h4 class="font-semibold mb-2">Technical Review</h4>
+              <p class="text-sm text-text-muted">
+                Architecture assessment and optimization recommendations
+              </p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-purple-600/20 border border-purple-500/30 rounded-lg flex items-center justify-center mx-auto mb-3"
+              >
+                <span class="text-purple-400 text-xl">🚀</span>
+              </div>
+              <h4 class="font-semibold mb-2">Project Planning</h4>
+              <p class="text-sm text-text-muted">
+                Strategic roadmap for your development initiatives
+              </p>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button
+              class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+            >
+              Schedule Your Free Consultation
+            </button>
+            <p class="text-xs text-text-muted mt-3">
+              No sales pitch. Just honest technical advice.
+            </p>
           </div>
         </div>
-      </footer>
+      </section>
     </main>
 
-    <!-- JavaScript for interactions -->
-    <script>
-      // Add smooth scrolling and basic interactions
-      document.addEventListener("DOMContentLoaded", function () {
-        // Add click handlers for navigation cards
-        const cards = document.querySelectorAll(".card-hover");
-        cards.forEach((card) => {
-          card.addEventListener("click", function () {
-            // Add your navigation logic here
-            console.log("Card clicked:", this.querySelector("h2").textContent);
-          });
-        });
+    <!-- RFC-Style Footer -->
+    <footer class="max-w-4xl mx-auto px-6 py-8 mt-16">
+      <div class="border-t border-dark-border pt-6">
+        <div class="text-center text-text-muted text-sm">
+          <p class="font-mono">
+            © 2024 Niraj • Built with precision, designed for impact
+          </p>
+          <div class="mt-3 space-x-4">
+            <a href="thoughts.html" class="hover:text-white transition-colors"
+              >Digital Garden</a
+            >
+            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors">RSS</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-        // Add button click handlers
-        const buttons = document.querySelectorAll("button");
-        buttons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const text = this.textContent.trim();
-            console.log("Button clicked:", text);
-            // Add your action logic here
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add click handlers for section items
+        const sectionItems = document.querySelectorAll(".section-item");
+        sectionItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const title = this.querySelector("h3").textContent;
+            console.log("Section clicked:", title);
+            // Add your navigation logic here
           });
         });
       });
     </script>
   </body>
-
-  <!-- Floating Booking Button -->
-  <div class="fixed bottom-6 right-6 z-50">
-    <button
-      class="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 group"
-    >
-      <div class="flex items-center space-x-2">
-        <span class="text-lg">💬</span>
-        <span
-          class="hidden group-hover:block text-sm font-medium whitespace-nowrap"
-          >Book a Call</span
-        >
-      </div>
-    </button>
-  </div>
 </html>
