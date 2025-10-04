@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recent Thoughts - Niraj's Engineering Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              "dark-bg": "#0a0a0a",
+              "dark-secondary": "#111111",
+              "dark-border": "#333333",
+              "text-muted": "#a0a0a0",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      }
+      .section-divider {
+        background: linear-gradient(90deg, transparent, #333333, transparent);
+        height: 1px;
+      }
+      .reading-progress {
+        background: linear-gradient(90deg, #3b82f6, #10b981);
+        height: 3px;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+      .hot-thought {
+        background: linear-gradient(135deg, #ff6b6b, #ffa500);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-bg text-white min-h-screen">
+    <!-- Navigation -->
+    <nav
+      class="border-b border-dark-border bg-dark-bg/80 backdrop-blur-sm sticky top-0 z-50"
+    >
+      <div class="max-w-6xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="index.html" class="text-xl font-bold gradient-text">
+            Niraj
+          </a>
+          <div class="flex items-center space-x-6">
+            <a
+              href="index.html"
+              class="text-text-muted hover:text-white transition-colors"
+              >Home</a
+            >
+            <a href="thoughts.html" class="text-white font-medium">Thoughts</a>
+            <a
+              href="#"
+              class="text-text-muted hover:text-white transition-colors"
+              >Work</a
+            >
+            <a
+              href="#"
+              class="text-text-muted hover:text-white transition-colors"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-16">
+      <!-- Hero Section -->
+      <section class="text-center mb-20">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Engineering Journal</h1>
+        <p class="text-xl md:text-2xl text-text-muted mb-6 max-w-4xl mx-auto">
+          Raw insights from building systems that scale. No fluff, just the
+          hard-won knowledge that separates good engineers from great ones.
+        </p>
+        <div
+          class="flex items-center justify-center space-x-4 text-sm text-text-muted"
+        >
+          <span class="flex items-center">
+            <div
+              class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"
+            ></div>
+            Live Updates
+          </span>
+          <span>•</span>
+          <span>Technical Depth</span>
+          <span>•</span>
+          <span>Real Experience</span>
+        </div>
+      </section>
+
+      <!-- Featured Thought -->
+      <section class="mb-20">
+        <div
+          class="bg-gradient-to-r from-blue-900/20 to-green-900/20 border border-blue-500/30 rounded-2xl p-8 md:p-12"
+        >
+          <div class="flex items-center mb-4">
+            <div
+              class="w-3 h-3 bg-red-400 rounded-full animate-pulse mr-3"
+            ></div>
+            <span class="text-sm text-red-400 font-mono">FEATURED</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Why 90% of Microservices Fail (And How to Avoid It)
+          </h2>
+          <p class="text-lg text-text-muted mb-6 leading-relaxed">
+            After architecting microservices for 5+ years, I've seen the same
+            patterns that kill projects. The hidden complexity that teams don't
+            anticipate, the communication overhead that scales exponentially,
+            and the deployment hell that follows. Here's what I learned the hard
+            way.
+          </p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm text-text-muted">
+              <span class="font-mono">2024-01-15</span>
+              <span>•</span>
+              <span>12 min read</span>
+              <span>•</span>
+              <span class="text-green-400">2.1K views</span>
+            </div>
+            <button
+              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+            >
+              Read Full Article →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Filter -->
+      <section class="mb-12">
+        <div class="flex flex-wrap gap-3 justify-center">
+          <button
+            class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium"
+          >
+            All
+          </button>
+          <button
+            class="px-4 py-2 bg-dark-secondary border border-dark-border text-text-muted hover:text-white rounded-lg transition-colors"
+          >
+            Architecture
+          </button>
+          <button
+            class="px-4 py-2 bg-dark-secondary border border-dark-border text-text-muted hover:text-white rounded-lg transition-colors"
+          >
+            Leadership
+          </button>
+          <button
+            class="px-4 py-2 bg-dark-secondary border border-dark-border text-text-muted hover:text-white rounded-lg transition-colors"
+          >
+            Learning
+          </button>
+          <button
+            class="px-4 py-2 bg-dark-secondary border border-dark-border text-text-muted hover:text-white rounded-lg transition-colors"
+          >
+            Scaling
+          </button>
+          <button
+            class="px-4 py-2 bg-dark-secondary border border-dark-border text-text-muted hover:text-white rounded-lg transition-colors"
+          >
+            Tools
+          </button>
+        </div>
+      </section>
+
+      <!-- Thoughts Grid -->
+      <section
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+      >
+        <!-- Thought 1 -->
+        <article
+          class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div
+                class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse mr-2"
+              ></div>
+              <span class="text-xs text-yellow-400 font-mono">HOT</span>
+            </div>
+            <span class="text-xs text-text-muted font-mono">2024-01-12</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">
+            Database Scaling: The Strategies That Actually Work
+          </h3>
+          <p class="text-text-muted mb-4 leading-relaxed">
+            What I learned scaling databases to handle 10M+ queries per day. The
+            strategies that actually work vs. the ones that don't. Spoiler:
+            horizontal sharding isn't always the answer.
+          </p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >#database</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-900/30 text-blue-400 text-xs rounded"
+                >#scaling</span
+              >
+            </div>
+            <span class="text-xs text-text-muted">8 min read</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm">
+              <span class="text-green-400">1.8K views</span>
+              <span class="text-blue-400">23 discussions</span>
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </article>
+
+        <!-- Thought 2 -->
+        <article
+          class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+              <span class="text-xs text-green-400 font-mono">LEARNED</span>
+            </div>
+            <span class="text-xs text-text-muted font-mono">2024-01-10</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">
+            The Art of Technical Leadership Without Micromanaging
+          </h3>
+          <p class="text-text-muted mb-4 leading-relaxed">
+            How to lead engineering teams without micromanaging. The frameworks
+            that actually work for scaling technical teams. From code reviews to
+            architecture decisions.
+          </p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                >#leadership</span
+              >
+              <span
+                class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                >#teams</span
+              >
+            </div>
+            <span class="text-xs text-text-muted">6 min read</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm">
+              <span class="text-green-400">1.2K views</span>
+              <span class="text-blue-400">18 discussions</span>
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </article>
+
+        <!-- Thought 3 -->
+        <article
+          class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+              <span class="text-xs text-blue-400 font-mono">THINKING</span>
+            </div>
+            <span class="text-xs text-text-muted font-mono">2024-01-08</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">
+            Event-Driven Architecture: When to Use It and When to Avoid It
+          </h3>
+          <p class="text-text-muted mb-4 leading-relaxed">
+            Exploring the trade-offs between event-driven architecture and
+            direct API calls. The complexity vs. scalability equation and when
+            each approach makes sense.
+          </p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-green-900/30 text-green-400 text-xs rounded"
+                >#architecture</span
+              >
+              <span
+                class="px-2 py-1 bg-green-900/30 text-green-400 text-xs rounded"
+                >#events</span
+              >
+            </div>
+            <span class="text-xs text-text-muted">10 min read</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm">
+              <span class="text-green-400">890 views</span>
+              <span class="text-blue-400">12 discussions</span>
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </article>
+
+        <!-- Thought 4 -->
+        <article
+          class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-orange-400 rounded-full mr-2"></div>
+              <span class="text-xs text-orange-400 font-mono">EXPERIMENT</span>
+            </div>
+            <span class="text-xs text-text-muted font-mono">2024-01-05</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">
+            Building a Real-Time Analytics Pipeline: Lessons Learned
+          </h3>
+          <p class="text-text-muted mb-4 leading-relaxed">
+            From Kafka to ClickHouse, the journey of building a real-time
+            analytics pipeline that processes 1M+ events per minute. What
+            worked, what didn't, and what I'd do differently.
+          </p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-orange-900/30 text-orange-400 text-xs rounded"
+                >#analytics</span
+              >
+              <span
+                class="px-2 py-1 bg-orange-900/30 text-orange-400 text-xs rounded"
+                >#kafka</span
+              >
+            </div>
+            <span class="text-xs text-text-muted">15 min read</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm">
+              <span class="text-green-400">1.5K views</span>
+              <span class="text-blue-400">31 discussions</span>
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </article>
+
+        <!-- Thought 5 -->
+        <article
+          class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-purple-400 rounded-full mr-2"></div>
+              <span class="text-xs text-purple-400 font-mono">INSIGHT</span>
+            </div>
+            <span class="text-xs text-text-muted font-mono">2024-01-03</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">
+            The Hidden Cost of Technical Debt: A 5-Year Analysis
+          </h3>
+          <p class="text-text-muted mb-4 leading-relaxed">
+            After 5 years of tracking technical debt across multiple projects,
+            here's what I discovered about its real impact on team velocity, bug
+            rates, and developer satisfaction.
+          </p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                >#debt</span
+              >
+              <span
+                class="px-2 py-1 bg-purple-900/30 text-purple-400 text-xs rounded"
+                >#analysis</span
+              >
+            </div>
+            <span class="text-xs text-text-muted">7 min read</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm">
+              <span class="text-green-400">2.3K views</span>
+              <span class="text-blue-400">45 discussions</span>
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </article>
+
+        <!-- Thought 6 -->
+        <article
+          class="bg-dark-secondary border border-dark-border rounded-lg p-6 card-hover cursor-pointer"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div class="w-2 h-2 bg-cyan-400 rounded-full mr-2"></div>
+              <span class="text-xs text-cyan-400 font-mono">TOOL</span>
+            </div>
+            <span class="text-xs text-text-muted font-mono">2024-01-01</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">
+            My Development Workflow: From Idea to Production
+          </h3>
+          <p class="text-text-muted mb-4 leading-relaxed">
+            The tools, processes, and habits that help me ship quality code
+            faster. From terminal setup to deployment pipelines, here's my
+            complete development workflow.
+          </p>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-cyan-900/30 text-cyan-400 text-xs rounded"
+                >#workflow</span
+              >
+              <span
+                class="px-2 py-1 bg-cyan-900/30 text-cyan-400 text-xs rounded"
+                >#tools</span
+              >
+            </div>
+            <span class="text-xs text-text-muted">9 min read</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 text-sm">
+              <span class="text-green-400">1.7K views</span>
+              <span class="text-blue-400">28 discussions</span>
+            </div>
+            <span class="text-blue-400 text-sm">Read More →</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Load More -->
+      <div class="text-center mb-16">
+        <button
+          class="border border-dark-border hover:border-blue-400 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+        >
+          Load More Thoughts
+        </button>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <section class="mb-20">
+        <div
+          class="bg-dark-secondary border border-dark-border rounded-2xl p-8 md:p-12 text-center"
+        >
+          <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+          <p class="text-text-muted mb-8 max-w-2xl mx-auto">
+            Get notified when I publish new insights. No spam, just quality
+            engineering content delivered to your inbox.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex-1 px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-text-muted focus:outline-none focus:border-blue-400"
+            />
+            <button
+              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-dark-border mt-20">
+      <div class="max-w-6xl mx-auto px-6 py-8">
+        <div class="text-center text-text-muted text-sm">
+          <p>© 2024 Niraj. Engineering insights, not opinions.</p>
+          <div class="mt-4 space-x-6">
+            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors">Twitter</a>
+            <a href="#" class="hover:text-white transition-colors">RSS</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add click handlers for thought cards
+        const thoughtCards = document.querySelectorAll("article");
+        thoughtCards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const title = this.querySelector("h3").textContent;
+            console.log("Reading thought:", title);
+            // Add your navigation logic here
+          });
+        });
+
+        // Add click handlers for category filters
+        const filterButtons = document.querySelectorAll("button");
+        filterButtons.forEach((button) => {
+          if (button.textContent.includes("#")) {
+            button.addEventListener("click", function () {
+              const category = this.textContent;
+              console.log("Filtering by:", category);
+              // Add your filtering logic here
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
