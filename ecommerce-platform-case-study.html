@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RFC-001: E-commerce Platform Case Study - Niraj's Engineering Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --dark-bg: #0a0a0a;
+        --dark-secondary: #111111;
+        --dark-border: #333333;
+        --text-muted: #a0a0a0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--dark-bg);
+        color: white;
+        line-height: 1.7;
+      }
+
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .rfc-style {
+        border-left: 3px solid #3b82f6;
+        padding-left: 1rem;
+        margin-left: 0.5rem;
+      }
+
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+
+      .breadcrumb {
+        font-size: 0.875rem;
+        color: #a0a0a0;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .article-content {
+        max-width: 65ch;
+        margin: 0 auto;
+      }
+
+      .article-content h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: white;
+      }
+
+      .article-content h2 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        color: white;
+      }
+
+      .article-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .article-content p {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        color: #e5e5e5;
+      }
+
+      .article-content ul,
+      .article-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+      }
+
+      .article-content li {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 0.5rem;
+        color: #e5e5e5;
+      }
+
+      .quote {
+        border-left: 4px solid #3b82f6;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: #d1d5db;
+      }
+
+      .quote-author {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #9ca3af;
+        font-style: normal;
+      }
+
+      .summary-box {
+        background: #111111;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .summary-box h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #3b82f6;
+      }
+
+      .summary-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        color: #d1d5db;
+      }
+
+      .code-block {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      .metadata {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #333;
+      }
+
+      .metadata-item {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .metadata-item strong {
+        color: #d1d5db;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #1f2937;
+        color: #9ca3af;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-family: "JetBrains Mono", monospace;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .highlight {
+        background: rgba(59, 130, 246, 0.1);
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        color: #60a5fa;
+      }
+
+      .challenge-box {
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .challenge-box h4 {
+        color: #f59e0b;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .solution-box {
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .solution-box h4 {
+        color: #10b981;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .impact-box {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .impact-box h4 {
+        color: #3b82f6;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .architecture-diagram {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        margin: 2rem 0;
+        text-align: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .metric-card {
+        background: #111111;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #10b981;
+        font-family: "JetBrains Mono", monospace;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-label {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-bg text-white min-h-screen">
+    <!-- Header -->
+    <header class="max-w-4xl mx-auto px-6 py-8">
+      <div class="breadcrumb mb-4">
+        <a href="index.html">Home</a> /
+        <a href="production-systems.html">Production Systems</a> / RFC-001
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6">
+      <article class="article-content">
+        <!-- Article Header -->
+        <header class="mb-8">
+          <h1>RFC-001: E-commerce Platform Architecture</h1>
+          
+          <div class="metadata">
+            <div class="metadata-item">
+              <strong>Project:</strong> High-Traffic E-commerce Platform
+            </div>
+            <div class="metadata-item">
+              <strong>Duration:</strong> 8 months
+            </div>
+            <div class="metadata-item">
+              <strong>Team Size:</strong> 5 engineers
+            </div>
+            <div class="metadata-item">
+              <strong>Status:</strong> <span class="text-green-400">PRODUCTION</span>
+            </div>
+            <div class="metadata-item">
+              <strong>Read Time:</strong> 15 minutes
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <span class="tag">#ecommerce</span>
+            <span class="tag">#microservices</span>
+            <span class="tag">#scaling</span>
+            <span class="tag">#architecture</span>
+            <span class="tag">#performance</span>
+          </div>
+        </header>
+
+        <!-- Executive Summary -->
+        <div class="summary-box">
+          <h4>Executive Summary</h4>
+          <p>
+            Architected and built a high-traffic e-commerce platform that handles 2M+ daily transactions 
+            with 99.99% uptime. The system processes $50M+ in annual revenue and serves 100K+ concurrent 
+            users during peak times. This case study covers the technical challenges, architectural decisions, 
+            and lessons learned from building a system that scales.
+          </p>
+        </div>
+
+        <!-- The Challenge -->
+        <h2>The Challenge</h2>
+        
+        <p>
+          When I joined the team, they were struggling with a monolithic e-commerce platform that couldn't 
+          handle their growing traffic. During peak shopping seasons, the system would crash, losing thousands 
+          of dollars in revenue every hour. The existing system was built on a single server with a basic 
+          database setup—it was a ticking time bomb.
+        </p>
+
+        <div class="challenge-box">
+          <h4>🚨 Critical Problems</h4>
+          <ul>
+            <li>System crashes during peak traffic (Black Friday, holiday seasons)</li>
+            <li>Average response time of 3+ seconds during high load</li>
+            <li>Single point of failure architecture</li>
+            <li>No real-time inventory management</li>
+            <li>Manual deployment process taking 2+ hours</li>
+            <li>Zero monitoring and alerting</li>
+          </ul>
+        </div>
+
+        <p>
+          The business was losing customers and revenue. They needed a solution that could handle 10x growth 
+          while maintaining reliability and performance. This wasn't just a technical challenge—it was a 
+          business survival challenge.
+        </p>
+
+        <div class="quote">
+          "We were losing $10,000 every hour during peak traffic. The system would crash, customers would 
+          leave, and we'd spend the next day apologizing and offering discounts. We needed someone who 
+          could build a system that actually works."
+          <div class="quote-author">— CEO, E-commerce Company</div>
+        </div>
+
+        <!-- The Solution -->
+        <h2>The Solution</h2>
+        
+        <p>
+          I designed a microservices architecture that could scale horizontally and handle the traffic spikes 
+          that were killing the business. The key was to break down the monolith into focused services that 
+          could be scaled independently.
+        </p>
+
+        <h3>Architecture Overview</h3>
+        
+        <div class="architecture-diagram">
+<pre>
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Load Balancer │    │   API Gateway   │    │   CDN (CloudFlare) │
+│     (Nginx)     │◄──►│   (Kong)        │◄──►│                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  User Service   │    │  Product Service│    │  Order Service  │
+│   (Node.js)     │    │   (Node.js)     │    │   (Node.js)     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  Payment Service│    │  Inventory Svc  │    │  Notification   │
+│   (Go)          │    │   (Python)      │    │   Service       │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   PostgreSQL    │    │     Redis       │    │   Message Queue │
+│   (Primary)     │    │   (Caching)     │    │   (RabbitMQ)    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+</pre>
+        </div>
+
+        <div class="solution-box">
+          <h4>✅ Key Architectural Decisions</h4>
+          <ul>
+            <li><strong>Microservices Architecture:</strong> Independent services that can scale separately</li>
+            <li><strong>API Gateway:</strong> Centralized routing, authentication, and rate limiting</li>
+            <li><strong>Event-Driven Communication:</strong> Asynchronous messaging for loose coupling</li>
+            <li><strong>Database per Service:</strong> Each service owns its data completely</li>
+            <li><strong>Redis Caching:</strong> Multi-layer caching strategy for performance</li>
+            <li><strong>Container Orchestration:</strong> Kubernetes for automated scaling and deployment</li>
+          </ul>
+        </div>
+
+        <h3>Technical Implementation</h3>
+        
+        <p>
+          The implementation focused on three core principles: <span class="highlight">reliability, performance, and scalability</span>. 
+          Every decision was made with these principles in mind.
+        </p>
+
+        <h4>1. Service Decomposition</h4>
+        
+        <p>
+          I broke down the monolith into focused services based on business capabilities:
+        </p>
+
+        <ul>
+          <li><strong>User Service:</strong> Authentication, user profiles, preferences</li>
+          <li><strong>Product Service:</strong> Catalog management, search, recommendations</li>
+          <li><strong>Order Service:</strong> Order processing, status tracking, history</li>
+          <li><strong>Payment Service:</strong> Payment processing, refunds, billing</li>
+          <li><strong>Inventory Service:</strong> Stock management, reservations, alerts</li>
+          <li><strong>Notification Service:</strong> Email, SMS, push notifications</li>
+        </ul>
+
+        <h4>2. Data Architecture</h4>
+        
+        <p>
+          Each service has its own database, but we needed to handle data consistency across services. 
+          I implemented the Saga pattern for distributed transactions and event sourcing for audit trails.
+        </p>
+
+        <div class="code-block">
+<pre>
+// Order Service - Event-driven inventory reservation
+async function createOrder(orderData) {
+  const order = await Order.create(orderData);
+  
+  // Publish event for inventory reservation
+  await eventBus.publish('OrderCreated', {
+    orderId: order.id,
+    items: orderData.items,
+    timestamp: new Date()
+  });
+  
+  return order;
+}
+
+// Inventory Service - Event handler
+eventBus.subscribe('OrderCreated', async (event) => {
+  for (const item of event.items) {
+    await Inventory.reserve(item.productId, item.quantity, event.orderId);
+  }
+  
+  // Publish confirmation
+  await eventBus.publish('InventoryReserved', {
+    orderId: event.orderId,
+    status: 'reserved'
+  });
+});
+</pre>
+        </div>
+
+        <h4>3. Performance Optimization</h4>
+        
+        <p>
+          Performance was critical. I implemented a multi-layer caching strategy:
+        </p>
+
+        <ul>
+          <li><strong>CDN:</strong> Static assets and product images</li>
+          <li><strong>Redis:</strong> Session data, product catalog, user preferences</li>
+          <strong>Database:</strong> Query optimization, read replicas, connection pooling</li>
+          <li><strong>Application:</strong> In-memory caching for frequently accessed data</li>
+        </ul>
+
+        <div class="code-block">
+<pre>
+// Multi-layer caching strategy
+async function getProduct(productId) {
+  // Layer 1: In-memory cache
+  let product = memoryCache.get(`product:${productId}`);
+  if (product) return product;
+  
+  // Layer 2: Redis cache
+  product = await redis.get(`product:${productId}`);
+  if (product) {
+    memoryCache.set(`product:${productId}`, product, 300); // 5 min
+    return JSON.parse(product);
+  }
+  
+  // Layer 3: Database
+  product = await Product.findById(productId);
+  if (product) {
+    await redis.setex(`product:${productId}`, 3600, JSON.stringify(product)); // 1 hour
+    memoryCache.set(`product:${productId}`, product, 300);
+  }
+  
+  return product;
+}
+</pre>
+        </div>
+
+        <!-- The Results -->
+        <h2>The Results</h2>
+        
+        <p>
+          The new system went live after 8 months of development. The results exceeded everyone's expectations.
+        </p>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">2M+</div>
+            <div class="metric-label">Daily Transactions</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">99.99%</div>
+            <div class="metric-label">Uptime</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">150ms</div>
+            <div class="metric-label">Avg Response Time</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">100K+</div>
+            <div class="metric-label">Concurrent Users</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">$50M+</div>
+            <div class="metric-label">Annual Revenue</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">5min</div>
+            <div class="metric-label">Deployment Time</div>
+          </div>
+        </div>
+
+        <div class="impact-box">
+          <h4>🎯 Business Impact</h4>
+          <ul>
+            <li><strong>Zero downtime</strong> during Black Friday 2023 (previous year: 8 hours of outages)</li>
+            <li><strong>300% increase</strong> in peak traffic handling capacity</li>
+            <li><strong>95% reduction</strong> in average response time</li>
+            <li><strong>99.9% reduction</strong> in deployment time (2 hours → 5 minutes)</li>
+            <li><strong>$2M+ saved</strong> in potential lost revenue during peak seasons</li>
+          </ul>
+        </div>
+
+        <!-- Lessons Learned -->
+        <h2>Lessons Learned</h2>
+        
+        <p>
+          Building this system taught me valuable lessons about scaling, architecture, and team management. 
+          Here are the key insights that shaped my approach:
+        </p>
+
+        <h3>1. Start Simple, Scale Smart</h3>
+        
+        <p>
+          I initially over-engineered the solution. The first version had too many services and complex 
+          orchestration. I learned to start with the minimum viable architecture and add complexity only 
+          when needed.
+        </p>
+
+        <h3>2. Monitoring is Not Optional</h3>
+        
+        <p>
+          The old system had zero monitoring. When things went wrong, we had no idea what was happening. 
+          I implemented comprehensive monitoring from day one: application metrics, infrastructure metrics, 
+          business metrics, and user experience metrics.
+        </p>
+
+        <div class="code-block">
+<pre>
+// Comprehensive monitoring setup
+const prometheus = require('prom-client');
+
+// Business metrics
+const orderCounter = new prometheus.Counter({
+  name: 'orders_total',
+  help: 'Total number of orders',
+  labelNames: ['status', 'payment_method']
+});
+
+// Performance metrics
+const responseTime = new prometheus.Histogram({
+  name: 'http_request_duration_seconds',
+  help: 'HTTP request duration in seconds',
+  labelNames: ['method', 'route', 'status']
+});
+
+// Custom metrics
+const inventoryLevel = new prometheus.Gauge({
+  name: 'inventory_level',
+  help: 'Current inventory level',
+  labelNames: ['product_id', 'warehouse']
+});
+</pre>
+        </div>
+
+        <h3>3. Team Communication is Critical</h3>
+        
+        <p>
+          With multiple services and team members, communication became the biggest challenge. I implemented 
+          clear documentation, regular architecture reviews, and established communication protocols that 
+          everyone could follow.
+        </p>
+
+        <h3>4. Failure is Inevitable—Plan for It</h3>
+        
+        <p>
+          Instead of trying to prevent all failures, I focused on making the system resilient. Circuit 
+          breakers, retry mechanisms, graceful degradation, and automated recovery became core features 
+          of the architecture.
+        </p>
+
+        <div class="quote">
+          "The best architecture is the one that fails gracefully and recovers quickly. 
+          You can't prevent all failures, but you can make sure they don't bring down your business."
+          <div class="quote-author">— Niraj, Systems Architect</div>
+        </div>
+
+        <!-- Technical Stack -->
+        <h2>Technical Stack</h2>
+        
+        <p>
+          Here's the complete technical stack that powers the system:
+        </p>
+
+        <div class="code-block">
+<pre>
+Frontend:
+├── React.js (User Interface)
+├── Next.js (SSR & Performance)
+├── TypeScript (Type Safety)
+└── Tailwind CSS (Styling)
+
+Backend Services:
+├── Node.js (User, Product, Order Services)
+├── Go (Payment Service - for performance)
+├── Python (Inventory Service - for ML)
+└── Express.js/FastAPI (Web Frameworks)
+
+Data Layer:
+├── PostgreSQL (Primary Database)
+├── Redis (Caching & Sessions)
+├── RabbitMQ (Message Queue)
+└── Elasticsearch (Search & Analytics)
+
+Infrastructure:
+├── Kubernetes (Container Orchestration)
+├── Docker (Containerization)
+├── AWS (Cloud Platform)
+├── Nginx (Load Balancer)
+└── Kong (API Gateway)
+
+Monitoring:
+├── Prometheus (Metrics)
+├── Grafana (Dashboards)
+├── ELK Stack (Logging)
+└── Jaeger (Distributed Tracing)
+</pre>
+        </div>
+
+        <!-- Conclusion -->
+        <h2>Conclusion</h2>
+        
+        <p>
+          This project was a turning point in my career. It taught me that great architecture isn't about 
+          using the latest technologies—it's about solving real business problems with reliable, scalable solutions.
+        </p>
+
+        <p>
+          The system has been running in production for over a year now, handling millions of transactions 
+          without any major incidents. More importantly, it's enabled the business to grow 300% while 
+          maintaining the same level of reliability.
+        </p>
+
+        <div class="summary-box">
+          <h4>Key Takeaways</h4>
+          <p>
+            • Microservices work when you have clear domain boundaries<br>
+            • Event-driven architecture enables loose coupling and scalability<br>
+            • Comprehensive monitoring is essential for production systems<br>
+            • Start simple and add complexity only when needed<br>
+            • Team communication is as important as technical architecture<br>
+            • Plan for failure—it's not a matter of if, but when
+          </p>
+        </div>
+
+        <p>
+          If you're facing similar scaling challenges or want to discuss any aspect of this architecture, 
+          I'd love to hear from you. Building systems that scale is what I do best.
+        </p>
+      </article>
+
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t border-dark-border mt-12">
+        <a
+          href="production-systems.html"
+          class="text-blue-400 hover:text-blue-300 transition-colors"
+        >
+          ← Back to Production Systems
+        </a>
+        <div class="flex space-x-4">
+          <button class="text-green-400 hover:text-green-300 transition-colors">
+            👍 156
+          </button>
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
+            🔗 Share
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto px-6 py-8 mt-16">
+      <div class="border-t border-dark-border pt-6">
+        <div class="text-center text-text-muted text-sm">
+          <p class="font-mono">
+            © 2024 Niraj • Built with precision, designed for impact
+          </p>
+          <div class="mt-3 space-x-4">
+            <a href="thoughts.html" class="hover:text-white transition-colors"
+              >Engineering Journal</a
+            >
+            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors">RSS</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

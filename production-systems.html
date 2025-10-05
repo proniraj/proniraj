@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Production Systems - Niraj's Engineering Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --dark-bg: #0a0a0a;
+        --dark-secondary: #111111;
+        --dark-border: #333333;
+        --text-muted: #a0a0a0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--dark-bg);
+        color: white;
+        line-height: 1.7;
+      }
+
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .rfc-style {
+        border-left: 3px solid #3b82f6;
+        padding-left: 1rem;
+        margin-left: 0.5rem;
+      }
+
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+
+      .breadcrumb {
+        font-size: 0.875rem;
+        color: #a0a0a0;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .system-spec {
+        background: #111111;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition: border-color 0.2s ease;
+      }
+
+      .system-spec:hover {
+        border-color: #3b82f6;
+      }
+
+      .system-spec h3 {
+        color: #3b82f6;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .system-spec .description {
+        color: #d1d5db;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .system-spec .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .metric {
+        text-align: center;
+        padding: 0.75rem;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 0.25rem;
+      }
+
+      .metric-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #10b981;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .metric-label {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .tech-tag {
+        background: #1f2937;
+        color: #9ca3af;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .system-spec .status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .impact-overview {
+        background: #111111;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      .impact-overview h3 {
+        color: #3b82f6;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .impact-item {
+        text-align: center;
+      }
+
+      .impact-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #10b981;
+        font-family: "JetBrains Mono", monospace;
+        margin-bottom: 0.5rem;
+      }
+
+      .impact-label {
+        color: #9ca3af;
+        font-size: 0.875rem;
+      }
+
+      .section-header {
+        background: #111111;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .section-header h2 {
+        color: #3b82f6;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .section-header p {
+        color: #d1d5db;
+        line-height: 1.6;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        background: none;
+        border: none;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s ease;
+      }
+
+      .project-link:hover {
+        transform: translateX(2px);
+      }
+
+      .project-link .icon {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+      }
+
+      .project-link .external-icon {
+        width: 0.75rem;
+        height: 0.75rem;
+        margin-left: 0.25rem;
+      }
+
+      /* GitHub - Green */
+      .project-link.github {
+        color: #10b981;
+      }
+
+      .project-link.github:hover {
+        color: #34d399;
+      }
+
+      /* Live Demo - Blue */
+      .project-link.demo {
+        color: #3b82f6;
+      }
+
+      .project-link.demo:hover {
+        color: #60a5fa;
+      }
+
+      /* Documentation - Purple */
+      .project-link.docs {
+        color: #8b5cf6;
+      }
+
+      .project-link.docs:hover {
+        color: #a78bfa;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-bg text-white min-h-screen">
+    <!-- Header -->
+    <header class="max-w-4xl mx-auto px-6 py-8">
+      <div class="breadcrumb mb-4">
+        <a href="index.html">Home</a> / Production Systems
+      </div>
+      <h1 class="text-3xl font-bold mb-2">Production Systems</h1>
+      <p class="text-text-muted text-lg">
+        Battle-tested systems that handle real production traffic. The problems
+        that challenged me, the solutions that delivered measurable impact.
+      </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6">
+      <!-- Impact Overview -->
+      <div class="impact-overview">
+        <h3>Production Impact</h3>
+        <p class="text-text-muted">
+          Systems I've architected and built that are running in production
+          today
+        </p>
+        <div class="impact-grid">
+          <div class="impact-item">
+            <div class="impact-value">50M+</div>
+            <div class="impact-label">Daily Requests</div>
+          </div>
+          <div class="impact-item">
+            <div class="impact-value">99.9%</div>
+            <div class="impact-label">Uptime</div>
+          </div>
+          <div class="impact-item">
+            <div class="impact-value">12</div>
+            <div class="impact-label">Systems Shipped</div>
+          </div>
+          <div class="impact-item">
+            <div class="impact-value">3</div>
+            <div class="impact-label">Teams Led</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Systems Overview -->
+      <div class="section-header">
+        <h2>System Architecture Overview</h2>
+        <p>
+          Each system represents a unique challenge solved with precision. From
+          high-traffic e-commerce platforms to real-time data processing
+          pipelines, these systems demonstrate my ability to architect solutions
+          that scale and perform under pressure.
+        </p>
+      </div>
+
+      <!-- Production Systems -->
+      <div class="space-y-6">
+        <!-- System 1: AuthFlow SDK -->
+        <div
+          class="system-spec"
+          onclick="window.location.href='auth-sdk-case-study.html'"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h3>RFC-001: AuthFlow SDK</h3>
+            <span
+              class="status-indicator bg-purple-900/20 border-purple-500/30 text-purple-400"
+            >
+              <span class="status-dot bg-purple-400"></span> OPEN SOURCE
+            </span>
+          </div>
+          <p class="description">
+            Revolutionary authentication SDK that makes secure authentication as
+            simple as a single function call. Built for developers who value
+            security without complexity.
+          </p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">10K+</div>
+              <div class="metric-label">GitHub Stars</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">50K+</div>
+              <div class="metric-label">Downloads</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">99.9%</div>
+              <div class="metric-label">Uptime</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">100ms</div>
+              <div class="metric-label">Auth Time</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">OAuth 2.0</span>
+            <span class="tech-tag">WebAuthn</span>
+          </div>
+          <div class="status">
+            <span class="text-xs text-text-muted"
+              >Last Updated: 2024-01-15</span
+            >
+            <div class="project-links">
+              <a href="#" class="project-link github">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                GitHub
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link demo">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Live Demo
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link docs">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Docs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System 2: WorkTracker Pro -->
+        <div
+          class="system-spec"
+          onclick="window.location.href='employee-monitoring-case-study.html'"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h3>RFC-002: WorkTracker Pro</h3>
+            <span
+              class="status-indicator bg-orange-900/20 border-orange-500/30 text-orange-400"
+            >
+              <span class="status-dot bg-orange-400"></span> ENTERPRISE
+            </span>
+          </div>
+          <p class="description">
+            Comprehensive employee monitoring solution with macOS app, web
+            dashboard, and advanced analytics. Built for remote teams who need
+            visibility without micromanagement.
+          </p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">5K+</div>
+              <div class="metric-label">Active Users</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">99.8%</div>
+              <div class="metric-label">Accuracy</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">50ms</div>
+              <div class="metric-label">Response Time</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">24/7</div>
+              <div class="metric-label">Monitoring</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-tag">Swift</span>
+            <span class="tech-tag">macOS</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Redis</span>
+          </div>
+          <div class="status">
+            <span class="text-xs text-text-muted"
+              >Last Updated: 2024-01-10</span
+            >
+            <div class="project-links">
+              <a href="#" class="project-link github">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                GitHub
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link demo">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Live Demo
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link docs">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Docs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System 3: API Gateway -->
+        <div
+          class="system-spec"
+          onclick="window.location.href='api-gateway-case-study.html'"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h3>RFC-003: High-Performance API Gateway</h3>
+            <span
+              class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+            >
+              <span class="status-dot bg-green-400"></span> PRODUCTION
+            </span>
+          </div>
+          <p class="description">
+            Custom API gateway handling 5M+ requests per day with advanced rate
+            limiting, authentication, and request routing. Built with Go for
+            maximum performance and reliability.
+          </p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">5M+</div>
+              <div class="metric-label">Daily Requests</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">50ms</div>
+              <div class="metric-label">Avg Latency</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">99.9%</div>
+              <div class="metric-label">Uptime</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">1000</div>
+              <div class="metric-label">RPS Peak</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-tag">Go</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Nginx</span>
+            <span class="tech-tag">Prometheus</span>
+          </div>
+          <div class="status">
+            <span class="text-xs text-text-muted"
+              >Last Updated: 2024-01-08</span
+            >
+            <div class="project-links">
+              <a href="#" class="project-link github">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                GitHub
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link demo">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Live Demo
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link docs">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Docs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System 4: ML Pipeline -->
+        <div
+          class="system-spec"
+          onclick="window.location.href='ml-pipeline-case-study.html'"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h3>RFC-004: ML Model Serving Pipeline</h3>
+            <span
+              class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+            >
+              <span class="status-dot bg-green-400"></span> PRODUCTION
+            </span>
+          </div>
+          <p class="description">
+            End-to-end machine learning pipeline serving 1M+ predictions daily
+            with A/B testing, model versioning, and real-time monitoring. Built
+            with Python, TensorFlow, and Kubernetes.
+          </p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">1M+</div>
+              <div class="metric-label">Daily Predictions</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">95%</div>
+              <div class="metric-label">Model Accuracy</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">100ms</div>
+              <div class="metric-label">Inference Time</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">24/7</div>
+              <div class="metric-label">Monitoring</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">MLflow</span>
+            <span class="tech-tag">Prometheus</span>
+            <span class="tech-tag">Grafana</span>
+          </div>
+          <div class="status">
+            <span class="text-xs text-text-muted"
+              >Last Updated: 2024-01-05</span
+            >
+            <div class="project-links">
+              <a href="#" class="project-link github">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                GitHub
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link demo">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Live Demo
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link docs">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Docs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System 5: Database Optimization -->
+        <div
+          class="system-spec"
+          onclick="window.location.href='database-optimization-case-study.html'"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h3>RFC-005: Database Performance Optimization</h3>
+            <span
+              class="status-indicator bg-green-900/20 border-green-500/30 text-green-400"
+            >
+              <span class="status-dot bg-green-400"></span> PRODUCTION
+            </span>
+          </div>
+          <p class="description">
+            Database optimization project that improved query performance by 10x
+            and reduced costs by 60%. Implemented advanced indexing, query
+            optimization, and read replica strategies.
+          </p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">10x</div>
+              <div class="metric-label">Performance Gain</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">60%</div>
+              <div class="metric-label">Cost Reduction</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">50ms</div>
+              <div class="metric-label">Avg Query Time</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">99.9%</div>
+              <div class="metric-label">Uptime</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">PgBouncer</span>
+            <span class="tech-tag">Monitoring</span>
+            <span class="tech-tag">Indexing</span>
+            <span class="tech-tag">Query Optimization</span>
+          </div>
+          <div class="status">
+            <span class="text-xs text-text-muted"
+              >Last Updated: 2024-01-03</span
+            >
+            <div class="project-links">
+              <a href="#" class="project-link github">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                GitHub
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link demo">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Live Demo
+                <svg
+                  class="external-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+              <a href="#" class="project-link docs">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Docs
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Philosophy -->
+      <div class="section-header">
+        <h2>Technical Philosophy</h2>
+        <p>
+          Every system I build follows these core principles: scalability first,
+          performance optimization, reliability through redundancy, and
+          maintainability through clean architecture. I believe in building
+          systems that not only work today but can evolve with your business
+          needs.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div
+        class="flex justify-between items-center pt-8 border-t border-dark-border mt-12"
+      >
+        <a
+          href="index.html"
+          class="text-blue-400 hover:text-blue-300 transition-colors"
+        >
+          ← Back to Home
+        </a>
+        <div class="flex space-x-4">
+          <button class="text-green-400 hover:text-green-300 transition-colors">
+            👍 89
+          </button>
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
+            🔗 Share
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto px-6 py-8 mt-16">
+      <div class="border-t border-dark-border pt-6">
+        <div class="text-center text-text-muted text-sm">
+          <p class="font-mono">
+            © 2024 Niraj • Built with precision, designed for impact
+          </p>
+          <div class="mt-3 space-x-4">
+            <a href="thoughts.html" class="hover:text-white transition-colors"
+              >Engineering Journal</a
+            >
+            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors">RSS</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
