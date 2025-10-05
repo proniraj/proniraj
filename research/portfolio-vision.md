@@ -39,12 +39,12 @@
 - **Status Indicators**: PRODUCTION, ACTIVE status with colored dots
 - **Result**: Positions user as technical specification expert
 
-### Digital Garden Concept
+### Engineering Journal Concept
 
-- Blogs called "**Digital Garden / Second Brain**"
-- Raw, unfiltered insights from building systems
-- No fluff, just hard-won knowledge
-- Organized learnings and personal reflections
+- Blogs called "**Engineering Journal**"
+- Battle-tested insights from architecting systems that handle millions of requests
+- Real-world lessons from production environments, not theoretical concepts
+- Professional technical documentation and proven methodologies
 
 ### Minimalist Dark Theme
 
@@ -72,10 +72,10 @@
 
 3. **Navigation Grid** (4 cards)
 
-   - **Digital Garden** - Second Brain
-   - **Work Portfolio** - Case Studies
-   - **My Journey** - Personal Path
-   - **Build with Me** - Let's Talk (with booking integration)
+   - **Engineering Journal** - Technical Insights
+   - **Production Systems** - Battle-tested Solutions
+   - **Career Evolution** - Technical Leadership Path
+   - **Let's Build Together** - Collaboration & Consultation
 
 4. **Technical Arsenal**
 
@@ -87,11 +87,11 @@
    - Floating "Book a Call" button
    - Dedicated consultation types
 
-### Thoughts Page (Digital Garden)
+### Thoughts Page (Engineering Journal)
 
 - **RFC-style layout** - No traditional header/footer
 - **List format** instead of grid
-- **Breadcrumb navigation** - "Home / Digital Garden"
+- **Breadcrumb navigation** - "Home / Engineering Journal"
 - **Status indicators** - HOT, LEARNED, THINKING, EXPERIMENT, INSIGHT, TOOL
 - **Featured thought** with RFC-style border
 - **Clean list items** with hover effects
