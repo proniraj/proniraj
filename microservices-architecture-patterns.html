@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Microservices Architecture Patterns - Niraj's Engineering Journal
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --dark-bg: #0a0a0a;
+        --dark-secondary: #111111;
+        --dark-border: #333333;
+        --text-muted: #a0a0a0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--dark-bg);
+        color: white;
+        line-height: 1.7;
+      }
+
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .rfc-style {
+        border-left: 3px solid #3b82f6;
+        padding-left: 1rem;
+        margin-left: 0.5rem;
+      }
+
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+
+      .breadcrumb {
+        font-size: 0.875rem;
+        color: #a0a0a0;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .article-content {
+        max-width: 65ch;
+        margin: 0 auto;
+      }
+
+      .article-content h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: white;
+      }
+
+      .article-content h2 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        color: white;
+      }
+
+      .article-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .article-content p {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        color: #e5e5e5;
+      }
+
+      .article-content ul,
+      .article-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+      }
+
+      .article-content li {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 0.5rem;
+        color: #e5e5e5;
+      }
+
+      .quote {
+        border-left: 4px solid #3b82f6;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: #d1d5db;
+      }
+
+      .quote-author {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #9ca3af;
+        font-style: normal;
+      }
+
+      .summary-box {
+        background: #111111;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .summary-box h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #3b82f6;
+      }
+
+      .summary-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        color: #d1d5db;
+      }
+
+      .code-block {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      .metadata {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #333;
+      }
+
+      .metadata-item {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .metadata-item strong {
+        color: #d1d5db;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #1f2937;
+        color: #9ca3af;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-family: "JetBrains Mono", monospace;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .highlight {
+        background: rgba(59, 130, 246, 0.1);
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        color: #60a5fa;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-bg text-white min-h-screen">
+    <!-- Header -->
+    <header class="max-w-4xl mx-auto px-6 py-8">
+      <div class="breadcrumb mb-4">
+        <a href="index.html">Home</a> /
+        <a href="thoughts.html">Engineering Journal</a> / Architecture Patterns
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6">
+      <article class="article-content">
+        <!-- Article Header -->
+        <header class="mb-8">
+          <h1>Microservices Architecture Patterns That Actually Scale</h1>
+
+          <div class="metadata">
+            <div class="metadata-item">
+              <strong>Published:</strong> January 15, 2024
+            </div>
+            <div class="metadata-item">
+              <strong>Read Time:</strong> 12 minutes
+            </div>
+            <div class="metadata-item"><strong>Views:</strong> 2.3K</div>
+            <div class="metadata-item">
+              <strong>Status:</strong>
+              <span class="text-green-400">PRODUCTION</span>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <span class="tag">#microservices</span>
+            <span class="tag">#architecture</span>
+            <span class="tag">#scaling</span>
+            <span class="tag">#patterns</span>
+          </div>
+        </header>
+
+        <!-- Summary -->
+        <div class="summary-box">
+          <h4>Executive Summary</h4>
+          <p>
+            After architecting microservices systems handling 50M+ requests
+            daily, I've learned that most teams overcomplicate microservices.
+            This article covers the essential patterns that actually work in
+            production: Domain-Driven Design boundaries, Event-Driven
+            Architecture, API Gateway patterns, and the critical importance of
+            observability. Spoiler: start simple, add complexity only when you
+            need it.
+          </p>
+        </div>
+
+        <!-- Introduction -->
+        <p>
+          When I first started working with microservices five years ago, I made
+          every mistake in the book. I created services that were too granular,
+          built complex orchestration layers, and spent more time debugging
+          distributed systems than building features. Sound familiar?
+        </p>
+
+        <p>
+          Today, I architect microservices systems that handle 50M+ requests
+          daily with 99.99% uptime. The difference? I learned to focus on the
+          patterns that actually matter, not the ones that look impressive in
+          architecture diagrams.
+        </p>
+
+        <div class="quote">
+          "The best architecture is the one that allows you to ship features
+          quickly while maintaining system reliability. Everything else is just
+          complexity."
+          <div class="quote-author">— Martin Fowler, ThoughtWorks</div>
+        </div>
+
+        <h2>The Microservices Reality Check</h2>
+
+        <p>
+          Let's start with a hard truth:
+          <span class="highlight">microservices are not a silver bullet</span>.
+          They're a trade-off between complexity and scalability. If you're
+          building a system that doesn't need to scale beyond a few thousand
+          users, you probably don't need microservices.
+        </p>
+
+        <p>
+          But when you do need them—when you're dealing with multiple teams,
+          different scaling requirements, or the need to deploy
+          independently—these patterns will save you months of debugging and
+          refactoring.
+        </p>
+
+        <h2>Pattern 1: Domain-Driven Design Boundaries</h2>
+
+        <p>
+          The most critical decision in microservices architecture is how you
+          split your system. Get this wrong, and you'll spend the rest of your
+          time fighting against your own architecture.
+        </p>
+
+        <h3>What I Learned the Hard Way</h3>
+
+        <p>
+          In my first microservices project, I split services by technical
+          layers: User Service, Order Service, Payment Service. This seemed
+          logical at the time, but it created a nightmare of dependencies and
+          data consistency issues.
+        </p>
+
+        <div class="code-block">
+          <pre>
+// ❌ BAD: Technical layer split
+User Service → Order Service → Payment Service → Notification Service
+
+// ✅ GOOD: Domain boundary split  
+E-commerce Domain → Payment Domain → Shipping Domain → Customer Domain
+</pre
+          >
+        </div>
+
+        <p>
+          The key insight:
+          <span class="highlight"
+            >split by business capabilities, not technical functions</span
+          >. Each service should own a complete business workflow, not just a
+          piece of data.
+        </p>
+
+        <div class="quote">
+          "If you're constantly calling other services to complete a single
+          business operation, you've probably split your services wrong."
+          <div class="quote-author">
+            — Sam Newman, Author of "Building Microservices"
+          </div>
+        </div>
+
+        <h3>The Bounded Context Rule</h3>
+
+        <p>
+          Each microservice should represent a bounded context—a specific area
+          of your business where the language, rules, and data models are
+          consistent. If you find yourself translating between different
+          "languages" within a single service, you probably have multiple
+          bounded contexts.
+        </p>
+
+        <h2>Pattern 2: Event-Driven Architecture</h2>
+
+        <p>
+          Once you have proper domain boundaries, the next challenge is keeping
+          them loosely coupled. This is where event-driven architecture becomes
+          crucial.
+        </p>
+
+        <h3>Why Events, Not HTTP Calls</h3>
+
+        <p>
+          I used to think that REST APIs were the way to communicate between
+          services. Then I spent three months debugging cascading failures
+          caused by synchronous service calls.
+        </p>
+
+        <p>
+          Events solve this by making communication asynchronous and decoupled.
+          When the Order service creates an order, it publishes an
+          "OrderCreated" event. The Payment service, Shipping service, and
+          Notification service can all react to this event without knowing about
+          each other.
+        </p>
+
+        <div class="code-block">
+          <pre>
+// Event-driven communication
+Order Service → publishes "OrderCreated" event
+├── Payment Service (processes payment)
+├── Shipping Service (prepares shipment)  
+└── Notification Service (sends confirmation)
+
+// vs. Synchronous HTTP calls
+Order Service → calls Payment API → calls Shipping API → calls Notification API
+// (What happens if Shipping API is down? Everything fails.)
+</pre
+          >
+        </div>
+
+        <h3>Event Sourcing: When You Need It</h3>
+
+        <p>
+          Event sourcing is powerful but complex. I only recommend it when you
+          need:
+        </p>
+
+        <ul>
+          <li>Complete audit trails</li>
+          <li>Time-travel debugging</li>
+          <li>Complex business rules that depend on event history</li>
+        </ul>
+
+        <p>
+          For most applications, simple event publishing is sufficient. Don't
+          over-engineer from the start.
+        </p>
+
+        <h2>Pattern 3: API Gateway Strategy</h2>
+
+        <p>
+          The API Gateway is your system's front door. Get it right, and it
+          simplifies everything. Get it wrong, and it becomes a bottleneck and
+          single point of failure.
+        </p>
+
+        <h3>What to Put in Your Gateway</h3>
+
+        <p>
+          I've seen teams put everything in their API Gateway: authentication,
+          rate limiting, data transformation, business logic. This is a recipe
+          for disaster.
+        </p>
+
+        <p>Your API Gateway should only handle:</p>
+
+        <ul>
+          <li>
+            <strong>Routing:</strong> Directing requests to the right service
+          </li>
+          <li>
+            <strong>Authentication:</strong> Verifying tokens and user identity
+          </li>
+          <li><strong>Rate limiting:</strong> Protecting against abuse</li>
+          <li>
+            <strong>Request/response transformation:</strong> Only when
+            necessary
+          </li>
+        </ul>
+
+        <p>
+          Everything else belongs in your services. Keep your gateway thin and
+          fast.
+        </p>
+
+        <h2>Pattern 4: Observability from Day One</h2>
+
+        <p>
+          This is where most teams fail. They build their microservices, deploy
+          them, and then realize they have no idea what's happening when things
+          go wrong.
+        </p>
+
+        <div class="quote">
+          "You can't manage what you can't measure. In microservices, you can't
+          debug what you can't observe."
+          <div class="quote-author">— Charity Majors, Honeycomb</div>
+        </div>
+
+        <h3>The Three Pillars of Observability</h3>
+
+        <p>
+          <strong>Logging:</strong> Structured logs with correlation IDs. Every
+          log entry should include a request ID that you can trace across
+          services.
+        </p>
+
+        <p>
+          <strong>Metrics:</strong> Business metrics (orders per minute) and
+          technical metrics (response times, error rates). Focus on metrics that
+          drive business decisions.
+        </p>
+
+        <p>
+          <strong>Tracing:</strong> Distributed tracing to follow requests
+          across service boundaries. This is essential for debugging performance
+          issues in microservices.
+        </p>
+
+        <h2>Pattern 5: Database per Service</h2>
+
+        <p>
+          This is the most controversial pattern, but it's also the most
+          important for true service independence.
+        </p>
+
+        <h3>Why Shared Databases Don't Work</h3>
+
+        <p>
+          I've seen teams try to share databases between services to avoid data
+          duplication. This creates tight coupling and makes independent
+          deployment impossible.
+        </p>
+
+        <p>
+          Each service should own its data completely. If you need data from
+          another service, you should either:
+        </p>
+
+        <ul>
+          <li>Call the service's API</li>
+          <li>Subscribe to events and maintain a local copy</li>
+          <li>Use a data mesh pattern for complex analytics</li>
+        </ul>
+
+        <h2>Common Anti-Patterns to Avoid</h2>
+
+        <p>
+          After five years of building microservices, here are the mistakes I
+          see most often:
+        </p>
+
+        <h3>1. The Distributed Monolith</h3>
+
+        <p>
+          Services that are so tightly coupled they might as well be a monolith.
+          If you can't deploy services independently, you don't have
+          microservices—you have a distributed monolith.
+        </p>
+
+        <h3>2. Premature Optimization</h3>
+
+        <p>
+          Starting with complex patterns like CQRS, Event Sourcing, or Saga
+          patterns before you understand your domain. Start simple, add
+          complexity when you need it.
+        </p>
+
+        <h3>3. Ignoring Failure Modes</h3>
+
+        <p>
+          Microservices fail in ways that monoliths don't. Network partitions,
+          service unavailability, and data consistency issues are not edge
+          cases—they're the norm.
+        </p>
+
+        <h2>When Microservices Make Sense</h2>
+
+        <p>
+          Microservices are not always the right choice. They make sense when
+          you have:
+        </p>
+
+        <ul>
+          <li>Multiple teams that need to work independently</li>
+          <li>
+            Different scaling requirements for different parts of your system
+          </li>
+          <li>
+            Different technology requirements (some services need Python, others
+            need Go)
+          </li>
+          <li>Complex business domains that benefit from separation</li>
+        </ul>
+
+        <p>
+          If you're a small team building an MVP, start with a monolith. You can
+          always extract services later when you understand your domain better.
+        </p>
+
+        <div class="quote">
+          "The best time to extract a microservice is when you understand the
+          domain well enough to know where the boundaries should be."
+          <div class="quote-author">— Niraj, Systems Architect</div>
+        </div>
+
+        <h2>Getting Started: A Practical Approach</h2>
+
+        <p>
+          If you're ready to start with microservices, here's my recommended
+          approach:
+        </p>
+
+        <h3>Phase 1: Identify Your Bounded Contexts</h3>
+
+        <p>
+          Map out your business domains. Look for areas where the language,
+          rules, and data models are consistent. These are your potential
+          service boundaries.
+        </p>
+
+        <h3>Phase 2: Start with Two Services</h3>
+
+        <p>
+          Don't try to split everything at once. Start with two services that
+          have clear boundaries and different scaling requirements.
+        </p>
+
+        <h3>Phase 3: Implement Basic Observability</h3>
+
+        <p>
+          Set up logging, metrics, and tracing before you need them. Trust me,
+          you'll need them.
+        </p>
+
+        <h3>Phase 4: Add Services Gradually</h3>
+
+        <p>
+          Extract services one at a time as you understand your domain better.
+          Each extraction should be driven by a real business need, not
+          architectural purity.
+        </p>
+
+        <h2>Conclusion</h2>
+
+        <p>
+          Microservices are a powerful architectural pattern, but they're not a
+          magic solution. They require discipline, good tooling, and a deep
+          understanding of your domain.
+        </p>
+
+        <p>
+          The patterns I've shared here are the ones that have proven themselves
+          in production systems handling millions of requests. They're not
+          theoretical—they're battle-tested.
+        </p>
+
+        <div class="summary-box">
+          <h4>Key Takeaways</h4>
+          <p>
+            • Split services by business capabilities, not technical layers<br />
+            • Use events for loose coupling between services<br />
+            • Keep your API Gateway thin and focused<br />
+            • Implement observability from day one<br />
+            • Each service should own its data completely<br />
+            • Start simple, add complexity when you need it
+          </p>
+        </div>
+
+        <p>
+          Remember: the goal isn't to have the most sophisticated architecture.
+          The goal is to build systems that are reliable, maintainable, and
+          allow your team to ship features quickly.
+        </p>
+
+        <p>
+          What microservices patterns have you found most valuable? I'd love to
+          hear about your experiences in the comments below.
+        </p>
+      </article>
+
+      <!-- Navigation -->
+      <div
+        class="flex justify-between items-center pt-8 border-t border-dark-border mt-12"
+      >
+        <a
+          href="thoughts.html"
+          class="text-blue-400 hover:text-blue-300 transition-colors"
+        >
+          ← Back to Engineering Journal
+        </a>
+        <div class="flex space-x-4">
+          <button class="text-green-400 hover:text-green-300 transition-colors">
+            👍 127
+          </button>
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
+            🔗 Share
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto px-6 py-8 mt-16">
+      <div class="border-t border-dark-border pt-6">
+        <div class="text-center text-text-muted text-sm">
+          <p class="font-mono">
+            © 2024 Niraj • Built with precision, designed for impact
+          </p>
+          <div class="mt-3 space-x-4">
+            <a href="thoughts.html" class="hover:text-white transition-colors"
+              >Engineering Journal</a
+            >
+            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors">RSS</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
