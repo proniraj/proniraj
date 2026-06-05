@@ -74,6 +74,37 @@
         border-radius: 0.25rem;
         font-family: "JetBrains Mono", monospace;
       }
+      .recommendation-card {
+        background: rgba(17, 17, 17, 0.6);
+        border: 1px solid #1a1a1a;
+        border-radius: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+      .recommendation-card:hover {
+        border-color: rgba(59, 130, 246, 0.25);
+        background: rgba(59, 130, 246, 0.03);
+      }
+      .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .quote-mark {
+        font-family: Georgia, serif;
+        font-size: 2.5rem;
+        line-height: 1;
+        color: rgba(59, 130, 246, 0.25);
+        user-select: none;
+      }
     </style>
   </head>
   <body class="bg-dark-bg text-white min-h-screen flex flex-col">
@@ -210,6 +241,167 @@
             </p>
           </li>
         </ul>
+      </section>
+
+      <section class="mb-10 border-t border-dark-border pt-8">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+          <div>
+            <h2
+              class="text-sm font-mono text-text-muted uppercase tracking-wider mb-1"
+            >
+              Recommendations
+            </h2>
+            <p class="text-xs text-text-muted">
+              What colleagues and clients say about working with me
+            </p>
+          </div>
+          <a
+            href="https://www.linkedin.com/in/developerniraj/details/recommendations/"
+            class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors whitespace-nowrap"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on LinkedIn →
+          </a>
+        </div>
+
+        <div class="space-y-4">
+          <article class="recommendation-card">
+            <div class="flex gap-4">
+              <div
+                class="avatar bg-gradient-to-br from-blue-500/30 to-emerald-500/30 text-blue-300 border border-blue-500/20"
+              >
+                LB
+              </div>
+              <div class="min-w-0 flex-1">
+                <div
+                  class="flex flex-wrap items-baseline justify-between gap-2 mb-1"
+                >
+                  <p class="font-semibold">Leks Betlem</p>
+                  <span class="text-xs text-text-muted font-mono"
+                    >Jun 2026</span
+                  >
+                </div>
+                <p class="text-sm text-blue-400/90 mb-3">
+                  Co-founder · Sponsorvista
+                </p>
+                <p class="quote-mark mb-1" aria-hidden="true">“</p>
+                <blockquote
+                  class="text-sm text-text-muted leading-relaxed -mt-4 pl-1"
+                >
+                  I had the pleasure of working with Niraj on a project that I
+                  engaged him for, and it was a great experience from start to
+                  finish. Niraj is a strong team lead who combines technical
+                  expertise with a practical and collaborative approach. He is
+                  flexible, responsive, and always willing to go the extra mile
+                  to find solutions. His ability to guide a team while
+                  maintaining a positive and professional attitude made him a
+                  valuable partner throughout the project. I would not hesitate
+                  to work with him again and highly recommend him to others.
+                </blockquote>
+              </div>
+            </div>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="flex gap-4">
+              <div
+                class="avatar bg-gradient-to-br from-emerald-500/30 to-teal-500/30 text-emerald-300 border border-emerald-500/20"
+              >
+                GB
+              </div>
+              <div class="min-w-0 flex-1">
+                <div
+                  class="flex flex-wrap items-baseline justify-between gap-2 mb-1"
+                >
+                  <p class="font-semibold">Gavin Bryan</p>
+                  <span class="text-xs text-text-muted font-mono"
+                    >Dec 2025</span
+                  >
+                </div>
+                <p class="text-sm text-emerald-400/90 mb-3">
+                  Founder · Hourmarket
+                </p>
+                <p class="quote-mark mb-1" aria-hidden="true">“</p>
+                <blockquote
+                  class="text-sm text-text-muted leading-relaxed -mt-4 pl-1"
+                >
+                  I've worked closely with Niraj on a number of projects across
+                  frontend, backend, and mobile development, and I've always
+                  been impressed with his talent and work ethic. He contributed
+                  to complex features using technologies such as Next.js,
+                  NestJS, TypeScript and React Native, and consistently showed
+                  strong problem-solving skills and adaptability. Niraj is a
+                  versatile developer with a solid technical foundation, and I'm
+                  happy to recommend him.
+                </blockquote>
+              </div>
+            </div>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="flex gap-4">
+              <div
+                class="avatar bg-gradient-to-br from-purple-500/30 to-pink-500/30 text-purple-300 border border-purple-500/20"
+              >
+                PG
+              </div>
+              <div class="min-w-0 flex-1">
+                <div
+                  class="flex flex-wrap items-baseline justify-between gap-2 mb-1"
+                >
+                  <p class="font-semibold">Pawanlal Ganesh</p>
+                  <span class="text-xs text-text-muted font-mono"
+                    >Dec 2023</span
+                  >
+                </div>
+                <p class="text-sm text-purple-400/90 mb-3">
+                  Former CTO · Lanceme Up
+                </p>
+                <p class="quote-mark mb-1" aria-hidden="true">“</p>
+                <blockquote
+                  class="text-sm text-text-muted leading-relaxed -mt-4 pl-1"
+                >
+                  Working with Niraj was a breath of fresh air due to their
+                  strong work ethic and reliability. He consistently delivered
+                  high-quality work on time and with great attention to detail.
+                  He is all-in-one package.
+                </blockquote>
+              </div>
+            </div>
+          </article>
+
+          <article class="recommendation-card">
+            <div class="flex gap-4">
+              <div
+                class="avatar bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-300 border border-amber-500/20"
+              >
+                NK
+              </div>
+              <div class="min-w-0 flex-1">
+                <div
+                  class="flex flex-wrap items-baseline justify-between gap-2 mb-1"
+                >
+                  <p class="font-semibold">Niraj Kafle</p>
+                  <span class="text-xs text-text-muted font-mono"
+                    >Dec 2023</span
+                  >
+                </div>
+                <p class="text-sm text-amber-400/90 mb-3">
+                  Founder · Saarthi Academy
+                </p>
+                <p class="quote-mark mb-1" aria-hidden="true">“</p>
+                <blockquote
+                  class="text-sm text-text-muted leading-relaxed -mt-4 pl-1"
+                >
+                  Working with Niraj Dai was a breath of fresh air due to their
+                  strong work ethic and reliability. They consistently delivered
+                  high-quality work on time and with great attention to detail.
+                </blockquote>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="border-t border-dark-border pt-8">
