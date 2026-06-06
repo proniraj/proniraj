@@ -3,7 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Niraj Thakur — Full Stack Engineer</title>
+    <title>
+      Niraj Thakur | Full Stack Engineer — SaaS, Fintech &amp; AI Products
+    </title>
+    <meta
+      name="description"
+      content="Full stack engineer who helps startups turn ideas into production software. 4+ years shipping SaaS, fintech, AI, and mobile products. Open to remote full-time and contract roles."
+    />
+    <meta
+      name="keywords"
+      content="Niraj Thakur, full stack engineer, remote developer, startup engineer, React, TypeScript, Node.js, NestJS, SaaS, fintech, AI products, Nepal developer"
+    />
+    <meta name="author" content="Niraj Thakur" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://nirajthakur.com.np/" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nirajthakur.com.np/" />
+    <meta
+      property="og:title"
+      content="Niraj Thakur | Full Stack Engineer — SaaS, Fintech &amp; AI"
+    />
+    <meta
+      property="og:description"
+      content="I help startups turn ideas into production software. Full stack engineer open to remote opportunities."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Niraj Thakur" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Niraj Thakur | Full Stack Engineer" />
+    <meta
+      name="twitter:description"
+      content="Full stack engineer who helps startups ship SaaS, fintech, and AI products. Open to remote roles."
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Niraj Thakur",
+        "url": "https://nirajthakur.com.np/",
+        "jobTitle": "Full Stack Engineer",
+        "description": "Full stack engineer who helps startups turn ideas into production software.",
+        "email": "ntnirajthakur21@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kathmandu",
+          "addressCountry": "NP"
+        },
+        "sameAs": [
+          "https://github.com/proniraj",
+          "https://www.linkedin.com/in/developerniraj/"
+        ],
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "Next.js",
+          "NestJS",
+          "SaaS",
+          "Fintech",
+          "Artificial Intelligence"
+        ]
+      }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -68,11 +136,24 @@
           opacity: 0.5;
         }
       }
-      .skill-tag {
-        padding: 0.25rem 0.625rem;
-        font-size: 0.75rem;
-        border-radius: 0.25rem;
+      .section-label {
         font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #a0a0a0;
+      }
+      .panel {
+        background: rgba(17, 17, 17, 0.6);
+        border: 1px solid #1a1a1a;
+        border-radius: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+      .panel:hover {
+        border-color: rgba(59, 130, 246, 0.2);
       }
       .recommendation-card {
         background: rgba(17, 17, 17, 0.6);
@@ -105,6 +186,43 @@
         color: rgba(59, 130, 246, 0.25);
         user-select: none;
       }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.625rem 1.25rem;
+        background: #2563eb;
+        color: white;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.2s ease;
+      }
+      .btn-primary:hover {
+        background: #1d4ed8;
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.625rem 1.25rem;
+        border: 1px solid #333;
+        color: #e5e5e5;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .btn-secondary:hover {
+        border-color: #555;
+        color: white;
+      }
+      .check-item::before {
+        content: "✓";
+        color: #10b981;
+        font-weight: 600;
+        margin-right: 0.625rem;
+      }
     </style>
   </head>
   <body class="bg-dark-bg text-white min-h-screen flex flex-col">
@@ -114,143 +232,343 @@
       <h1 class="text-3xl sm:text-4xl font-bold mb-2">
         <span class="gradient-text">Niraj Thakur</span>
       </h1>
-      <p class="text-lg text-text-muted mb-1">
-        Full Stack Engineer · Technical Lead
+      <p class="text-lg text-white mb-2">Full Stack Engineer</p>
+      <p class="text-base text-text-muted mb-4 max-w-xl">
+        Building SaaS, Fintech &amp; AI Products From Idea to Production
       </p>
-      <p class="text-sm text-text-muted font-mono mb-6">Kathmandu, Nepal</p>
+      <p class="text-sm text-text-muted font-mono mb-6">
+        Kathmandu, Nepal · Open to Remote Opportunities
+      </p>
 
       <div class="flex flex-wrap items-center gap-3 mb-8">
         <span
           class="status-indicator bg-green-900/20 border border-green-500/30 text-green-400"
         >
           <span class="status-dot bg-green-400 animate-pulse"></span>
-          OPEN TO WORK
-        </span>
-        <span class="text-xs text-text-muted font-mono">
-          Sponsorvista · Remote
+          ACTIVELY LOOKING
         </span>
       </div>
 
-      <p class="text-text-muted leading-relaxed max-w-2xl">
-        I build scalable web and mobile products across fintech, SaaS, and AI —
-        from dynamic page builders to unified auth and backend modernization.
-        React, Next.js, TypeScript, Node.js, NestJS in production.
+      <p class="text-text-muted leading-relaxed max-w-2xl mb-4">
+        I help startups turn ideas into working software.
       </p>
+      <p class="text-text-muted leading-relaxed max-w-2xl mb-6">
+        Over the last 4+ years, I've built and shipped web, mobile, fintech,
+        SaaS, and AI products using React, TypeScript, Node.js, and cloud
+        infrastructure. From dynamic page builders and authentication systems to
+        AI-powered platforms and banking applications, I work across the stack
+        to deliver production-ready solutions that users actually use.
+      </p>
+
+      <p class="text-xs text-text-muted font-mono mb-8 leading-relaxed">
+        React · TypeScript · Node.js · Next.js · NestJS · PostgreSQL · AWS
+      </p>
+
+      <nav class="flex flex-wrap gap-3" aria-label="Primary actions">
+        <a
+          href="/assets/Niraj%20-%20Product%20Full%20Stack%20Engineer.pdf"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          >View Resume</a
+        >
+        <a
+          href="https://github.com/proniraj"
+          class="btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+        <a
+          href="https://www.linkedin.com/in/developerniraj/"
+          class="btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+        <a
+          href="mailto:ntnirajthakur21@gmail.com?subject=Job%20Opportunity%20%E2%80%94%20Niraj%20Thakur"
+          class="btn-secondary"
+          >Contact Me</a
+        >
+      </nav>
     </header>
 
     <main class="max-w-3xl mx-auto px-6 pb-12 w-full flex-1">
-      <section class="mb-10">
-        <h2
-          class="text-sm font-mono text-text-muted uppercase tracking-wider mb-4"
-        >
-          Stack
-        </h2>
-        <div class="space-y-4">
+      <!-- Currently Looking For -->
+      <section class="mb-10 panel border-green-500/20 bg-green-950/10">
+        <h2 class="section-label mb-3">Currently Looking For</h2>
+        <p class="font-semibold text-lg mb-4">
+          Remote Full Stack Engineer roles
+        </p>
+        <div class="grid sm:grid-cols-2 gap-6 text-sm">
           <div>
-            <p class="text-xs text-text-muted font-mono mb-2">Frontend</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-tag bg-blue-900/30 text-blue-400">React</span>
-              <span class="skill-tag bg-blue-900/30 text-blue-400"
-                >Next.js</span
-              >
-              <span class="skill-tag bg-blue-900/30 text-blue-400"
-                >React Native</span
-              >
-              <span class="skill-tag bg-blue-900/30 text-blue-400"
-                >Tailwind</span
-              >
-              <span class="skill-tag bg-blue-900/30 text-blue-400"
-                >TypeScript</span
-              >
-            </div>
-          </div>
-          <div>
-            <p class="text-xs text-text-muted font-mono mb-2">Backend</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-tag bg-emerald-900/30 text-emerald-400"
-                >Node.js</span
-              >
-              <span class="skill-tag bg-emerald-900/30 text-emerald-400"
-                >NestJS</span
-              >
-              <span class="skill-tag bg-emerald-900/30 text-emerald-400"
-                >REST APIs</span
-              >
-              <span class="skill-tag bg-emerald-900/30 text-emerald-400"
-                >Microservices</span
-              >
-              <span class="skill-tag bg-emerald-900/30 text-emerald-400"
-                >Auth Systems</span
-              >
-            </div>
-          </div>
-          <div>
-            <p class="text-xs text-text-muted font-mono mb-2">
-              Data &amp; Infra
+            <p class="text-text-muted font-mono text-xs mb-2 uppercase">
+              Interested in
             </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-tag bg-purple-900/30 text-purple-400"
-                >PostgreSQL</span
-              >
-              <span class="skill-tag bg-purple-900/30 text-purple-400"
-                >MongoDB</span
-              >
-              <span class="skill-tag bg-purple-900/30 text-purple-400"
-                >Redis</span
-              >
-              <span class="skill-tag bg-purple-900/30 text-purple-400"
-                >AWS</span
-              >
-              <span class="skill-tag bg-purple-900/30 text-purple-400"
-                >Docker</span
-              >
-              <span class="skill-tag bg-purple-900/30 text-purple-400"
-                >CI/CD</span
-              >
-            </div>
+            <ul class="space-y-1 text-text-muted">
+              <li>SaaS Products</li>
+              <li>AI Products</li>
+              <li>Fintech</li>
+              <li>Developer Tools</li>
+              <li>Startup Teams</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-text-muted font-mono text-xs mb-2 uppercase">
+              Open to
+            </p>
+            <ul class="space-y-1 text-text-muted">
+              <li>Full-time</li>
+              <li>Contract</li>
+              <li>Founding Engineer opportunities</li>
+            </ul>
           </div>
         </div>
       </section>
 
+      <!-- What I've Built -->
       <section class="mb-10 border-t border-dark-border pt-8">
-        <h2
-          class="text-sm font-mono text-text-muted uppercase tracking-wider mb-4"
-        >
-          Recent Work
-        </h2>
-        <ul class="space-y-4">
-          <li class="border-l-2 border-blue-500 pl-4">
-            <p class="font-semibold">Sponsorvista</p>
-            <p class="text-sm text-text-muted">
-              Full Stack Developer &amp; Team Lead · Lead platform development,
-              architecture, and deployments for a remote startup team.
+        <h2 class="section-label mb-6">What I've Built</h2>
+        <div class="space-y-4">
+          <article class="panel">
+            <h3 class="font-semibold text-lg mb-1">AI Résumé Platform</h3>
+            <p class="text-xs font-mono text-blue-400 mb-3">
+              React · Node.js · LLM APIs
             </p>
+            <p class="text-sm text-text-muted">
+              Built an AI-powered platform that generates résumés and interview
+              preparation content — turning LLM capabilities into a product
+              non-technical users could rely on daily.
+            </p>
+          </article>
+
+          <article class="panel">
+            <h3 class="font-semibold text-lg mb-1">Digital Banking Platform</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-3">
+              React · TypeScript · Node.js
+            </p>
+            <p class="text-sm text-text-muted">
+              Developed digital onboarding and account management workflows for
+              a Nepali financial institution — reducing manual account opening
+              and shortening customer time-to-account.
+            </p>
+          </article>
+
+          <article class="panel">
+            <h3 class="font-semibold text-lg mb-1">Dynamic Page Builder</h3>
+            <p class="text-xs font-mono text-purple-400 mb-3">
+              React · TypeScript · NestJS
+            </p>
+            <p class="text-sm text-text-muted">
+              Built a visual page builder enabling non-technical teams to create
+              web, mobile, and email experiences without engineering involvement
+              — sharply cutting marketing-to-launch turnaround.
+            </p>
+          </article>
+
+          <article class="panel">
+            <h3 class="font-semibold text-lg mb-1">
+              Unified Authentication System
+            </h3>
+            <p class="text-xs font-mono text-amber-400 mb-3">
+              NestJS · PostgreSQL
+            </p>
+            <p class="text-sm text-text-muted">
+              Designed reusable authentication infrastructure shared across
+              multiple products — eliminating duplicate auth code and
+              accelerating new-product setup.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Case Studies -->
+      <section class="mb-10 border-t border-dark-border pt-8">
+        <h2 class="section-label mb-6">Experience</h2>
+        <div class="space-y-6">
+          <article class="panel">
+            <div
+              class="flex flex-wrap items-baseline justify-between gap-2 mb-4"
+            >
+              <h3 class="font-semibold text-lg">Sponsorvista</h3>
+              <span class="text-xs font-mono text-text-muted"
+                >Dec 2025 – Present</span
+              >
+            </div>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-blue-400 font-mono text-xs mb-1">Problem</dt>
+                <dd class="text-text-muted">
+                  Growing sponsorship platform requiring rapid feature
+                  development across a distributed remote team.
+                </dd>
+              </div>
+              <div>
+                <dt class="text-emerald-400 font-mono text-xs mb-1">
+                  What I Did
+                </dt>
+                <dd class="text-text-muted">
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>
+                      Led engineering execution and architecture decisions
+                    </li>
+                    <li>Built full-stack features serving production users</li>
+                    <li>Owned deployments, debugging, and infrastructure</li>
+                    <li>Improved page load performance and reliability</li>
+                    <li>
+                      Established code review standards and mentored teammates
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-purple-400 font-mono text-xs mb-1">Outcome</dt>
+                <dd class="text-text-muted">
+                  Enabled faster product delivery, reduced release friction, and
+                  improved platform reliability for a live startup product.
+                </dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="panel">
+            <div
+              class="flex flex-wrap items-baseline justify-between gap-2 mb-4"
+            >
+              <h3 class="font-semibold text-lg">Hourmarket</h3>
+              <span class="text-xs font-mono text-text-muted"
+                >Oct 2024 – Oct 2025</span
+              >
+            </div>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-blue-400 font-mono text-xs mb-1">Problem</dt>
+                <dd class="text-text-muted">
+                  Marketing teams depended on engineers for every page change;
+                  legacy .NET backend limited deployability and scaling.
+                </dd>
+              </div>
+              <div>
+                <dt class="text-emerald-400 font-mono text-xs mb-1">
+                  What I Did
+                </dt>
+                <dd class="text-text-muted">
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>
+                      Built a dynamic page builder for web, mobile, and email
+                      templates
+                    </li>
+                    <li>
+                      Migrated services from .NET to Node.js (NestJS) with micro
+                      Web APIs
+                    </li>
+                    <li>
+                      Developed unified authentication reused across products
+                    </li>
+                    <li>
+                      Shipped consumer mobile shopping app on iOS and Android
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-purple-400 font-mono text-xs mb-1">Outcome</dt>
+                <dd class="text-text-muted">
+                  Non-technical teams launched campaigns independently; backend
+                  modernization improved per-service scaling and deploy speed.
+                </dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="panel">
+            <div
+              class="flex flex-wrap items-baseline justify-between gap-2 mb-4"
+            >
+              <h3 class="font-semibold text-lg">Basework.io</h3>
+              <span class="text-xs font-mono text-text-muted"
+                >Jan – May 2024</span
+              >
+            </div>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-blue-400 font-mono text-xs mb-1">Problem</dt>
+                <dd class="text-text-muted">
+                  Clients across fintech and AI needed production applications
+                  delivered on tight deadlines with direct stakeholder
+                  collaboration.
+                </dd>
+              </div>
+              <div>
+                <dt class="text-emerald-400 font-mono text-xs mb-1">
+                  What I Did
+                </dt>
+                <dd class="text-text-muted">
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>
+                      Built AI résumé and interview-prep platform with LLM
+                      integrations
+                    </li>
+                    <li>
+                      Developed conversational chatbot platform for a client
+                    </li>
+                    <li>
+                      Delivered digital bank onboarding app for a Nepali
+                      financial institution
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-purple-400 font-mono text-xs mb-1">Outcome</dt>
+                <dd class="text-text-muted">
+                  Shipped multiple client products on schedule; banking
+                  workflows reduced manual processing and shortened
+                  time-to-account for customers.
+                </dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <!-- Why Teams Hire Me -->
+      <section class="mb-10 border-t border-dark-border pt-8">
+        <h2 class="section-label mb-6">Why Teams Hire Me</h2>
+        <ul class="space-y-3 text-sm text-text-muted">
+          <li class="check-item">
+            I work across frontend, backend, infrastructure, and deployment —
+            not just one layer.
           </li>
-          <li class="border-l-2 border-emerald-500 pl-4">
-            <p class="font-semibold">Hourmarket</p>
-            <p class="text-sm text-text-muted">
-              Full Stack Engineer · Page builder, .NET → NestJS migration,
-              unified auth, consumer mobile app.
-            </p>
+          <li class="check-item">
+            I turn ambiguous ideas into shipped features, working directly with
+            founders and product teams.
           </li>
-          <li class="border-l-2 border-purple-500 pl-4">
-            <p class="font-semibold">Basework.io</p>
-            <p class="text-sm text-text-muted">
-              AI résumé platform, conversational chatbot, digital banking
-              onboarding for a Nepali bank.
-            </p>
+          <li class="check-item">
+            I use AI-assisted workflows to move faster while maintaining code
+            quality.
+          </li>
+          <li class="check-item">
+            I take ownership of delivery — not just writing code, but seeing it
+            through to production.
+          </li>
+          <li class="check-item">
+            I'm comfortable in startup environments where speed, execution, and
+            adaptability matter most.
+          </li>
+          <li class="check-item">
+            I've shipped across SaaS, fintech, AI, mobile, and internal tools —
+            not just one domain.
           </li>
         </ul>
       </section>
 
+      <!-- Recommendations -->
       <section class="mb-10 border-t border-dark-border pt-8">
         <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
-            <h2
-              class="text-sm font-mono text-text-muted uppercase tracking-wider mb-1"
-            >
-              Recommendations
-            </h2>
+            <h2 class="section-label mb-1">Recommendations</h2>
             <p class="text-xs text-text-muted">
               What colleagues and clients say about working with me
             </p>
@@ -404,15 +722,67 @@
         </div>
       </section>
 
-      <section class="border-t border-dark-border pt-8">
-        <h2
-          class="text-sm font-mono text-text-muted uppercase tracking-wider mb-4"
-        >
-          Connect
-        </h2>
+      <!-- GitHub Activity -->
+      <section class="mb-10 border-t border-dark-border pt-8">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 class="section-label mb-1">Engineering Activity</h2>
+            <p class="text-xs text-text-muted">
+              40+ public repositories · active since 2020
+            </p>
+          </div>
+          <a
+            href="https://github.com/proniraj"
+            class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors whitespace-nowrap"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/proniraj →
+          </a>
+        </div>
+
+        <div class="panel overflow-hidden">
+          <img
+            src="https://ghchart.rshah.org/proniraj"
+            alt="Niraj Thakur GitHub contribution chart"
+            class="w-full h-auto"
+            loading="lazy"
+            width="800"
+            height="120"
+          />
+        </div>
+
+        <div class="mt-4 grid sm:grid-cols-2 gap-4">
+          <a
+            href="https://github.com/proniraj"
+            class="panel block hover:border-blue-500/30"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p class="font-semibold mb-1">GitHub Profile</p>
+            <p class="text-sm text-text-muted">
+              Open source projects, experiments, and production codebases.
+            </p>
+          </a>
+          <a href="thoughts.html" class="panel block hover:border-blue-500/30">
+            <p class="font-semibold mb-1">Engineering Journal</p>
+            <p class="text-sm text-text-muted">
+              Architecture patterns, scaling strategies, and technical
+              write-ups.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Connect -->
+      <section id="contact" class="border-t border-dark-border pt-8">
+        <h2 class="section-label mb-4">Connect</h2>
+        <p class="text-sm text-text-muted mb-4">
+          Hiring for a remote full stack role? I'd love to hear from you.
+        </p>
         <div class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
           <a
-            href="mailto:ntnirajthakur21@gmail.com"
+            href="mailto:ntnirajthakur21@gmail.com?subject=Job%20Opportunity%20%E2%80%94%20Niraj%20Thakur"
             class="text-blue-400 hover:text-blue-300 transition-colors"
             >ntnirajthakur21@gmail.com</a
           >
@@ -431,9 +801,11 @@
             >linkedin.com/in/developerniraj</a
           >
           <a
-            href="thoughts.html"
-            class="text-text-muted hover:text-white transition-colors"
-            >Engineering Journal →</a
+            href="/assets/Niraj%20-%20Product%20Full%20Stack%20Engineer.pdf"
+            class="text-blue-400 hover:text-blue-300 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Download Resume (PDF)</a
           >
         </div>
       </section>
@@ -443,7 +815,10 @@
       <div
         class="border-t border-dark-border pt-6 text-center text-text-muted text-sm font-mono"
       >
-        <p>© 2026 Niraj Thakur · BCA, Tribhuvan University</p>
+        <p>© 2026 Niraj Thakur · Full Stack Engineer · Kathmandu, Nepal</p>
+        <p class="mt-2 text-xs">
+          I help startups turn ideas into production software.
+        </p>
       </div>
     </footer>
   </body>
