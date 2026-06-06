@@ -32,7 +32,7 @@ Full-stack engineer with 4+ years shipping web, mobile, fintech, SaaS, and AI pr
 
 ### Experience
 
-- **Sponsorvista** — Full Stack Developer & Team Lead · Led platform development, deployments & engineering standards
+- **Sponsorvista** — Full Stack Engineer · Led platform development, deployments & engineering standards
 - **Hourmarket** — Full Stack Engineer · Page builder, .NET → NestJS migration, unified auth, mobile app
 - **Basework.io** — Full Stack Developer · AI products & digital banking onboarding for a Nepali bank
 - **Lanceme Up** — Frontend Developer · Internal tools, real-time collaboration, CI/CD on Azure & AWS
