@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import { contentSections } from "../../lib/content-sections";
+import { getSectionEntries } from "../../lib/content-utils";
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const section of Object.values(contentSections)) {
+    const entries = await getSectionEntries(section);
+
+    for (const entry of entries) {
+      paths.push({
+        params: { section: section.slug, slug: entry.id },
+        props: { entry, section },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { entry, section } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ContentLayout entry={entry} section={section}>
+  <Content />
+</ContentLayout>

@@ -1,0 +1,42 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import HomeHero from "../components/HomeHero.astro";
+import HomeContent from "../components/HomeContent.astro";
+import { SITE } from "../consts";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: `${SITE.url}/`,
+      name: SITE.title,
+      description: SITE.description,
+      inLanguage: "en",
+      author: { "@id": `${SITE.url}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE.url}/#person`,
+      name: SITE.title,
+      url: `${SITE.url}/`,
+      jobTitle: SITE.tagline,
+      description: SITE.description,
+      email: SITE.email,
+      sameAs: ["https://github.com/proniraj", "https://www.linkedin.com/in/developerniraj/"],
+      image: `${SITE.url}${SITE.ogImage}`,
+    },
+  ],
+};
+---
+
+<MainLayout
+  title={`${SITE.title} — SaaS, Fintech & AI Products`}
+  description={SITE.description}
+  canonical={`${SITE.url}/`}
+  jsonLd={jsonLd}
+>
+  <HomeHero slot="header" />
+  <HomeContent />
+</MainLayout>

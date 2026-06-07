@@ -1,0 +1,124 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import StatusBadge from "../components/StatusBadge.astro";
+import type { ContentSection } from "../lib/content-sections";
+import { getSectionPath } from "../lib/content-sections";
+import { SITE } from "../consts";
+
+interface Props {
+  entry: CollectionEntry<"thoughts"> | CollectionEntry<"caseStudies">;
+  section: ContentSection;
+}
+
+const { entry, section } = Astro.props;
+const { title, description, publishedAt, readTime, tags, status, rfcId, version } = entry.data;
+
+const formattedDate = publishedAt.toISOString().slice(0, 10);
+const backHref = `/${section.slug}`;
+const postPath = getSectionPath(section, entry.id);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  canonical={`${SITE.url}${postPath}`}
+>
+  <header class="max-w-4xl mx-auto px-6 py-8 w-full">
+    <Breadcrumb
+      items={[
+        { label: "Home", href: "/" },
+        { label: section.indexTitle, href: backHref },
+        { label: rfcId ?? entry.id },
+      ]}
+    />
+
+    {
+      section.layout === "journal" ? (
+        <div class="rfc-style bg-gradient-to-r from-blue-900/10 to-green-900/10 border border-blue-500/20 rounded-lg p-6 mb-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h1 class="text-3xl font-bold font-mono">{title}</h1>
+            {status && <StatusBadge status={status} />}
+          </div>
+          <p class="text-lg text-text-muted mb-4">{description}</p>
+          <table class="w-full border-collapse">
+            {version && (
+              <tr>
+                <td class="py-2 border-b border-dark-border text-text-muted font-mono text-sm w-[30%]">
+                  Version:
+                </td>
+                <td class="py-2 border-b border-dark-border font-mono text-sm">{version}</td>
+              </tr>
+            )}
+            {status && (
+              <tr>
+                <td class="py-2 border-b border-dark-border text-text-muted font-mono text-sm">
+                  Status:
+                </td>
+                <td class="py-2 border-b border-dark-border font-mono text-sm">{status}</td>
+              </tr>
+            )}
+            <tr>
+              <td class="py-2 border-b border-dark-border text-text-muted font-mono text-sm">
+                Published:
+              </td>
+              <td class="py-2 border-b border-dark-border font-mono text-sm">{formattedDate}</td>
+            </tr>
+            {readTime && (
+              <tr>
+                <td class="py-2 border-b border-dark-border text-text-muted font-mono text-sm">
+                  Read Time:
+                </td>
+                <td class="py-2 border-b border-dark-border font-mono text-sm">{readTime}</td>
+              </tr>
+            )}
+            {tags.length > 0 && (
+              <tr>
+                <td class="py-2 border-b border-dark-border text-text-muted font-mono text-sm">
+                  Tags:
+                </td>
+                <td class="py-2 border-b border-dark-border font-mono text-sm">
+                  {tags.map((tag) => `#${tag}`).join(" ")}
+                </td>
+              </tr>
+            )}
+          </table>
+        </div>
+      ) : (
+        <div class="mb-8">
+          <h1 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h1>
+          <div class="flex flex-wrap gap-4 text-sm text-text-muted font-mono mb-4">
+            <span>Published: {formattedDate}</span>
+            {readTime && <span>Read time: {readTime}</span>}
+            {status && <StatusBadge status={status} />}
+          </div>
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-4">
+              {tags.map((tag) => (
+                <span class="tech-tag">#{tag}</span>
+              ))}
+            </div>
+          )}
+          <p class="text-lg text-text-muted">{description}</p>
+        </div>
+      )
+    }
+  </header>
+
+  <div class="max-w-4xl mx-auto px-6 pb-12 w-full flex-1">
+    <article class="prose-blog mx-auto">
+      <slot />
+    </article>
+
+    <div class="flex justify-between items-center pt-8 border-t border-dark-border mt-12">
+      <a href={backHref} class="text-blue-400 hover:text-blue-300 transition-colors">
+        ← Back to {section.indexTitle}
+      </a>
+    </div>
+  </div>
+
+  <SiteFooter maxWidth="4xl" />
+</BaseLayout>

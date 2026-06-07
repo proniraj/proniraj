@@ -1,0 +1,157 @@
+---
+import type { CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import ContentCard from "../../components/ContentCard.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import { contentSections, getSectionBySlug, getSectionPath } from "../../lib/content-sections";
+import { getPublishedEntriesSorted } from "../../lib/content-utils";
+
+export function getStaticPaths() {
+  return Object.values(contentSections).map((section) => ({
+    params: { section: section.slug },
+  }));
+}
+
+const { section: sectionSlug } = Astro.params;
+const section = getSectionBySlug(sectionSlug!);
+
+if (!section) {
+  throw new Error(`Unknown content section: ${sectionSlug}`);
+}
+
+const entries = await getPublishedEntriesSorted(section);
+
+const featured =
+  section.indexLayout === "journal"
+    ? (entries.find((entry) => entry.data.featured) ?? entries[0])
+    : undefined;
+const rest =
+  section.indexLayout === "journal"
+    ? entries.filter((entry) => entry.id !== featured?.id)
+    : entries;
+---
+
+<MainLayout
+  title={section.indexTitle}
+  description={section.indexDescription}
+  maxWidth="4xl"
+>
+  <header slot="header" class="max-w-4xl mx-auto px-6 py-8 w-full">
+    <Breadcrumb items={[{ label: "Home", href: "/" }, { label: section.indexTitle }]} />
+    <h1 class="text-3xl font-bold mb-2">{section.indexTitle}</h1>
+    <p class="text-text-muted text-lg">{section.indexDescription}</p>
+  </header>
+
+  {
+    section.indexLayout === "journal" ? (
+      <>
+        {featured && (
+          <section class="mb-12">
+            <div class="rfc-style bg-gradient-to-r from-blue-900/10 to-green-900/10 border border-blue-500/20 rounded-lg p-6">
+              <div class="flex flex-wrap items-center gap-4 mb-3">
+                {featured.data.status && (
+                  <StatusBadge
+                    status={featured.data.status}
+                    pulse={featured.data.status === "FEATURED"}
+                  />
+                )}
+                <span class="text-xs text-text-muted font-mono">
+                  {featured.data.publishedAt.toISOString().slice(0, 10)}
+                  {featured.data.readTime ? ` · ${featured.data.readTime}` : ""}
+                </span>
+              </div>
+              <h2 class="text-2xl font-bold mb-3">
+                <a
+                  href={getSectionPath(section, featured.id)}
+                  class="hover:text-blue-300 transition-colors"
+                >
+                  {featured.data.title}
+                </a>
+              </h2>
+              <p class="text-text-muted mb-4 leading-relaxed">{featured.data.description}</p>
+              <a
+                href={getSectionPath(section, featured.id)}
+                class="text-blue-400 hover:text-blue-300 transition-colors text-sm font-mono"
+              >
+                Read article →
+              </a>
+            </div>
+          </section>
+        )}
+        <section>
+          <h2 class="text-xl font-semibold mb-6 text-text-muted">All Insights</h2>
+          <div>
+            {rest.map((entry) => (
+              <ContentCard entry={entry} section={section} />
+            ))}
+          </div>
+        </section>
+      </>
+    ) : (
+      <>
+        <div class="impact-overview bg-[#111111] border border-[#333] rounded-lg p-8 mb-10 text-center">
+          <h3 class="text-blue-400 text-2xl font-semibold mb-2">Production Impact</h3>
+          <p class="text-text-muted mb-6">
+            Systems I've architected and built that are running in production today
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <div class="text-3xl font-bold text-emerald-400 font-mono">50M+</div>
+              <div class="text-xs text-text-muted uppercase tracking-wide">Daily Requests</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-emerald-400 font-mono">99.9%</div>
+              <div class="text-xs text-text-muted uppercase tracking-wide">Uptime</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-emerald-400 font-mono">12</div>
+              <div class="text-xs text-text-muted uppercase tracking-wide">Systems Shipped</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-emerald-400 font-mono">3</div>
+              <div class="text-xs text-text-muted uppercase tracking-wide">Teams Led</div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-6">
+          {(entries as CollectionEntry<"caseStudies">[]).map((entry) => (
+            <a
+              href={getSectionPath(section, entry.id)}
+              class="system-spec block no-underline text-inherit"
+            >
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h3>{entry.data.title}</h3>
+                {entry.data.status && <StatusBadge status={entry.data.status} />}
+              </div>
+              <p class="text-[#d1d5db] mb-4 leading-relaxed">{entry.data.description}</p>
+              {
+                entry.data.metrics && (
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+                      {entry.data.metrics.map((metric) => (
+                        <div class="text-center p-3 bg-[#1a1a1a] border border-[#333] rounded">
+                          <div class="text-xl font-bold text-emerald-400 font-mono">
+                            {metric.value}
+                          </div>
+                          <div class="text-xs text-text-muted uppercase">{metric.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )
+              }
+              {
+                entry.data.techStack && (
+                    <div class="flex flex-wrap gap-2">
+                      {entry.data.techStack.map((tech) => (
+                        <span class="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                  )
+              }
+            </a>
+          ))}
+        </div>
+      </>
+    )
+  }
+</MainLayout>

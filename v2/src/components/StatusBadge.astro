@@ -1,0 +1,42 @@
+---
+interface Props {
+  status: string;
+  pulse?: boolean;
+}
+
+const { status, pulse = false } = Astro.props;
+
+const statusStyles: Record<string, string> = {
+  HOT: "bg-yellow-900/20 border-yellow-500/30 text-yellow-400",
+  FEATURED: "bg-red-900/20 border-red-500/30 text-red-400",
+  LEARNED: "bg-green-900/20 border-green-500/30 text-green-400",
+  THINKING: "bg-blue-900/20 border-blue-500/30 text-blue-400",
+  EXPERIMENT: "bg-orange-900/20 border-orange-500/30 text-orange-400",
+  INSIGHT: "bg-purple-900/20 border-purple-500/30 text-purple-400",
+  TOOL: "bg-cyan-900/20 border-cyan-500/30 text-cyan-400",
+  PRODUCTION: "bg-green-900/20 border-green-500/30 text-green-400",
+  "OPEN SOURCE": "bg-purple-900/20 border-purple-500/30 text-purple-400",
+  ENTERPRISE: "bg-orange-900/20 border-orange-500/30 text-orange-400",
+};
+
+const dotColors: Record<string, string> = {
+  HOT: "bg-yellow-400",
+  FEATURED: "bg-red-400",
+  LEARNED: "bg-green-400",
+  THINKING: "bg-blue-400",
+  EXPERIMENT: "bg-orange-400",
+  INSIGHT: "bg-purple-400",
+  TOOL: "bg-cyan-400",
+  PRODUCTION: "bg-green-400",
+  "OPEN SOURCE": "bg-purple-400",
+  ENTERPRISE: "bg-orange-400",
+};
+
+const style = statusStyles[status] ?? "bg-blue-900/20 border-blue-500/30 text-blue-400";
+const dot = dotColors[status] ?? "bg-blue-400";
+---
+
+<span class={`status-indicator ${style}`}>
+  <span class={`status-dot ${dot} ${pulse ? "animate-pulse" : ""}`}></span>
+  {status}
+</span>

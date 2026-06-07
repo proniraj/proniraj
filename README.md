@@ -23,7 +23,7 @@ Full-stack engineer with 4+ years shipping web, mobile, fintech, SaaS, and AI pr
 
 | Project                      | Stack                      | Impact                                                        |
 | ---------------------------- | -------------------------- | ------------------------------------------------------------- |
-| **AI Résumé Platform**       | React, Node.js, LLM APIs   | AI-powered résumé & interview prep product                    |
+| **AI Resume Platform**       | React, Node.js, LLM APIs   | AI-powered resume & interview prep product                    |
 | **Digital Banking Platform** | React, TypeScript, Node.js | Onboarding flows that reduced manual account opening          |
 | **Dynamic Page Builder**     | React, TypeScript, NestJS  | Let non-technical teams ship web, mobile & email without code |
 | **Unified Auth System**      | NestJS, PostgreSQL         | Shared auth infrastructure across multiple products           |

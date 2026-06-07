@@ -1,0 +1,19 @@
+---
+import { SITE } from "../consts";
+
+interface Props {
+  maxWidth?: "3xl" | "4xl";
+  tagline?: string;
+}
+
+const { maxWidth = "3xl", tagline = "I help startups turn ideas into production software." } =
+  Astro.props;
+const widthClass = maxWidth === "4xl" ? "max-w-4xl" : "max-w-3xl";
+---
+
+<footer class={`${widthClass} mx-auto px-6 py-8 w-full mt-auto`}>
+  <div class="border-t border-dark-border pt-6 text-center text-text-muted text-sm font-mono">
+    <p>© {new Date().getFullYear()} {SITE.author} · {SITE.tagline} · {SITE.location}</p>
+    <p class="mt-2 text-xs">{tagline}</p>
+  </div>
+</footer>

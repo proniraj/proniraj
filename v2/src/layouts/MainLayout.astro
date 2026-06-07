@@ -1,0 +1,23 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  maxWidth?: "3xl" | "4xl";
+}
+
+const { title, description, canonical, jsonLd, maxWidth = "3xl" } = Astro.props;
+const widthClass = maxWidth === "4xl" ? "max-w-4xl" : "max-w-3xl";
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <slot name="header" />
+  <main class={`${widthClass} mx-auto px-6 pb-12 w-full flex-1`}>
+    <slot />
+  </main>
+  <SiteFooter maxWidth={maxWidth} />
+</BaseLayout>

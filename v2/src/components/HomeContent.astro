@@ -1,0 +1,252 @@
+---
+import { SITE, LINKS } from "../consts";
+---
+
+<!-- Recruiter CTA -->
+<section class="mb-10 panel border-green-500/20 bg-green-950/10">
+  <h2 class="section-label mb-3">Available For</h2>
+  <ul class="space-y-2 text-sm text-text-muted mb-5">
+    <li class="check-item">Full-time remote roles</li>
+    <li class="check-item">Contract engagements</li>
+    <li class="check-item">Startup teams</li>
+    <li class="check-item">Founding engineer opportunities</li>
+  </ul>
+  <p class="text-sm text-text-muted mb-4">
+    Interested in <strong class="text-white font-normal">SaaS</strong>,
+    <strong class="text-white font-normal">AI</strong>,
+    <strong class="text-white font-normal">fintech</strong>, and
+    <strong class="text-white font-normal">developer tools</strong>.
+  </p>
+  <p class="text-xs font-mono text-green-400/90">Response time: usually within 24 hours</p>
+</section>
+
+<!-- Recommendations -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <h2 class="section-label mb-1">Recommendations</h2>
+      <p class="text-xs text-text-muted">Founder, co-founder & CTO endorsements</p>
+    </div>
+    <a
+      href={LINKS.recommendations}
+      class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors whitespace-nowrap"
+      target="_blank"
+      rel="noopener noreferrer">View on LinkedIn →</a
+    >
+  </div>
+
+  <div class="space-y-4">
+    <article class="recommendation-card">
+      <div class="flex gap-4">
+        <div
+          class="avatar bg-gradient-to-br from-blue-500/30 to-emerald-500/30 text-blue-300 border border-blue-500/20"
+          >LB</div
+        >
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+            <p class="font-semibold">Leks Betlem</p>
+            <span class="text-xs text-text-muted font-mono">Jun 2026</span>
+          </div>
+          <p class="text-sm text-blue-400/90 mb-3">Co-founder · Sponsorvista</p>
+          <p class="quote-mark mb-1" aria-hidden="true">“</p>
+          <blockquote class="text-sm text-text-muted leading-relaxed -mt-4 pl-1">
+            I had the pleasure of working with Niraj on a project that I engaged him for, and it was
+            a great experience from start to finish. Niraj is a strong team lead who combines
+            technical expertise with a practical and collaborative approach.
+          </blockquote>
+        </div>
+      </div>
+    </article>
+
+    <article class="recommendation-card">
+      <div class="flex gap-4">
+        <div
+          class="avatar bg-gradient-to-br from-emerald-500/30 to-teal-500/30 text-emerald-300 border border-emerald-500/20"
+          >GB</div
+        >
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+            <p class="font-semibold">Gavin Bryan</p>
+            <span class="text-xs text-text-muted font-mono">Dec 2025</span>
+          </div>
+          <p class="text-sm text-emerald-400/90 mb-3">Founder · Hourmarket</p>
+          <p class="quote-mark mb-1" aria-hidden="true">“</p>
+          <blockquote class="text-sm text-text-muted leading-relaxed -mt-4 pl-1">
+            I've worked closely with Niraj on a number of projects across frontend, backend, and
+            mobile development, and I've always been impressed with his talent and work ethic.
+          </blockquote>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- What I've Built -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <h2 class="section-label mb-6">What I've Built</h2>
+  <div class="space-y-4">
+    <article class="panel">
+      <h3 class="font-semibold text-lg mb-1">AI Resume Platform</h3>
+      <p class="text-xs font-mono text-blue-400 mb-3">React · Node.js · LLM APIs</p>
+      <p class="text-sm text-text-muted">
+        Built an AI-powered platform that generates résumés and interview preparation content.
+      </p>
+    </article>
+    <article class="panel">
+      <h3 class="font-semibold text-lg mb-1">Digital Banking Platform</h3>
+      <p class="text-xs font-mono text-emerald-400 mb-3">React · TypeScript · Node.js</p>
+      <p class="text-sm text-text-muted">
+        Developed digital onboarding and account management workflows for a Nepali financial
+        institution.
+      </p>
+    </article>
+    <article class="panel">
+      <h3 class="font-semibold text-lg mb-1">Dynamic Page Builder</h3>
+      <p class="text-xs font-mono text-purple-400 mb-3">React · TypeScript · NestJS</p>
+      <p class="text-sm text-text-muted">
+        Built a visual page builder for web, mobile, and email templates across 3 product surfaces.
+      </p>
+    </article>
+    <article class="panel">
+      <h3 class="font-semibold text-lg mb-1">Unified Authentication System</h3>
+      <p class="text-xs font-mono text-amber-400 mb-3">NestJS · PostgreSQL</p>
+      <p class="text-sm text-text-muted">
+        Designed reusable authentication infrastructure shared across multiple products.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <h2 class="section-label mb-6">Experience</h2>
+  <div class="space-y-6">
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <h3 class="font-semibold text-lg">Sponsorvista</h3>
+        <span class="text-xs font-mono text-text-muted">Dec 2025 – Present</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Led engineering execution across a distributed remote team, shipping production features and
+        improving page-load performance and deployment reliability.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <h3 class="font-semibold text-lg">Hourmarket</h3>
+        <span class="text-xs font-mono text-text-muted">Oct 2024 – Oct 2025</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Built a dynamic page builder, migrated services from .NET to NestJS, and shipped a consumer
+        mobile shopping app on iOS and Android.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <h3 class="font-semibold text-lg">Basework.io</h3>
+        <span class="text-xs font-mono text-text-muted">Jan – May 2024</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Shipped 3 client products in 5 months — including an AI platform and a digital banking app.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- Technologies -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <h2 class="section-label mb-2">Technologies I've Shipped to Production</h2>
+  <p class="text-xs text-text-muted mb-6">Not a wishlist — tools I've used in real products.</p>
+  <div class="grid sm:grid-cols-2 gap-4 text-sm">
+    <div class="panel">
+      <p class="text-blue-400 font-mono text-xs mb-2">Frontend</p>
+      <p class="text-text-muted">React, Next.js, TypeScript, Tailwind, React Native</p>
+    </div>
+    <div class="panel">
+      <p class="text-emerald-400 font-mono text-xs mb-2">Backend</p>
+      <p class="text-text-muted">Node.js, NestJS, Express, REST APIs, Microservices</p>
+    </div>
+    <div class="panel">
+      <p class="text-purple-400 font-mono text-xs mb-2">Databases</p>
+      <p class="text-text-muted">PostgreSQL, MongoDB, Redis</p>
+    </div>
+    <div class="panel">
+      <p class="text-amber-400 font-mono text-xs mb-2">Infrastructure</p>
+      <p class="text-text-muted">AWS, Azure, Docker, GitHub Actions, CI/CD</p>
+    </div>
+  </div>
+</section>
+
+<!-- Engineering Activity -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <h2 class="section-label mb-1">Engineering Activity</h2>
+      <p class="text-xs text-text-muted">40+ public repositories · active since 2020</p>
+    </div>
+    <a
+      href={LINKS.github}
+      class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors whitespace-nowrap"
+      target="_blank"
+      rel="noopener noreferrer">github.com/proniraj →</a
+    >
+  </div>
+
+  <div class="panel overflow-hidden">
+    <img
+      src="https://ghchart.rshah.org/proniraj"
+      alt="Niraj Thakur GitHub contribution chart"
+      class="w-full h-auto"
+      loading="lazy"
+      width="800"
+      height="120"
+    />
+  </div>
+
+  <div class="mt-4 grid sm:grid-cols-2 gap-4">
+    <a
+      href={LINKS.github}
+      class="panel block hover:border-blue-500/30 no-underline text-inherit"
+      target="_blank"
+      rel="noopener noreferrer">
+      <p class="font-semibold mb-1">GitHub Profile</p>
+      <p class="text-sm text-text-muted">Open source projects, experiments, and production codebases.</p>
+    </a>
+    <a href="/thoughts" class="panel block hover:border-blue-500/30 no-underline text-inherit">
+      <p class="font-semibold mb-1">Engineering Journal</p>
+      <p class="text-sm text-text-muted">
+        Architecture patterns, scaling strategies, and technical write-ups.
+      </p>
+    </a>
+  </div>
+</section>
+
+<!-- Connect -->
+<section id="contact" class="border-t border-dark-border pt-8">
+  <h2 class="section-label mb-4">Connect</h2>
+  <p class="text-sm text-text-muted mb-4">Hiring for a remote full stack role? I'd love to hear from you.</p>
+  <div class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
+    <a
+      href={`mailto:${SITE.email}?subject=Job%20Opportunity%20%E2%80%94%20${encodeURIComponent(SITE.title)}`}
+      class="text-blue-400 hover:text-blue-300 transition-colors">{SITE.email}</a
+    >
+    <a
+      href={LINKS.github}
+      class="text-blue-400 hover:text-blue-300 transition-colors"
+      target="_blank"
+      rel="noopener noreferrer">github.com/proniraj</a
+    >
+    <a
+      href={LINKS.linkedin}
+      class="text-blue-400 hover:text-blue-300 transition-colors"
+      target="_blank"
+      rel="noopener noreferrer">linkedin.com/in/developerniraj</a
+    >
+    <a
+      href={LINKS.resume}
+      class="text-blue-400 hover:text-blue-300 transition-colors"
+      target="_blank"
+      rel="noopener noreferrer">Download Resume (PDF)</a
+    >
+  </div>
+</section>
