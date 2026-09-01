@@ -1,6 +1,10 @@
 ---
-title: "RFC-001: E-commerce Platform Architecture"
-description: "Architected and built a high-traffic e-commerce platform that handles 2M+ daily transactions with 99.99% uptime."
+title: "E-commerce Platform at Scale"
+description: "Architected a microservices platform handling high-traffic commerce — from monolith pain to independent services, event-driven flows, and measurable uptime gains."
+company: "E-commerce · Architecture Study"
+role: "Systems Architect"
+period: "8 month engagement"
+impactSummary: "Designed a system targeting 2M+ daily transactions, 99.99% uptime, and sub-200ms response times through microservices and event-driven architecture."
 publishedAt: "2024-01-10"
 readTime: "15 minutes"
 tags:
@@ -8,8 +12,9 @@ tags:
   - microservices
   - scaling
   - architecture
-  - performance
-status: "PRODUCTION"
+status: PRODUCTION
+featured: false
+sortOrder: 40
 rfcId: "RFC-001"
 techStack:
   - React

@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getWorkPath } from "../lib/work-utils";
+
+interface Props {
+  entry: CollectionEntry<"work">;
+  index?: number;
+}
+
+const { entry, index = 0 } = Astro.props;
+const { title, description, company, role, period, techStack } = entry.data;
+const href = getWorkPath(entry.id);
+---
+
+<article class="work-entry group">
+  <div class="work-entry-marker" aria-hidden="true">
+    <span class="work-entry-index font-mono text-xs text-text-muted">
+      {String(index + 1).padStart(2, "0")}
+    </span>
+  </div>
+  <div class="work-entry-body">
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+      <span class="font-mono text-sm text-emerald-400/90">{company}</span>
+      <span class="text-text-muted text-sm">·</span>
+      <span class="font-mono text-xs text-text-muted">{period}</span>
+    </div>
+    <h2 class="text-2xl font-semibold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+      <a href={href} class="no-underline text-inherit">{title}</a>
+    </h2>
+    <p class="text-sm text-text-muted mb-1 font-mono">{role}</p>
+    <p class="text-base text-[#d1d5db] leading-relaxed mb-4 max-w-2xl">{description}</p>
+    {
+      techStack.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {techStack.map((tech) => (
+            <span class="work-tech-pill">{tech}</span>
+          ))}
+        </div>
+      )
+    }
+    <a href={href} class="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors">
+      Read more
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>

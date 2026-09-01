@@ -14,5 +14,11 @@ export async function getSectionEntries(
 
 export async function getPublishedEntriesSorted(section: ContentSection) {
   const entries = await getSectionEntries(section);
-  return entries.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+  return entries.sort((a, b) => {
+    if (section.collection === "caseStudies") {
+      const orderDiff = (b.data.sortOrder ?? 0) - (a.data.sortOrder ?? 0);
+      if (orderDiff !== 0) return orderDiff;
+    }
+    return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
+  });
 }

@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { SITE } from "../consts";
 import { contentSections, getSectionPath } from "../lib/content-sections";
 import { getSectionEntries } from "../lib/content-utils";
+import { getWorkEntriesSorted, getWorkPath } from "../lib/work-utils";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
@@ -19,6 +20,16 @@ export const GET: APIRoute = async (context) => {
         link: `${getSectionPath(section, entry.id)}/`,
       });
     }
+  }
+
+  const workEntries = await getWorkEntriesSorted();
+  for (const entry of workEntries) {
+    items.push({
+      title: entry.data.title,
+      description: entry.data.description,
+      pubDate: entry.data.publishedAt,
+      link: `${getWorkPath(entry.id)}/`,
+    });
   }
 
   items.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());

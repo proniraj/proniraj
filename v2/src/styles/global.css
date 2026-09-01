@@ -344,4 +344,97 @@
     font-size: 0.75rem;
     font-family: var(--font-mono);
   }
+
+  /* Selected Work — distinct from case-studies / portfolio panels */
+  .work-index-list {
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .work-entry {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem 1.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  @media (min-width: 640px) {
+    .work-entry {
+      grid-template-columns: 4rem 1fr;
+      gap: 1rem 2rem;
+    }
+  }
+
+  .work-entry-marker {
+    padding-top: 0.35rem;
+  }
+
+  .work-tech-pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #9ca3af;
+    border: 1px solid #2a2a2a;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    background: #0f0f0f;
+  }
+
+  .work-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .work-detail-grid {
+      grid-template-columns: 220px 1fr;
+      gap: 3.5rem;
+    }
+
+    .work-detail-aside {
+      position: sticky;
+      top: 2rem;
+      align-self: start;
+    }
+  }
+
+  .work-detail-aside {
+    padding: 1.25rem;
+    border: 1px solid #1a1a1a;
+    border-radius: 0.5rem;
+    background: #0c0c0c;
+  }
+
+  .work-prose :where(h2) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .work-prose :where(p, li) {
+    color: #c4c4c4;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .work-prose :where(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .work-prose :where(ul) {
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .work-prose :where(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .work-prose :where(strong) {
+    color: #e5e5e5;
+    font-weight: 500;
+  }
 }

@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { getWorkPath } from "../lib/work-utils";
+import { SITE } from "../consts";
+
+interface Props {
+  entry: CollectionEntry<"work">;
+}
+
+const { entry } = Astro.props;
+const { title, description, company, role, period, techStack } = entry.data;
+const path = getWorkPath(entry.id);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  canonical={`${SITE.url}${path}`}
+>
+  <div class="work-detail-shell max-w-5xl mx-auto px-6 py-10 w-full flex-1">
+    <Breadcrumb
+      items={[
+        { label: "Home", href: "/" },
+        { label: "Selected Work", href: "/work" },
+        { label: title },
+      ]}
+    />
+
+    <div class="work-detail-grid mt-8">
+      <aside class="work-detail-aside">
+        <p class="font-mono text-xs uppercase tracking-widest text-emerald-400/80 mb-2">Company</p>
+        <p class="text-white font-medium mb-6">{company}</p>
+
+        <p class="font-mono text-xs uppercase tracking-widest text-text-muted mb-2">Role</p>
+        <p class="text-text-muted text-sm mb-6">{role}</p>
+
+        <p class="font-mono text-xs uppercase tracking-widest text-text-muted mb-2">Period</p>
+        <p class="text-text-muted text-sm mb-6 font-mono">{period}</p>
+
+        {
+          techStack.length > 0 && (
+            <>
+              <p class="font-mono text-xs uppercase tracking-widest text-text-muted mb-3">Stack</p>
+              <ul class="space-y-2 mb-8">
+                {techStack.map((tech) => (
+                  <li class="text-sm text-[#d1d5db] font-mono">{tech}</li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+
+        <a href="/work" class="text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors">
+          ← All work
+        </a>
+      </aside>
+
+      <div class="work-detail-main">
+        <header class="mb-10 pb-8 border-b border-[#1a1a1a]">
+          <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">{title}</h1>
+          <p class="text-lg text-text-muted leading-relaxed">{description}</p>
+        </header>
+
+        <article class="work-prose">
+          <slot />
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <SiteFooter maxWidth="4xl" tagline="Selected work from production engagements." />
+</BaseLayout>

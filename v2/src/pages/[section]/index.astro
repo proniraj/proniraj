@@ -90,30 +90,6 @@ const rest =
       </>
     ) : (
       <>
-        <div class="impact-overview bg-[#111111] border border-[#333] rounded-lg p-8 mb-10 text-center">
-          <h3 class="text-blue-400 text-2xl font-semibold mb-2">Production Impact</h3>
-          <p class="text-text-muted mb-6">
-            Systems I've architected and built that are running in production today
-          </p>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div>
-              <div class="text-3xl font-bold text-emerald-400 font-mono">50M+</div>
-              <div class="text-xs text-text-muted uppercase tracking-wide">Daily Requests</div>
-            </div>
-            <div>
-              <div class="text-3xl font-bold text-emerald-400 font-mono">99.9%</div>
-              <div class="text-xs text-text-muted uppercase tracking-wide">Uptime</div>
-            </div>
-            <div>
-              <div class="text-3xl font-bold text-emerald-400 font-mono">12</div>
-              <div class="text-xs text-text-muted uppercase tracking-wide">Systems Shipped</div>
-            </div>
-            <div>
-              <div class="text-3xl font-bold text-emerald-400 font-mono">3</div>
-              <div class="text-xs text-text-muted uppercase tracking-wide">Teams Led</div>
-            </div>
-          </div>
-        </div>
         <div class="space-y-6">
           {(entries as CollectionEntry<"caseStudies">[]).map((entry) => (
             <a
@@ -126,27 +102,13 @@ const rest =
               </div>
               <p class="text-[#d1d5db] mb-4 leading-relaxed">{entry.data.description}</p>
               {
-                entry.data.metrics && (
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
-                      {entry.data.metrics.map((metric) => (
-                        <div class="text-center p-3 bg-[#1a1a1a] border border-[#333] rounded">
-                          <div class="text-xl font-bold text-emerald-400 font-mono">
-                            {metric.value}
-                          </div>
-                          <div class="text-xs text-text-muted uppercase">{metric.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )
-              }
-              {
                 entry.data.techStack && (
-                    <div class="flex flex-wrap gap-2">
-                      {entry.data.techStack.map((tech) => (
-                        <span class="tech-tag">{tech}</span>
-                      ))}
-                    </div>
-                  )
+                  <div class="flex flex-wrap gap-2">
+                    {entry.data.techStack.map((tech) => (
+                      <span class="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                )
               }
             </a>
           ))}

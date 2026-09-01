@@ -14,7 +14,14 @@ interface Props {
 }
 
 const { entry, section } = Astro.props;
-const { title, description, publishedAt, readTime, tags, status, rfcId, version } = entry.data;
+const data = entry.data;
+const { title, description, publishedAt, readTime, tags, status, rfcId, version } = data;
+const company = "company" in data ? data.company : undefined;
+const role = "role" in data ? data.role : undefined;
+const period = "period" in data ? data.period : undefined;
+const impactSummary = "impactSummary" in data ? data.impactSummary : undefined;
+const metrics = "metrics" in data ? data.metrics : undefined;
+const techStack = "techStack" in data ? data.techStack : undefined;
 
 const formattedDate = publishedAt.toISOString().slice(0, 10);
 const backHref = `/${section.slug}`;
@@ -32,7 +39,7 @@ const postPath = getSectionPath(section, entry.id);
       items={[
         { label: "Home", href: "/" },
         { label: section.indexTitle, href: backHref },
-        { label: rfcId ?? entry.id },
+        { label: title },
       ]}
     />
 
@@ -89,12 +96,22 @@ const postPath = getSectionPath(section, entry.id);
         </div>
       ) : (
         <div class="mb-8">
+          {company && (
+            <p class="text-xs font-mono text-blue-400 mb-2 uppercase tracking-wide">{company}</p>
+          )}
           <h1 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h1>
-          <div class="flex flex-wrap gap-4 text-sm text-text-muted font-mono mb-4">
-            <span>Published: {formattedDate}</span>
-            {readTime && <span>Read time: {readTime}</span>}
+          <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-muted font-mono mb-4">
+            {role && <span>{role}</span>}
+            {period && <span>{period}</span>}
+            {readTime && <span>{readTime} read</span>}
             {status && <StatusBadge status={status} />}
           </div>
+          {impactSummary && (
+            <div class="summary-box mb-6">
+              <h4>Impact at a glance</h4>
+              <p>{impactSummary}</p>
+            </div>
+          )}
           {tags.length > 0 && (
             <div class="flex flex-wrap gap-2 mb-4">
               {tags.map((tag) => (
@@ -102,7 +119,28 @@ const postPath = getSectionPath(section, entry.id);
               ))}
             </div>
           )}
-          <p class="text-lg text-text-muted">{description}</p>
+          <p class="text-lg text-text-muted mb-6">{description}</p>
+          {
+            metrics && metrics.length > 0 && (
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                {metrics.map((metric) => (
+                  <div class="text-center p-4 bg-[#111111] border border-[#333] rounded-lg">
+                    <div class="text-2xl font-bold text-emerald-400 font-mono">{metric.value}</div>
+                    <div class="text-xs text-text-muted uppercase mt-1">{metric.label}</div>
+                  </div>
+                ))}
+              </div>
+            )
+          }
+          {
+            techStack && (
+              <div class="flex flex-wrap gap-2 mb-2">
+                {techStack.map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
+              </div>
+            )
+          }
         </div>
       )
     }

@@ -1,6 +1,10 @@
 ---
-title: "RFC-001: AuthFlow SDK"
-description: "Revolutionary authentication SDK that makes secure authentication as simple as a single function call."
+title: "AuthFlow SDK — Authentication as a Product"
+description: "Deep dive into designing an authentication SDK that makes secure auth a single function call — patterns for JWT, OAuth 2.0, and developer experience."
+company: "Open Source · AuthFlow SDK"
+role: "Lead Developer"
+period: "2024"
+impactSummary: "SDK design patterns for secure, developer-friendly authentication — TypeScript-first, production-grade defaults."
 publishedAt: "2024-01-15"
 readTime: "12 minutes"
 tags:
@@ -9,6 +13,8 @@ tags:
   - security
   - sdk
 status: "OPEN SOURCE"
+featured: false
+sortOrder: 30
 rfcId: "RFC-001"
 techStack:
   - TypeScript
