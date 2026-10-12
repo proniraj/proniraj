@@ -55,20 +55,111 @@ const systemsProjects: SystemsProject[] = [
 <section class="mb-10 panel">
   <h2 class="section-label mb-3">Open to</h2>
   <p class="text-sm text-text-muted leading-relaxed mb-3">
-    Remote full-time or contract roles on backend / full-stack teams — especially SaaS, fintech,
-    developer tools, and infrastructure-adjacent products.
+    Remote full-time or contract roles on product, platform, or fintech teams — especially
+    regulated environments, SaaS, and infrastructure-adjacent products.
   </p>
   <p class="text-xs font-mono text-text-muted">
     Available for remote roles · {SITE.timezone} · {SITE.overlap}
   </p>
 </section>
 
-<!-- Selected production work -->
+<!-- Banking & fintech (current) -->
 <section class="mb-10 border-t border-dark-border pt-8">
   <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
     <div>
-      <h2 class="section-label mb-1">Selected production work</h2>
-      <p class="text-xs text-text-muted">Outcome-first — what shipped for real teams</p>
+      <h2 class="section-label mb-1">Banking &amp; fintech</h2>
+      <p class="text-xs text-text-muted">
+        Current role at Peace Nepal DOT Com — NDA-safe, public proof only
+      </p>
+    </div>
+    <a
+      href={LINKS.peaceNepal}
+      class="text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
+      target="_blank"
+      rel="noopener noreferrer">peacenepal.com →</a
+    >
+  </div>
+
+  <div class="space-y-4">
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h3 class="font-semibold text-lg">NMB Bank</h3>
+        <span class="text-xs font-mono text-text-muted">PNDC · Present</span>
+      </div>
+      <p class="text-xs font-mono text-emerald-400 mb-3">
+        CMS-driven site · drag-and-drop page builder · Next.js
+      </p>
+      <p class="text-sm text-text-muted mb-4">
+        Frontend for a Class-A commercial bank's fully CMS-driven public website (197 branches,
+        2.2M+ customers, per nmb.com.np). Every page, menu, and content block is editable from an
+        admin panel, in English and Nepali. Built the drag-and-drop page builder the bank's team
+        uses to compose internal pages from validated blocks — same pattern refined earlier at
+        Hourmarket.
+      </p>
+      <div class="flex flex-wrap gap-4 text-xs font-mono">
+        <a
+          href={LINKS.nmbBank}
+          class="text-emerald-400 hover:text-emerald-300 transition-colors"
+          target="_blank"
+          rel="noopener noreferrer">Live site →</a
+        >
+        <a
+          href="/work/nmb-bank-cms-page-builder"
+          class="text-blue-400 hover:text-blue-300 transition-colors">Case study →</a
+        >
+        {
+          LINKS.nmbPageBuilderVideo ? (
+            <a
+              href={LINKS.nmbPageBuilderVideo}
+              class="text-blue-400 hover:text-blue-300 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Clean-room demo →
+            </a>
+          ) : (
+            <span class="text-text-muted/70">Clean-room demo pending</span>
+          )
+        }
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h3 class="font-semibold text-lg">Shine Resunga Development Bank</h3>
+        <span class="text-xs font-mono text-text-muted">PNDC · Present</span>
+      </div>
+      <p class="text-xs font-mono text-amber-400 mb-3">
+        Online demat · regulated KYC onboarding
+      </p>
+      <p class="text-sm text-text-muted mb-4">
+        Frontend for the online demat-account application — a regulated KYC flow for a
+        CDSC Depository Participant. Eligibility gating (existing savings account), document /
+        photo / signature uploads with clear rejection rules, minor/guardian paths, and bilingual
+        English/Nepali guidance. Public assets use jQuery and Bootstrap on a Laravel-style backend;
+        described accurately, not as React.
+      </p>
+      <div class="flex flex-wrap gap-4 text-xs font-mono">
+        <a
+          href={LINKS.srdbDemat}
+          class="text-emerald-400 hover:text-emerald-300 transition-colors"
+          target="_blank"
+          rel="noopener noreferrer">Live app →</a
+        >
+        <a href="/work/srdb-online-demat" class="text-blue-400 hover:text-blue-300 transition-colors"
+          >Case study →</a
+        >
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Selected product work -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <h2 class="section-label mb-1">Selected product work</h2>
+      <p class="text-xs text-text-muted">Outcome-first — what shipped for remote product teams</p>
     </div>
     <a href="/work" class="text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
       >All selected work →</a
@@ -84,7 +175,7 @@ const systemsProjects: SystemsProject[] = [
       <p class="text-sm text-text-muted">
         Built a visual page builder for web, mobile, and email; migrated backend services from .NET
         to NestJS; designed auth shared across products; shipped a consumer shopping app on iOS and
-        Android.
+        Android. Same schema-driven builder pattern later refined for NMB's regulated brand.
       </p>
     </article>
     <article class="panel">
@@ -271,6 +362,16 @@ const systemsProjects: SystemsProject[] = [
   <div class="space-y-4">
     <article class="panel">
       <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 class="font-semibold">Peace Nepal DOT Com (PNDC)</h3>
+        <span class="text-xs font-mono text-text-muted">Present</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Banking platforms: NMB Bank's CMS-driven website and drag-and-drop page builder; Shine
+        Resunga Development Bank's online demat (KYC) application.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
         <h3 class="font-semibold">Sponsorvista</h3>
         <span class="text-xs font-mono text-text-muted">Dec 2025 – Present</span>
       </div>
@@ -286,6 +387,15 @@ const systemsProjects: SystemsProject[] = [
       </div>
       <p class="text-sm text-text-muted">
         Page builder, .NET → NestJS migration, unified auth, iOS/Android shopping app.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 class="font-semibold">Braimy</h3>
+        <span class="text-xs font-mono text-text-muted">Jun – Sep 2024</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Frontend architecture and component system for core user journeys.
       </p>
     </article>
     <article class="panel">
@@ -317,7 +427,7 @@ const systemsProjects: SystemsProject[] = [
   <div class="grid sm:grid-cols-2 gap-4 text-sm">
     <div class="panel">
       <p class="text-blue-400 font-mono text-xs mb-2">Frontend</p>
-      <p class="text-text-muted">React, Next.js, TypeScript, Tailwind, React Native</p>
+      <p class="text-text-muted">React, Next.js, TypeScript, Tailwind, React Native, jQuery</p>
     </div>
     <div class="panel">
       <p class="text-emerald-400 font-mono text-xs mb-2">Backend</p>
@@ -342,6 +452,9 @@ const systemsProjects: SystemsProject[] = [
     <li class="check-item">Small PRs, ownership through deploy</li>
     <li class="check-item">Async-first communication with clear handoffs</li>
     <li class="check-item">Timezone overlap stated up front for remote teams</li>
+    <li class="check-item">
+      Regulated-environment habits: UAT sign-off, change control, no client data in public write-ups
+    </li>
   </ul>
 </section>
 
@@ -349,7 +462,7 @@ const systemsProjects: SystemsProject[] = [
 <section id="contact" class="border-t border-dark-border pt-8">
   <h2 class="section-label mb-4">Connect</h2>
   <p class="text-sm text-text-muted mb-4">
-    Hiring for a remote backend or full-stack role? Email is the fastest path.
+    Hiring for a remote product, platform, or fintech role? Email is the fastest path.
   </p>
   <div class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
     <a href={mailto} class="text-blue-400 hover:text-blue-300 transition-colors">{SITE.email}</a>
@@ -373,6 +486,6 @@ const systemsProjects: SystemsProject[] = [
     >
   </div>
   <p class="mt-6 text-xs font-mono text-text-muted">
-    Shipped for {PROOF.clients.join(" · ")}
+    Currently {PROOF.current} · Shipped for {PROOF.clients.join(" · ")}
   </p>
 </section>

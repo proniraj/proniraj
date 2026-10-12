@@ -2,7 +2,7 @@ export const SITE = {
   title: "Niraj Thakur",
   tagline: "Full Stack Engineer",
   description:
-    "Full-stack engineer (TypeScript, Node.js, NestJS, React) shipping SaaS and fintech for remote teams — also building P2P and local-first systems in Rust. Kathmandu · UTC+5:45.",
+    "Full-stack engineer (Next.js, React, TypeScript, NestJS) building banking platforms at Peace Nepal; P2P and local-first systems in Rust. Kathmandu · UTC+5:45.",
   url: "https://nirajthakur.com.np",
   author: "Niraj Thakur",
   email: "ntnirajthakur21@gmail.com",
@@ -12,9 +12,9 @@ export const SITE = {
   overlap: "Europe daytime · US-East mornings",
   ogImage: "/assets/og-card.png",
   ogImageAlt:
-    "Niraj Thakur — Full Stack Engineer building SaaS, Fintech and AI products. Open to remote roles.",
+    "Niraj Thakur — Full-stack engineer building banking platforms at Peace Nepal; SaaS, fintech, and systems in Rust.",
   keywords:
-    "Niraj Thakur, full stack engineer, TypeScript, NestJS, Node.js, React, Rust, remote, SaaS, fintech, P2P, local-first, Nepal",
+    "Niraj Thakur, full stack engineer, Peace Nepal, NMB Bank, Next.js, React, TypeScript, NestJS, Rust, remote, SaaS, fintech, KYC, P2P, local-first, Nepal",
   themeColor: "#0a0a0a",
 } as const;
 
@@ -26,6 +26,10 @@ export const LINKS = {
     "https://www.linkedin.com/in/developerniraj/details/recommendations/",
   /** Merged upstream contribution */
   imapflowPr: "https://github.com/postalsys/imapflow/pull/111",
+  /** Public client sites (footer credits PNDC) */
+  nmbBank: "https://www.nmb.com.np/en",
+  srdbDemat: "https://onlinedemat.srdb.com.np/",
+  peaceNepal: "https://peacenepal.com/",
   /**
    * Add public repo / demo URLs when ready.
    * Leave empty string to hide the link on the site.
@@ -35,9 +39,19 @@ export const LINKS = {
   rustShellRepo: "",
   /** YouTube walkthrough for Lanceme Up (product no longer online) */
   lancemeUpVideo: "",
+  /** Clean-room page-builder demo (no client data) — add when recorded */
+  nmbPageBuilderVideo: "",
 } as const;
 
 export const PROOF = {
-  clients: ["Sponsorvista", "Hourmarket", "Basework.io", "Lanceme Up"] as const,
+  current: "Peace Nepal DOT Com · banking & FI platforms",
+  clients: [
+    "NMB Bank",
+    "Shine Resunga Development Bank",
+    "Hourmarket",
+    "Sponsorvista",
+    "Basework.io",
+    "Lanceme Up",
+  ] as const,
   upstream: "postalsys/imapflow",
 } as const;
