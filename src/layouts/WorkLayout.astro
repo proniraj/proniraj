@@ -11,15 +11,37 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, description, company, role, period, techStack } = entry.data;
+const { title, description, company, role, period, techStack, publishedAt } = entry.data;
 const path = getWorkPath(entry.id);
+const canonical = `${SITE.url}${path}/`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: title,
+  description,
+  datePublished: publishedAt.toISOString(),
+  author: {
+    "@type": "Person",
+    name: SITE.author,
+    url: SITE.url,
+  },
+  about: company,
+  keywords: techStack.join(", "),
+  url: canonical,
+  image: `${SITE.url}${SITE.ogImage}`,
+  inLanguage: "en",
+};
 ---
 
 <BaseLayout
   title={title}
   description={description}
   ogType="article"
-  canonical={`${SITE.url}${path}`}
+  canonical={canonical}
+  publishedTime={publishedAt}
+  modifiedTime={publishedAt}
+  ogImageAlt={`${title} — ${company}`}
+  jsonLd={jsonLd}
 >
   <div class="work-detail-shell max-w-5xl mx-auto px-6 py-10 w-full flex-1">
     <Breadcrumb

@@ -8,6 +8,10 @@ export const SITE = {
   email: "ntnirajthakur21@gmail.com",
   location: "Kathmandu, Nepal",
   ogImage: "/assets/og-card.png",
+  ogImageAlt:
+    "Niraj Thakur — Full Stack Engineer building SaaS, Fintech and AI products. Open to remote roles.",
+  keywords:
+    "Niraj Thakur, full stack engineer, remote developer, startup engineer, React, TypeScript, Node.js, NestJS, SaaS, fintech, AI, Nepal",
   themeColor: "#0a0a0a",
 } as const;
 

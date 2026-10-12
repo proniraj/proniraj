@@ -78,3 +78,18 @@ Source for my personal portfolio site — deployed at **[nirajthakur.com.np](htt
   <a href="https://www.linkedin.com/in/developerniraj/">LinkedIn</a> ·
   <a href="mailto:ntnirajthakur21@gmail.com">Email</a>
 </p>
+
+---
+
+## Site (Astro)
+
+This repo is the source for [nirajthakur.com.np](https://nirajthakur.com.np).
+
+```sh
+npm install
+npm run dev      # http://localhost:4321
+npm run build
+```
+
+Content lives in `src/content/` (thoughts, case studies, work). Pushing to `main` builds and deploys via GitHub Actions → GitHub Pages. Custom domain: `public/CNAME` → `nirajthakur.com.np`.
+

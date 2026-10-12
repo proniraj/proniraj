@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import HomeHero from "../components/HomeHero.astro";
 import HomeContent from "../components/HomeContent.astro";
-import { SITE } from "../consts";
+import { LINKS, SITE } from "../consts";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -15,6 +15,7 @@ const jsonLd = {
       description: SITE.description,
       inLanguage: "en",
       author: { "@id": `${SITE.url}/#person` },
+      publisher: { "@id": `${SITE.url}/#person` },
     },
     {
       "@type": "Person",
@@ -24,8 +25,14 @@ const jsonLd = {
       jobTitle: SITE.tagline,
       description: SITE.description,
       email: SITE.email,
-      sameAs: ["https://github.com/proniraj", "https://www.linkedin.com/in/developerniraj/"],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kathmandu",
+        addressCountry: "NP",
+      },
+      sameAs: [LINKS.github, LINKS.linkedin],
       image: `${SITE.url}${SITE.ogImage}`,
+      knowsAbout: ["React", "TypeScript", "Node.js", "NestJS", "SaaS", "Fintech", "AI"],
     },
   ],
 };
