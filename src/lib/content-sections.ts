@@ -24,7 +24,7 @@ export const contentSections = {
     collection: "thoughts",
     indexTitle: "Engineering Journal",
     indexDescription:
-      "Battle-tested insights from architecting systems that handle millions of requests. Real-world lessons from production environments, not theoretical concepts.",
+      "First-person notes on production systems, architecture, and what I'm building — published when there's something worth writing.",
     layout: "journal",
     indexLayout: "journal",
   },
@@ -33,7 +33,7 @@ export const contentSections = {
     collection: "caseStudies",
     indexTitle: "Production Systems",
     indexDescription:
-      "Battle-tested systems that handle real production traffic. The problems that challenged me, the solutions that delivered measurable impact.",
+      "Deeper write-ups on systems I've helped ship — context, hard parts, and outcomes.",
     layout: "case-study",
     indexLayout: "case-study",
   },

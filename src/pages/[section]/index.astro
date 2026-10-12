@@ -21,15 +21,31 @@ if (!section) {
 }
 
 const entries = await getPublishedEntriesSorted(section);
+const isEmpty = entries.length === 0;
 
 const featured =
-  section.indexLayout === "journal"
+  !isEmpty && section.indexLayout === "journal"
     ? (entries.find((entry) => entry.data.featured) ?? entries[0])
     : undefined;
 const rest =
   section.indexLayout === "journal"
     ? entries.filter((entry) => entry.id !== featured?.id)
     : entries;
+
+const emptyCopy =
+  section.slug === "thoughts"
+    ? {
+        title: "No posts yet",
+        body: "I'm rewriting this journal from scratch — real notes, published one at a time. Check back soon, or see selected work in the meantime.",
+        ctaHref: "/work",
+        ctaLabel: "View selected work →",
+      }
+    : {
+        title: "No case studies yet",
+        body: "Longer production write-ups will land here. Until then, selected work covers what I've shipped.",
+        ctaHref: "/work",
+        ctaLabel: "View selected work →",
+      };
 ---
 
 <MainLayout
@@ -44,7 +60,19 @@ const rest =
   </header>
 
   {
-    section.indexLayout === "journal" ? (
+    isEmpty ? (
+      <section class="panel text-center py-14 px-6">
+        <p class="font-mono text-xs uppercase tracking-widest text-text-muted mb-3">Coming soon</p>
+        <h2 class="text-xl font-semibold text-white mb-3">{emptyCopy.title}</h2>
+        <p class="text-text-muted text-sm leading-relaxed max-w-md mx-auto mb-6">{emptyCopy.body}</p>
+        <a
+          href={emptyCopy.ctaHref}
+          class="text-sm font-mono text-blue-400 hover:text-blue-300 transition-colors"
+        >
+          {emptyCopy.ctaLabel}
+        </a>
+      </section>
+    ) : section.indexLayout === "journal" ? (
       <>
         {featured && (
           <section class="mb-12">
@@ -79,41 +107,39 @@ const rest =
             </div>
           </section>
         )}
-        <section>
-          <h2 class="text-xl font-semibold mb-6 text-text-muted">All Insights</h2>
-          <div>
-            {rest.map((entry) => (
-              <ContentCard entry={entry} section={section} />
-            ))}
-          </div>
-        </section>
+        {rest.length > 0 && (
+          <section>
+            <h2 class="text-xl font-semibold mb-6 text-text-muted">All Insights</h2>
+            <div>
+              {rest.map((entry) => (
+                <ContentCard entry={entry} section={section} />
+              ))}
+            </div>
+          </section>
+        )}
       </>
     ) : (
-      <>
-        <div class="space-y-6">
-          {(entries as CollectionEntry<"caseStudies">[]).map((entry) => (
-            <a
-              href={getSectionPath(section, entry.id)}
-              class="system-spec block no-underline text-inherit"
-            >
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <h3>{entry.data.title}</h3>
-                {entry.data.status && <StatusBadge status={entry.data.status} />}
+      <div class="space-y-6">
+        {(entries as CollectionEntry<"caseStudies">[]).map((entry) => (
+          <a
+            href={getSectionPath(section, entry.id)}
+            class="system-spec block no-underline text-inherit"
+          >
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <h3>{entry.data.title}</h3>
+              {entry.data.status && <StatusBadge status={entry.data.status} />}
+            </div>
+            <p class="text-[#d1d5db] mb-4 leading-relaxed">{entry.data.description}</p>
+            {entry.data.techStack && (
+              <div class="flex flex-wrap gap-2">
+                {entry.data.techStack.map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
               </div>
-              <p class="text-[#d1d5db] mb-4 leading-relaxed">{entry.data.description}</p>
-              {
-                entry.data.techStack && (
-                  <div class="flex flex-wrap gap-2">
-                    {entry.data.techStack.map((tech) => (
-                      <span class="tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                )
-              }
-            </a>
-          ))}
-        </div>
-      </>
+            )}
+          </a>
+        ))}
+      </div>
     )
   }
 </MainLayout>

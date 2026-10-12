@@ -1,31 +1,215 @@
 ---
-import { SITE, LINKS } from "../consts";
+import { SITE, LINKS, PROOF } from "../consts";
+
+const mailto = `mailto:${SITE.email}?subject=Job%20Opportunity%20%E2%80%94%20${encodeURIComponent(SITE.title)}`;
+
+interface SystemsProject {
+  title: string;
+  blurb: string;
+  bullets: string[];
+  stack: string;
+  href?: string;
+}
+
+const systemsProjects: SystemsProject[] = [
+  {
+    title: "Local-first music player",
+    blurb:
+      "A media player that treats the network as optional — YouTube Music integration, chunked offline cache, and stream/download state per track.",
+    bullets: [
+      "Chunked offline cache with resume for partial downloads",
+      "Stream vs download manager with progress and retry",
+      "Designed for offline-first playback, not just a streaming UI wrapper",
+    ],
+    stack: "Local-first · caching · media pipelines",
+    href: LINKS.musicPlayerRepo || undefined,
+  },
+  {
+    title: "Cross-platform P2P file transfer",
+    blurb:
+      "Direct peer-to-peer file transfer across macOS, Windows, Linux, Android, and iOS — no cloud upload required for the transfer path.",
+    bullets: [
+      "Discovery and connection negotiation across heterogeneous OSes",
+      "Chunked streaming with integrity checks and resume",
+      "Platform constraints (especially mobile) treated as first-class design input",
+    ],
+    stack: "Networking · concurrency · cross-platform",
+    href: LINKS.p2pTransferRepo || undefined,
+  },
+  {
+    title: "POSIX shell in Rust",
+    blurb:
+      "A POSIX-style shell built from scratch in Rust (CodeCrafters) — process lifecycle, pipes, redirection, and builtins without shell libraries.",
+    bullets: [
+      "Pipelines and I/O redirection across child processes",
+      "Builtins run in-process (cd cannot be an external binary)",
+      "Parser for quoting and escaping rules",
+    ],
+    stack: "Rust · OS primitives · memory safety",
+    href: LINKS.rustShellRepo || undefined,
+  },
+];
 ---
 
-<!-- Recruiter CTA -->
-<section class="mb-10 panel border-green-500/20 bg-green-950/10">
-  <h2 class="section-label mb-3">Available For</h2>
-  <ul class="space-y-2 text-sm text-text-muted mb-5">
-    <li class="check-item">Full-time remote roles</li>
-    <li class="check-item">Contract engagements</li>
-    <li class="check-item">Startup teams</li>
-    <li class="check-item">Founding engineer opportunities</li>
-  </ul>
-  <p class="text-sm text-text-muted mb-4">
-    Interested in <strong class="text-white font-normal">SaaS</strong>,
-    <strong class="text-white font-normal">AI</strong>,
-    <strong class="text-white font-normal">fintech</strong>, and
-    <strong class="text-white font-normal">developer tools</strong>.
+<!-- Availability (quiet) -->
+<section class="mb-10 panel">
+  <h2 class="section-label mb-3">Open to</h2>
+  <p class="text-sm text-text-muted leading-relaxed mb-3">
+    Remote full-time or contract roles on backend / full-stack teams — especially SaaS, fintech,
+    developer tools, and infrastructure-adjacent products.
   </p>
-  <p class="text-xs font-mono text-green-400/90">Response time: usually within 24 hours</p>
+  <p class="text-xs font-mono text-text-muted">
+    Available for remote roles · {SITE.timezone} · {SITE.overlap}
+  </p>
+</section>
+
+<!-- Selected production work -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <h2 class="section-label mb-1">Selected production work</h2>
+      <p class="text-xs text-text-muted">Outcome-first — what shipped for real teams</p>
+    </div>
+    <a href="/work" class="text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
+      >All selected work →</a
+    >
+  </div>
+  <div class="space-y-4">
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h3 class="font-semibold text-lg">Hourmarket</h3>
+        <span class="text-xs font-mono text-text-muted">UK · Oct 2024 – Oct 2025</span>
+      </div>
+      <p class="text-xs font-mono text-emerald-400 mb-3">Page builder · .NET → NestJS · unified auth</p>
+      <p class="text-sm text-text-muted">
+        Built a visual page builder for web, mobile, and email; migrated backend services from .NET
+        to NestJS; designed auth shared across products; shipped a consumer shopping app on iOS and
+        Android.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h3 class="font-semibold text-lg">Sponsorvista</h3>
+        <span class="text-xs font-mono text-text-muted">NL · Dec 2025 – Present</span>
+      </div>
+      <p class="text-xs font-mono text-blue-400 mb-3">Lead execution · deployments · remote team</p>
+      <p class="text-sm text-text-muted">
+        Own delivery of a production SaaS platform from requirements to deploy; set review and
+        release standards across a distributed team.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h3 class="font-semibold text-lg">Basework.io</h3>
+        <span class="text-xs font-mono text-text-muted">US · Jan – May 2024</span>
+      </div>
+      <p class="text-xs font-mono text-amber-400 mb-3">Banking onboarding · AI products</p>
+      <p class="text-sm text-text-muted">
+        Digital account-onboarding flows for a Nepali bank, plus LLM-based résumé/interview and
+        chatbot products.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- Systems work -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <h2 class="section-label mb-1">Systems work</h2>
+  <p class="text-xs text-text-muted mb-6">Below the framework — artifacts over adjectives</p>
+  <div class="space-y-4">
+    {
+      systemsProjects.map((project) => (
+        <article class="panel">
+          <h3 class="font-semibold text-lg mb-1">{project.title}</h3>
+          <p class="text-xs font-mono text-blue-400 mb-3">{project.stack}</p>
+          <p class="text-sm text-text-muted mb-4">{project.blurb}</p>
+          <ul class="space-y-2 text-sm text-text-muted mb-4">
+            {project.bullets.map((bullet) => (
+              <li class="check-item">{bullet}</li>
+            ))}
+          </ul>
+          {project.href ? (
+            <a
+              href={project.href}
+              class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Repository →
+            </a>
+          ) : (
+            <p class="text-xs font-mono text-text-muted/70">Public repo link coming soon</p>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<!-- Lanceme Up -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <h2 class="section-label mb-1">Case study · video</h2>
+  <p class="text-xs text-text-muted mb-6">Product no longer online — walkthrough instead</p>
+  <article class="panel">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+      <h3 class="font-semibold text-lg">Lanceme Up</h3>
+      <span class="text-xs font-mono text-text-muted">Jul 2022 – Dec 2023</span>
+    </div>
+    <p class="text-xs font-mono text-purple-400 mb-3">Frontend · real-time collaboration · CI/CD</p>
+    <p class="text-sm text-text-muted mb-4">
+      Real-time chat and huddle UI, custom file management, and an internal email client for a
+      collaboration workspace used by agencies and teams. The original product domain is no longer
+      live, so I keep recorded walkthroughs as proof of what shipped.
+    </p>
+    <div class="flex flex-wrap gap-4 text-xs font-mono">
+      <a href="/work/lanceme-up" class="text-emerald-400 hover:text-emerald-300 transition-colors"
+        >Written case study →</a
+      >
+      {
+        LINKS.lancemeUpVideo ? (
+          <a
+            href={LINKS.lancemeUpVideo}
+            class="text-blue-400 hover:text-blue-300 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Watch walkthrough →
+          </a>
+        ) : (
+          <span class="text-text-muted/70">Video link pending</span>
+        )
+      }
+    </div>
+  </article>
+</section>
+
+<!-- Open source -->
+<section class="mb-10 border-t border-dark-border pt-8">
+  <h2 class="section-label mb-1">Open source</h2>
+  <p class="text-xs text-text-muted mb-6">Found in production · fixed upstream</p>
+  <article class="panel">
+    <h3 class="font-semibold text-lg mb-1">postalsys/imapflow</h3>
+    <p class="text-xs font-mono text-amber-400 mb-3">Node.js IMAP client · PR #111 merged</p>
+    <p class="text-sm text-text-muted mb-4">
+      While building an internal email client, calling <code class="text-white/80">list()</code> without
+      options crashed even though TypeScript marked options as optional. Traced it to a missing
+      default at runtime and sent a one-line fix upstream — merged the next day.
+    </p>
+    <a
+      href={LINKS.imapflowPr}
+      class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors"
+      target="_blank"
+      rel="noopener noreferrer">View merged PR →</a
+    >
+  </article>
 </section>
 
 <!-- Recommendations -->
 <section class="mb-10 border-t border-dark-border pt-8">
   <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
     <div>
-      <h2 class="section-label mb-1">Recommendations</h2>
-      <p class="text-xs text-text-muted">Founder, co-founder & CTO endorsements</p>
+      <h2 class="section-label mb-1">What people say</h2>
+      <p class="text-xs text-text-muted">Founder & co-founder endorsements</p>
     </div>
     <a
       href={LINKS.recommendations}
@@ -81,73 +265,46 @@ import { SITE, LINKS } from "../consts";
   </div>
 </section>
 
-<!-- What I've Built -->
-<section class="mb-10 border-t border-dark-border pt-8">
-  <h2 class="section-label mb-6">What I've Built</h2>
-  <div class="space-y-4">
-    <article class="panel">
-      <h3 class="font-semibold text-lg mb-1">AI Resume Platform</h3>
-      <p class="text-xs font-mono text-blue-400 mb-3">React · Node.js · LLM APIs</p>
-      <p class="text-sm text-text-muted">
-        Built an AI-powered platform that generates résumés and interview preparation content.
-      </p>
-    </article>
-    <article class="panel">
-      <h3 class="font-semibold text-lg mb-1">Digital Banking Platform</h3>
-      <p class="text-xs font-mono text-emerald-400 mb-3">React · TypeScript · Node.js</p>
-      <p class="text-sm text-text-muted">
-        Developed digital onboarding and account management workflows for a Nepali financial
-        institution.
-      </p>
-    </article>
-    <article class="panel">
-      <h3 class="font-semibold text-lg mb-1">Dynamic Page Builder</h3>
-      <p class="text-xs font-mono text-purple-400 mb-3">React · TypeScript · NestJS</p>
-      <p class="text-sm text-text-muted">
-        Built a visual page builder for web, mobile, and email templates across 3 product surfaces.
-      </p>
-    </article>
-    <article class="panel">
-      <h3 class="font-semibold text-lg mb-1">Unified Authentication System</h3>
-      <p class="text-xs font-mono text-amber-400 mb-3">NestJS · PostgreSQL</p>
-      <p class="text-sm text-text-muted">
-        Designed reusable authentication infrastructure shared across multiple products.
-      </p>
-    </article>
-  </div>
-</section>
-
-<!-- Experience -->
+<!-- Experience timeline -->
 <section class="mb-10 border-t border-dark-border pt-8">
   <h2 class="section-label mb-6">Experience</h2>
-  <div class="space-y-6">
+  <div class="space-y-4">
     <article class="panel">
-      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-        <h3 class="font-semibold text-lg">Sponsorvista</h3>
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 class="font-semibold">Sponsorvista</h3>
         <span class="text-xs font-mono text-text-muted">Dec 2025 – Present</span>
       </div>
       <p class="text-sm text-text-muted">
-        Led engineering execution across a distributed remote team, shipping production features and
-        improving page-load performance and deployment reliability.
+        Lead full-stack engineer — delivery, deployments, and engineering standards for a
+        distributed remote team.
       </p>
     </article>
     <article class="panel">
-      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-        <h3 class="font-semibold text-lg">Hourmarket</h3>
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 class="font-semibold">Hourmarket</h3>
         <span class="text-xs font-mono text-text-muted">Oct 2024 – Oct 2025</span>
       </div>
       <p class="text-sm text-text-muted">
-        Built a dynamic page builder, migrated services from .NET to NestJS, and shipped a consumer
-        mobile shopping app on iOS and Android.
+        Page builder, .NET → NestJS migration, unified auth, iOS/Android shopping app.
       </p>
     </article>
     <article class="panel">
-      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-        <h3 class="font-semibold text-lg">Basework.io</h3>
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 class="font-semibold">Basework.io</h3>
         <span class="text-xs font-mono text-text-muted">Jan – May 2024</span>
       </div>
       <p class="text-sm text-text-muted">
-        Shipped 3 client products in 5 months — including an AI platform and a digital banking app.
+        AI products and digital banking onboarding for a Nepali bank.
+      </p>
+    </article>
+    <article class="panel">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 class="font-semibold">Lanceme Up</h3>
+        <span class="text-xs font-mono text-text-muted">Jul 2022 – Dec 2023</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Frontend developer — real-time collaboration, file manager, internal email client, CI/CD on
+        AWS & Azure.
       </p>
     </article>
   </div>
@@ -155,8 +312,8 @@ import { SITE, LINKS } from "../consts";
 
 <!-- Technologies -->
 <section class="mb-10 border-t border-dark-border pt-8">
-  <h2 class="section-label mb-2">Technologies I've Shipped to Production</h2>
-  <p class="text-xs text-text-muted mb-6">Not a wishlist — tools I've used in real products.</p>
+  <h2 class="section-label mb-2">Technologies I've shipped</h2>
+  <p class="text-xs text-text-muted mb-6">Not a wishlist — tools used in real products and systems work.</p>
   <div class="grid sm:grid-cols-2 gap-4 text-sm">
     <div class="panel">
       <p class="text-blue-400 font-mono text-xs mb-2">Frontend</p>
@@ -164,81 +321,38 @@ import { SITE, LINKS } from "../consts";
     </div>
     <div class="panel">
       <p class="text-emerald-400 font-mono text-xs mb-2">Backend</p>
-      <p class="text-text-muted">Node.js, NestJS, Express, REST APIs, Microservices</p>
-    </div>
-    <div class="panel">
-      <p class="text-purple-400 font-mono text-xs mb-2">Databases</p>
-      <p class="text-text-muted">PostgreSQL, MongoDB, Redis</p>
+      <p class="text-text-muted">Node.js, NestJS, Express, REST APIs, PostgreSQL, Redis</p>
     </div>
     <div class="panel">
       <p class="text-amber-400 font-mono text-xs mb-2">Infrastructure</p>
       <p class="text-text-muted">AWS, Azure, Docker, GitHub Actions, CI/CD</p>
     </div>
+    <div class="panel">
+      <p class="text-purple-400 font-mono text-xs mb-2">Systems</p>
+      <p class="text-text-muted">Rust, networking, OS primitives, local-first caching, P2P</p>
+    </div>
   </div>
 </section>
 
-<!-- Engineering Activity -->
+<!-- How I work -->
 <section class="mb-10 border-t border-dark-border pt-8">
-  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-    <div>
-      <h2 class="section-label mb-1">Engineering Activity</h2>
-      <p class="text-xs text-text-muted">40+ public repositories · active since 2020</p>
-    </div>
-    <a
-      href={LINKS.github}
-      class="text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors whitespace-nowrap"
-      target="_blank"
-      rel="noopener noreferrer">github.com/proniraj →</a
-    >
-  </div>
-
-  <div class="panel overflow-hidden">
-    <img
-      src="https://ghchart.rshah.org/proniraj"
-      alt="Niraj Thakur GitHub contribution chart"
-      class="w-full h-auto"
-      loading="lazy"
-      width="800"
-      height="120"
-    />
-  </div>
-
-  <div class="mt-4 grid sm:grid-cols-2 gap-4">
-    <a
-      href={LINKS.github}
-      class="panel block hover:border-blue-500/30 no-underline text-inherit"
-      target="_blank"
-      rel="noopener noreferrer">
-      <p class="font-semibold mb-1">GitHub Profile</p>
-      <p class="text-sm text-text-muted">Open source projects, experiments, and production codebases.</p>
-    </a>
-    <!-- Engineering Journal — hidden for now; still available at /thoughts
-    <a href="/thoughts" class="panel block hover:border-blue-500/30 no-underline text-inherit">
-      <p class="font-semibold mb-1">Engineering Journal</p>
-      <p class="text-sm text-text-muted">
-        Architecture patterns, scaling strategies, and technical write-ups.
-      </p>
-    </a>
-    -->
-    <a href="/work" class="panel block hover:border-emerald-500/30 no-underline text-inherit">
-      <p class="font-semibold mb-1">Selected Work</p>
-      <p class="text-sm text-text-muted mb-2">
-        Products I've shipped — context, my role, and what changed in production.
-      </p>
-      <p class="text-xs font-mono text-emerald-400/90">View selected work →</p>
-    </a>
-  </div>
+  <h2 class="section-label mb-6">How I work</h2>
+  <ul class="space-y-3 text-sm text-text-muted">
+    <li class="check-item">Written design notes before large changes</li>
+    <li class="check-item">Small PRs, ownership through deploy</li>
+    <li class="check-item">Async-first communication with clear handoffs</li>
+    <li class="check-item">Timezone overlap stated up front for remote teams</li>
+  </ul>
 </section>
 
 <!-- Connect -->
 <section id="contact" class="border-t border-dark-border pt-8">
   <h2 class="section-label mb-4">Connect</h2>
-  <p class="text-sm text-text-muted mb-4">Hiring for a remote full stack role? I'd love to hear from you.</p>
+  <p class="text-sm text-text-muted mb-4">
+    Hiring for a remote backend or full-stack role? Email is the fastest path.
+  </p>
   <div class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
-    <a
-      href={`mailto:${SITE.email}?subject=Job%20Opportunity%20%E2%80%94%20${encodeURIComponent(SITE.title)}`}
-      class="text-blue-400 hover:text-blue-300 transition-colors">{SITE.email}</a
-    >
+    <a href={mailto} class="text-blue-400 hover:text-blue-300 transition-colors">{SITE.email}</a>
     <a
       href={LINKS.github}
       class="text-blue-400 hover:text-blue-300 transition-colors"
@@ -249,13 +363,16 @@ import { SITE, LINKS } from "../consts";
       href={LINKS.linkedin}
       class="text-blue-400 hover:text-blue-300 transition-colors"
       target="_blank"
-      rel="noopener noreferrer">linkedin.com/in/developerniraj</a
+      rel="noopener noreferrer">LinkedIn</a
     >
     <a
       href={LINKS.resume}
       class="text-blue-400 hover:text-blue-300 transition-colors"
       target="_blank"
-      rel="noopener noreferrer">Download Resume (PDF)</a
+      rel="noopener noreferrer">Résumé (PDF)</a
     >
   </div>
+  <p class="mt-6 text-xs font-mono text-text-muted">
+    Shipped for {PROOF.clients.join(" · ")}
+  </p>
 </section>

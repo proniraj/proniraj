@@ -32,14 +32,24 @@ const jsonLd = {
       },
       sameAs: [LINKS.github, LINKS.linkedin],
       image: `${SITE.url}${SITE.ogImage}`,
-      knowsAbout: ["React", "TypeScript", "Node.js", "NestJS", "SaaS", "Fintech", "AI"],
+      knowsAbout: [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "NestJS",
+        "Rust",
+        "SaaS",
+        "Fintech",
+        "Networking",
+        "Local-first software",
+      ],
     },
   ],
 };
 ---
 
 <MainLayout
-  title={`${SITE.title} — SaaS, Fintech & AI Products`}
+  title={`${SITE.title} — TypeScript systems & production SaaS`}
   description={SITE.description}
   canonical={`${SITE.url}/`}
   jsonLd={jsonLd}
