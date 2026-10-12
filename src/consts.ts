@@ -2,7 +2,7 @@ export const SITE = {
   title: "Niraj Thakur",
   tagline: "Full Stack Engineer",
   description:
-    "Full-stack engineer (Next.js, React, TypeScript, NestJS) building banking platforms at Peace Nepal; P2P and local-first systems in Rust. Kathmandu · UTC+5:45.",
+    "Full-stack engineer building banking platforms at Peace Nepal — Next.js, React, TypeScript, NestJS, React Native. Kathmandu · UTC+5:45.",
   url: "https://nirajthakur.com.np",
   author: "Niraj Thakur",
   email: "ntnirajthakur21@gmail.com",

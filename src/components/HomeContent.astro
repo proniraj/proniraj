@@ -15,13 +15,13 @@ const systemsProjects: SystemsProject[] = [
   {
     title: "Local-first music player",
     blurb:
-      "A media player that treats the network as optional — YouTube Music integration, chunked offline cache, and stream/download state per track.",
+      "A React Native music player that treats the network as optional — YouTube Music integration, chunked offline cache, and stream/download state per track on mobile.",
     bullets: [
+      "Built with React Native — same TypeScript skills as production web, on iOS/Android",
       "Chunked offline cache with resume for partial downloads",
-      "Stream vs download manager with progress and retry",
-      "Designed for offline-first playback, not just a streaming UI wrapper",
+      "Stream vs download manager with progress and retry — not just a streaming UI wrapper",
     ],
-    stack: "Local-first · caching · media pipelines",
+    stack: "React Native · local-first · offline cache · media pipelines",
     href: LINKS.musicPlayerRepo || undefined,
   },
   {
@@ -51,25 +51,13 @@ const systemsProjects: SystemsProject[] = [
 ];
 ---
 
-<!-- Availability (quiet) -->
-<section class="mb-10 panel">
-  <h2 class="section-label mb-3">Open to</h2>
-  <p class="text-sm text-text-muted leading-relaxed mb-3">
-    Remote full-time or contract roles on product, platform, or fintech teams — especially
-    regulated environments, SaaS, and infrastructure-adjacent products.
-  </p>
-  <p class="text-xs font-mono text-text-muted">
-    Available for remote roles · {SITE.timezone} · {SITE.overlap}
-  </p>
-</section>
-
 <!-- Banking & fintech (current) -->
 <section class="mb-10 border-t border-dark-border pt-8">
   <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
     <div>
       <h2 class="section-label mb-1">Banking &amp; fintech</h2>
       <p class="text-xs text-text-muted">
-        Current role at Peace Nepal DOT Com — NDA-safe, public proof only
+        Peace Nepal DOT Com · public sites only — no internal tooling
       </p>
     </div>
     <a
@@ -171,11 +159,14 @@ const systemsProjects: SystemsProject[] = [
         <h3 class="font-semibold text-lg">Hourmarket</h3>
         <span class="text-xs font-mono text-text-muted">UK · Oct 2024 – Oct 2025</span>
       </div>
-      <p class="text-xs font-mono text-emerald-400 mb-3">Page builder · .NET → NestJS · unified auth</p>
+      <p class="text-xs font-mono text-emerald-400 mb-3">
+        Page builder · React Native shopping app · .NET → NestJS · unified auth
+      </p>
       <p class="text-sm text-text-muted">
-        Built a visual page builder for web, mobile, and email; migrated backend services from .NET
-        to NestJS; designed auth shared across products; shipped a consumer shopping app on iOS and
-        Android. Same schema-driven builder pattern later refined for NMB's regulated brand.
+        Built a visual page builder for web, mobile screens, and email; shipped a consumer React
+        Native shopping app on iOS and Android; migrated backend services from .NET to NestJS;
+        designed auth shared across products.
+        Same schema-driven builder pattern later refined for NMB's regulated brand.
       </p>
     </article>
     <article class="panel">
@@ -196,7 +187,7 @@ const systemsProjects: SystemsProject[] = [
       </div>
       <p class="text-xs font-mono text-amber-400 mb-3">Banking onboarding · AI products</p>
       <p class="text-sm text-text-muted">
-        Digital account-onboarding flows for a Nepali bank, plus LLM-based résumé/interview and
+        Digital account-onboarding flows for a Nepali bank, plus LLM-based resume/interview and
         chatbot products.
       </p>
     </article>
@@ -386,7 +377,7 @@ const systemsProjects: SystemsProject[] = [
         <span class="text-xs font-mono text-text-muted">Oct 2024 – Oct 2025</span>
       </div>
       <p class="text-sm text-text-muted">
-        Page builder, .NET → NestJS migration, unified auth, iOS/Android shopping app.
+        Page builder, React Native iOS/Android shopping app, .NET → NestJS migration, unified auth.
       </p>
     </article>
     <article class="panel">
@@ -426,8 +417,10 @@ const systemsProjects: SystemsProject[] = [
   <p class="text-xs text-text-muted mb-6">Not a wishlist — tools used in real products and systems work.</p>
   <div class="grid sm:grid-cols-2 gap-4 text-sm">
     <div class="panel">
-      <p class="text-blue-400 font-mono text-xs mb-2">Frontend</p>
-      <p class="text-text-muted">React, Next.js, TypeScript, Tailwind, React Native, jQuery</p>
+      <p class="text-blue-400 font-mono text-xs mb-2">Frontend &amp; mobile</p>
+      <p class="text-text-muted">
+        React, Next.js, TypeScript, Tailwind, React Native (Hourmarket app + music player), jQuery
+      </p>
     </div>
     <div class="panel">
       <p class="text-emerald-400 font-mono text-xs mb-2">Backend</p>
@@ -482,7 +475,7 @@ const systemsProjects: SystemsProject[] = [
       href={LINKS.resume}
       class="text-blue-400 hover:text-blue-300 transition-colors"
       target="_blank"
-      rel="noopener noreferrer">Résumé (PDF)</a
+      rel="noopener noreferrer">Resume (PDF)</a
     >
   </div>
   <p class="mt-6 text-xs font-mono text-text-muted">

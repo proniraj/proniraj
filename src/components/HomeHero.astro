@@ -1,58 +1,31 @@
 ---
-import { SITE, LINKS, PROOF } from "../consts";
+import { SITE, LINKS } from "../consts";
 
 const mailto = `mailto:${SITE.email}?subject=Job%20Opportunity%20%E2%80%94%20${encodeURIComponent(SITE.title)}`;
 ---
 
-<header class="max-w-3xl mx-auto px-6 py-12 w-full">
-  <p class="font-mono text-sm text-text-muted mb-4">Home</p>
-
-  <h1 class="text-3xl sm:text-4xl font-bold mb-2">
+<header class="max-w-3xl mx-auto px-6 pt-14 pb-10 w-full">
+  <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-5">
     <span class="gradient-text">{SITE.title}</span>
   </h1>
-  <p class="text-lg text-white mb-4">
-    Full-stack engineer building production platforms for banks and product teams.
+
+  <p class="text-xl sm:text-2xl text-white/95 font-medium leading-snug max-w-xl mb-4">
+    Full-stack engineer building banking platforms and product software.
   </p>
 
-  <p class="text-text-muted leading-relaxed max-w-2xl mb-6">
-    Today I build the frontend for banking platforms at Peace Nepal (PNDC): NMB Bank's
-    fully CMS-driven website and its drag-and-drop page builder, and Shine Resunga
-    Development Bank's online demat (KYC) application. Before that, 4+ years shipping
-    SaaS, fintech and AI products for teams in the UK, Netherlands and US. Outside work
-    I go below the framework: P2P networking, offline-first caching, a POSIX shell in Rust.
+  <p class="text-base text-text-muted leading-relaxed max-w-lg mb-8">
+    Currently at Peace Nepal — CMS and page builders for banks, plus React Native when the
+    product needs a phone. Outside work: local-first systems and Rust.
   </p>
 
-  <p class="text-sm font-mono text-text-muted mb-2">
-    <span class="text-white/80">Currently</span>
-    {" "}
-    {PROOF.current}
-  </p>
-  <p class="text-sm font-mono text-text-muted mb-2">
-    <span class="text-white/80">Shipped for</span>
-    {" "}
-    {PROOF.clients.join(" · ")}
-  </p>
-  <p class="text-sm font-mono text-text-muted mb-6">
-    <span class="text-white/80">Upstream</span>
-    {" "}
-    <a
-      href={LINKS.imapflowPr}
-      class="text-blue-400 hover:text-blue-300 transition-colors"
-      target="_blank"
-      rel="noopener noreferrer">{PROOF.upstream}</a
-    >
-    {" "}(merged)
-  </p>
-
-  <p class="text-sm text-text-muted font-mono mb-8">
-    {SITE.location} · {SITE.timezone} · {SITE.overlap}
-  </p>
-
-  <nav class="flex flex-wrap gap-3" aria-label="Primary actions">
+  <nav class="flex flex-wrap gap-3 mb-6" aria-label="Primary actions">
     <a href={mailto} class="btn-primary">Email me</a>
     <a href={LINKS.resume} class="btn-secondary" target="_blank" rel="noopener noreferrer"
-      >Résumé</a
+      >Resume</a
     >
-    <a href="/work" class="btn-secondary">Selected work</a>
   </nav>
+
+  <p class="text-xs font-mono text-text-muted/80">
+    {SITE.location} · {SITE.timezone} · Open to remote · {SITE.overlap}
+  </p>
 </header>
