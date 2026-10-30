@@ -51,6 +51,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # Switch the repo from the legacy Jekyll branch build to Actions.
-          enablement: true
